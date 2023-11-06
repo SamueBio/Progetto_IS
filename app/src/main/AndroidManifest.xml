@@ -47,6 +47,14 @@
             android:name=".Profilo">
 
         </activity>
+        <activity
+            android:name=".Preferiti">
+
+        </activity>
+        <activity
+            android:name=".Notifiche">
+
+        </activity>
 
     </application>
 
