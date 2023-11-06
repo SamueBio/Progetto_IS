@@ -57,4 +57,3 @@ public class AlloggioAdapter extends BaseAdapter {
     }
 }
 
-
