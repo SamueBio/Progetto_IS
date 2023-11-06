@@ -69,6 +69,7 @@ public class Cerca extends AppCompatActivity {
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -85,6 +86,8 @@ public class Cerca extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.cerca);
 
         // Inizializza i componenti dell'interfaccia utente
@@ -108,7 +111,7 @@ public class Cerca extends AppCompatActivity {
         adapter = new AlloggioAdapter(this, allAccommodations);
 
         // Imposta l'adattatore per la ListView
-        resultsListView.setAdapter(adapter);
+        //resultsListView.setAdapter(adapter);
 
         // Gestisci il clic del pulsante di ricerca
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +127,6 @@ public class Cerca extends AppCompatActivity {
         String keyword = keywordEditText.getText().toString();
         String[] inputArray = keyword.trim().split(" ");
         adapter = new AlloggioAdapter(this, filterAccommodationsByKeywords(allAccommodations, inputArray));
-
         resultsListView.setAdapter(adapter);
     }
 
@@ -160,9 +162,6 @@ public class Cerca extends AppCompatActivity {
                 filteredAccommodations.add(allAccommodations.get(j));
             }
         }
-
-
-
         return filteredAccommodations;
     }
 

@@ -79,7 +79,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/cuore" />
+                app:srcCompat="@drawable/cuore_si" />
 
             <ImageButton
                 android:id="@+id/lente"
