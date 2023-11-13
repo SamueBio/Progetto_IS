@@ -6,26 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg">
 
-    <!-- Pulsante "Profilo" in alto a sinistra -->
 
-    <!-- Barra di ricerca "Filtri" in alto a destra -->
-
-    <!--<EditText
-        android:id="@+id/edtFiltri"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Filtri"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true" />-->
-
-    <ListView
-        android:id="@+id/accommodationListView"
-        android:layout_width="376dp"
-        android:layout_height="468dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="120dp" />
 
     <ImageButton
         android:id="@+id/btnProfilo"
@@ -39,23 +20,6 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/profilo" />
 
-
-
-
-
-
-
-    <ImageButton
-        android:id="@+id/filtri"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        android:background="#CFD2F0"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/filter" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="350dp"
@@ -73,35 +37,43 @@
 
             <ImageButton
                 android:id="@+id/preferiti"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/cuore_si" />
 
             <ImageButton
                 android:id="@+id/lente"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/lente" />
 
             <ImageButton
                 android:id="@+id/notifica"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="35dp"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/notifica" />
 
         </RelativeLayout></androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/veneto_alloggi_logo_removebg_preview" />
 
 </RelativeLayout>

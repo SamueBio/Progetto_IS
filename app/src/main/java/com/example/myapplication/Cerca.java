@@ -66,11 +66,14 @@ public class Cerca extends AppCompatActivity {
 }
 */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
@@ -78,6 +81,7 @@ import java.util.ArrayList;
 public class Cerca extends AppCompatActivity {
     private EditText keywordEditText;
     private Button searchButton;
+    private ImageButton home;
     private ListView resultsListView;
     private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
     private ArrayList<Alloggio> allAccommodations; // La lista completa degli alloggi
@@ -85,12 +89,15 @@ public class Cerca extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cerca);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setContentView(R.layout.cerca2);
 
         // Inizializza i componenti dell'interfaccia utente
         keywordEditText = findViewById(R.id.keywordEditText);
         searchButton = findViewById(R.id.searchButton);
         resultsListView = findViewById(R.id.accommodationListView);
+        home = (ImageButton) findViewById(R.id.house);
 
         // Inizializza la lista completa degli alloggi con dati di esempio
         allAccommodations = new ArrayList<>();
@@ -108,13 +115,20 @@ public class Cerca extends AppCompatActivity {
         adapter = new AlloggioAdapter(this, allAccommodations);
 
         // Imposta l'adattatore per la ListView
-        resultsListView.setAdapter(adapter);
+        //resultsListView.setAdapter(adapter);
 
         // Gestisci il clic del pulsante di ricerca
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 performSearch();
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDashboard();
             }
         });
     }
@@ -124,8 +138,11 @@ public class Cerca extends AppCompatActivity {
         String keyword = keywordEditText.getText().toString();
         String[] inputArray = keyword.trim().split(" ");
         adapter = new AlloggioAdapter(this, filterAccommodationsByKeywords(allAccommodations, inputArray));
-
         resultsListView.setAdapter(adapter);
+    }
+    public void openDashboard(){
+        Intent intent=new Intent(this, Dashboard.class);
+        startActivity(intent);
     }
 
     // Metodo per filtrare gli alloggi in base alla parola chiave
@@ -160,9 +177,6 @@ public class Cerca extends AppCompatActivity {
                 filteredAccommodations.add(allAccommodations.get(j));
             }
         }
-
-
-
         return filteredAccommodations;
     }
 

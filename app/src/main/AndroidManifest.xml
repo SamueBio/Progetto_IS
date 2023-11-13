@@ -35,6 +35,26 @@
             android:name=".Cerca">
 
         </activity>
+        <activity
+            android:name=".Dashboard">
+
+        </activity>
+        <activity
+            android:name=".LocationActivity">
+
+        </activity>
+        <activity
+            android:name=".Profilo">
+
+        </activity>
+        <activity
+            android:name=".Preferiti">
+
+        </activity>
+        <activity
+            android:name=".Notifiche">
+
+        </activity>
 
     </application>
 
