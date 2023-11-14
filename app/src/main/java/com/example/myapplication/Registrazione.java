@@ -6,8 +6,11 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.content.DialogInterface;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 public class Registrazione extends AppCompatActivity {
 
@@ -46,10 +49,13 @@ public class Registrazione extends AppCompatActivity {
         return TextUtils.isEmpty(str);
     }
 
+    private static boolean isPasswordSecure(String password) {
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+    }
+
     void checkDataEntered() {
         if (isEmpty(nome)) {
-            Toast t = Toast.makeText(this, "Inserisci nome!", Toast.LENGTH_SHORT);
-            t.show();
+            nome.setError("Inserisci nome!");
         }
 
         if (isEmpty(cognome)) {
@@ -58,6 +64,10 @@ public class Registrazione extends AppCompatActivity {
 
         if (isEmail(email) == false) {
             email.setError("Inserisci mail valida!");
+        }
+
+        if(isPasswordSecure(password.getText().toString())) {
+            password.setError("error");
         }
 
     }
