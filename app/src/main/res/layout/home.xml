@@ -10,12 +10,11 @@
     android:gravity="center"
     android:background="@color/bg"
     tools:context=".Login">
-
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="379dp"
-        android:layout_height="363dp"
-        card_view:srcCompat="@drawable/veneto_alloggi_logo_removebg_preview" />
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:srcCompat="@drawable/travel_together_logo2" />
 
 
     <Button
@@ -28,6 +27,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:cornerRadius="20dp" />
+
 
     <!--<Button
         android:id="@+id/toSearch"
