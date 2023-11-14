@@ -55,6 +55,10 @@
             android:name=".Notifiche">
 
         </activity>
+        <activity
+            android:name=".Registrazione">
+
+        </activity>
 
     </application>
 

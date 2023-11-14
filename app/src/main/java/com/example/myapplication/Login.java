@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
@@ -14,6 +15,8 @@ public class Login extends AppCompatActivity {
     EditText username;
     EditText password;
     Button loginButton;
+
+    TextView register;
 
 
     @Override
@@ -24,6 +27,7 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
+        register=findViewById(R.id.register);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,9 +40,21 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRegis();
+            }
+
+        });
     }
     public void openSearch(){
         Intent intent=new Intent(this, Dashboard.class);
+        startActivity(intent);
+    }
+    public void openRegis(){
+        Intent intent=new Intent(this, Registrazione.class);
         startActivity(intent);
     }
 
