@@ -66,6 +66,7 @@ public class Cerca extends AppCompatActivity {
 }
 */
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -75,28 +76,39 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
+import android.view.LayoutInflater;
+import android.widget.CheckBox;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class Cerca extends AppCompatActivity {
-    private EditText keywordEditText;
+    private EditText nomeSearch;
+    private EditText indirizzo;
+
     private Button searchButton;
     private ImageButton home;
+    private ImageButton filtri;
     private ListView resultsListView;
     private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
     private ArrayList<Alloggio> allAccommodations; // La lista completa degli alloggi
+    private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.cerca2);
+        setContentView(R.layout.cerca);
 
         // Inizializza i componenti dell'interfaccia utente
-        keywordEditText = findViewById(R.id.keywordEditText);
+        nomeSearch = findViewById(R.id.nome);
         searchButton = findViewById(R.id.searchButton);
-        resultsListView = findViewById(R.id.accommodationListView);
+        filtri= findViewById(R.id.filtri);
+        indirizzo = findViewById(R.id.indirizzo);
+       // resultsListView = findViewById(R.id.accommodationListView);
         home = (ImageButton) findViewById(R.id.house);
 
         // Inizializza la lista completa degli alloggi con dati di esempio
@@ -131,11 +143,46 @@ public class Cerca extends AppCompatActivity {
                 openDashboard();
             }
         });
+
+        filtri.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                showPopup();
+            }
+        });
     }
 
+    private void showPopup() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.popup_layout, null);
+        dialogBuilder.setView(dialogView);
+
+        final CheckBox checkBoxService1 = dialogView.findViewById(R.id.checkBoxService1);
+        final CheckBox checkBoxService2 = dialogView.findViewById(R.id.checkBoxService2);
+
+        Button btnSelectServices = dialogView.findViewById(R.id.btnSelectServices);
+        btnSelectServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Ottieni lo stato delle caselle di controllo e gestisci di conseguenza
+                boolean isService1Selected = checkBoxService1.isChecked();
+                boolean isService2Selected = checkBoxService2.isChecked();
+
+                // Esegui azioni in base alle selezioni dell'utente
+                // ...
+
+                // Chiudi il popup
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
     // Metodo per eseguire la ricerca
     private void performSearch() {
-        String keyword = keywordEditText.getText().toString();
+        String keyword = nomeSearch.getText().toString();
         String[] inputArray = keyword.trim().split(" ");
         adapter = new AlloggioAdapter(this, filterAccommodationsByKeywords(allAccommodations, inputArray));
         resultsListView.setAdapter(adapter);
