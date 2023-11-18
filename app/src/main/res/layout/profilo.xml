@@ -52,6 +52,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"
         android:text="NOME"
+
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -61,6 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:hint=""
+        android:inputType="none"
+        android:editable="false"
         android:layout_marginTop="170dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"/>
@@ -85,7 +88,9 @@
         android:layout_marginTop="270dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"
-        android:hint=""/>
+        android:hint=""
+        android:inputType="none"
+        android:editable="false"/>
 
     <TextView
         android:id="@+id/email"
@@ -107,7 +112,9 @@
         android:hint=""
         android:layout_marginTop="370dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="90dp"/>
+        android:layout_marginRight="90dp"
+        android:inputType="none"
+        android:editable="false"/>
 
     <TextView
         android:id="@+id/password"
@@ -120,37 +127,16 @@
         android:text="PASSWORD"
         android:textSize="25sp"
         android:textStyle="bold" />
-    <EditText
-        android:id="@+id/password2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="470dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="90dp"
-        android:hint=""
-        android:inputType="textPassword"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/cardview_dark_background" />
 
-
-    <ImageButton
-        android:id="@+id/nomeMod"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="340dp"
-        android:layout_marginTop="250dp"
-        android:background="#CFD2F0"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/compose" />
 
     <ImageButton
         android:id="@+id/cognomeMod"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="340dp"
-        android:layout_marginBottom="335dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="250dp"
         android:background="#CFD2F0"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/compose" />
@@ -159,9 +145,10 @@
         android:id="@+id/mailMod"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="340dp"
-        android:layout_marginBottom="238dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="350dp"
         android:background="#CFD2F0"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/compose" />
@@ -170,11 +157,45 @@
         android:id="@+id/pwMod"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="340dp"
-        android:layout_marginTop="160dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="480dp"
         android:background="#CFD2F0"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/compose" />
+
+
+    <ImageButton
+        android:id="@+id/nomeMod"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="150dp"
+        android:background="#CFD2F0"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/compose" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="470dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="90dp"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:editable="false"
+            android:hint="" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </RelativeLayout>
