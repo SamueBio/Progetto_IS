@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "914209633894",
+    "project_id": "travel-together-a1088",
+    "storage_bucket": "travel-together-a1088.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914209633894:android:8eb007da5af4d1e5d2dfa7",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY8bdfSm0Pxh4rZeY-pjZ6OutKOJ2Og94"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
