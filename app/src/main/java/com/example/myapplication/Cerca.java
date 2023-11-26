@@ -79,6 +79,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -88,8 +89,12 @@ public class Cerca extends AppCompatActivity {
     private EditText nomeSearch;
     private EditText indirizzo;
 
+    private TextView backk;
+
     private Button searchButton;
     private ImageButton home;
+
+    private ImageButton back;
     private ImageButton filtri;
     private ListView resultsListView;
     private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
@@ -181,14 +186,38 @@ public class Cerca extends AppCompatActivity {
         alertDialog.show();
     }
     // Metodo per eseguire la ricerca
+    @SuppressLint("MissingInflatedId")
     private void performSearch() {
+
         String keyword = nomeSearch.getText().toString();
-        String[] inputArray = keyword.trim().split(" ");
+        String keyword2 = indirizzo.getText().toString();
+        String[] inputArray = (keyword+" "+keyword2).trim().split(" ");
         adapter = new AlloggioAdapter(this, filterAccommodationsByKeywords(allAccommodations, inputArray));
+        setContentView(R.layout.cerca2);
+        back=findViewById(R.id.back);
+        backk=findViewById(R.id.back2);
+        back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                backSearch();
+            }
+        });
+        backk.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                backSearch();
+            }
+        });
+        resultsListView = findViewById(R.id.accommodationListView);
         resultsListView.setAdapter(adapter);
     }
-    public void openDashboard(){
+    private void openDashboard(){
         Intent intent=new Intent(this, Dashboard.class);
+        startActivity(intent);
+    }
+
+    private void backSearch(){
+        Intent intent=new Intent(this, Cerca.class);
         startActivity(intent);
     }
 
