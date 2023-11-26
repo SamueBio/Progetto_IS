@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class AlloggioAdapter extends BaseAdapter {
         }
 
         Alloggio accommodation = accommodationList.get(position);
+        ImageView heartIcon = (ImageView) convertView.findViewById(R.id.pref);
+        heartIcon.setTag(accommodation);
 
         // Ottieni riferimenti agli elementi del layout dell'elemento ListView
         TextView nameTextView = convertView.findViewById(R.id.nameTextView);

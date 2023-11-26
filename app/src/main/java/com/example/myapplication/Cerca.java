@@ -80,6 +80,7 @@ import java.util.ArrayList;
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -94,8 +95,12 @@ public class Cerca extends AppCompatActivity {
     private Button searchButton;
     private ImageButton home;
 
+    private ImageView cuore;
+
     private ImageButton back;
     private ImageButton filtri;
+
+    private Button bpref;
     private ListView resultsListView;
     private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
     private ArrayList<Alloggio> allAccommodations; // La lista completa degli alloggi
@@ -160,7 +165,7 @@ public class Cerca extends AppCompatActivity {
     private void showPopup() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.popup_layout, null);
+        View dialogView = inflater.inflate(R.layout.servizi, null);
         dialogBuilder.setView(dialogView);
 
         final CheckBox checkBoxService1 = dialogView.findViewById(R.id.checkBoxService1);
@@ -194,8 +199,20 @@ public class Cerca extends AppCompatActivity {
         String[] inputArray = (keyword+" "+keyword2).trim().split(" ");
         adapter = new AlloggioAdapter(this, filterAccommodationsByKeywords(allAccommodations, inputArray));
         setContentView(R.layout.cerca2);
+
         back=findViewById(R.id.back);
         backk=findViewById(R.id.back2);
+        resultsListView = findViewById(R.id.accommodationListView);
+        resultsListView.setAdapter(adapter);
+
+        cuore = findViewById(R.id.pref);
+       // bpref=findViewById(R.id.buttonPref);
+       /* bpref.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cuore.setImageResource(R.drawable.cuore_si);
+            }
+        });*/
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -208,8 +225,22 @@ public class Cerca extends AppCompatActivity {
                 backSearch();
             }
         });
-        resultsListView = findViewById(R.id.accommodationListView);
-        resultsListView.setAdapter(adapter);
+
+
+    }
+
+    public void onHeartIconClick(View view) {
+        ImageView heartIcon = (ImageView) view;
+        Alloggio accommodation = (Alloggio) heartIcon.getTag();
+
+        if (accommodation.isFavorited()) {
+            heartIcon.setImageResource(R.drawable.cuore);
+           // removeFromFavorites(accommodation);
+        } else {
+            heartIcon.setImageResource(R.drawable.cuore_si);
+            //addToFavorites(accommodation);
+        }
+        accommodation.setFavorited(!accommodation.isFavorited());
     }
     private void openDashboard(){
         Intent intent=new Intent(this, Dashboard.class);

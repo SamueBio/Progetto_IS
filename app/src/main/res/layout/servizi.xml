@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <CheckBox
+        android:id="@+id/accessoDisabili"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ACCESSO AI DISABILI"/>
+
+    <CheckBox
+        android:id="@+id/piscina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="PISCINA"/>
+
+    <CheckBox
+        android:id="@+id/parcheggio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="PARCHEGGIO"/>
+    <CheckBox
+        android:id="@+id/ristorante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="RISTORANTE"/>
+    <CheckBox
+        android:id="@+id/ariaCond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="ARIA CONDIZIONATA"/>
+
+    <CheckBox
+        android:id="@+id/animaliAmm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="ANIMALI AMMESSI"/>
+
+    <Button
+        android:id="@+id/btnSelectServices"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"
+        android:text="SELEZIONA SERVIZI" />
+
+</RelativeLayout>
