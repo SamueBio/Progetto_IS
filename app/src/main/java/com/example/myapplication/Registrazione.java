@@ -13,34 +13,76 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.model.User;
+import com.example.myapplication.retrofit.RetrofitService;
+import com.example.myapplication.retrofit.UserApi;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Registrazione extends AppCompatActivity {
 
-    EditText nome;
-    EditText cognome;
-    EditText email;
-    EditText password;
-    Button register;
+    TextInputEditText inputEditTextUsername;
+    TextInputEditText inputEditTextFirstName;
+    TextInputEditText inputEditTextLastName;
+    TextInputEditText inputEditTextEmail;
+    TextInputEditText inputEditTextPassword;
+    MaterialButton buttonRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registrazione);
+        initializeComponent();
+    }
 
-        nome = findViewById(R.id.nome);
-        cognome = findViewById(R.id.cognome);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        register = findViewById(R.id.registerButton);
+    private void initializeComponent() {
+        inputEditTextUsername = findViewById(R.id.username);
+        inputEditTextFirstName = findViewById(R.id.firstName);
+        inputEditTextLastName = findViewById(R.id.lastName);
+        inputEditTextEmail = findViewById(R.id.email);
+        inputEditTextPassword = findViewById(R.id.password);
+        MaterialButton buttonRegister = findViewById(R.id.registerButton);
+        RetrofitService retrofitService = new RetrofitService();
+        UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
+        buttonRegister.setOnClickListener(view -> {
+            if(checkDataEntered()){
+                String username = String.valueOf(inputEditTextUsername.getText());
+                String firstName = String.valueOf(inputEditTextFirstName.getText());
+                String lastName = String.valueOf(inputEditTextLastName.getText());
+                String email = String.valueOf(inputEditTextEmail.getText());
+                String password = String.valueOf(inputEditTextPassword.getText());
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkDataEntered();
+                User user = new User();
+                user.setUsername(username);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(email);
+                user.setPassword(password);
+                //TODO: Fix this instruction
+                userApi.save(user)
+                        .enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                Toast.makeText(Registrazione.this,"Registration successfull",Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+                                Toast.makeText(Registrazione.this,"Registration failed",Toast.LENGTH_SHORT).show();
+                                Logger.getLogger(Registrazione.class.getName()).log(Level.SEVERE,"Error occurred",t);
+                            }
+                        });
             }
         });
-
     }
 
     boolean isEmail(EditText text) {
@@ -57,23 +99,33 @@ public class Registrazione extends AppCompatActivity {
         return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
     }
 
-    void checkDataEntered() {
-        if (isEmpty(nome)) {
-            nome.setError("Inserisci nome!");
+    boolean checkDataEntered() {
+    boolean ret = true;
+        if (isEmpty(inputEditTextUsername)) {
+            inputEditTextUsername.setError("Insert username!");
+            ret = false;
         }
 
-        if (isEmpty(cognome)) {
-            cognome.setError("Inserisci cognome!");
+        if (isEmpty(inputEditTextFirstName)) {
+            inputEditTextFirstName.setError("Insert first name!");
+            ret = false;
         }
 
-        if (isEmail(email) == false) {
-            email.setError("Inserisci mail valida!");
+        if (isEmpty(inputEditTextLastName)) {
+            inputEditTextLastName.setError("Insert last name!");
+            ret = false;
         }
 
-        if(isPasswordSecure(password.getText().toString())) {
-            password.setError("error");
+        if (isEmail(inputEditTextEmail) == false) {
+            inputEditTextEmail.setError("Insert email!");
+            ret = false;
         }
 
+        if(isPasswordSecure(inputEditTextPassword.getText().toString())) {
+            inputEditTextPassword.setError("Invalid password");
+            ret = false;
+        }
+        return ret;
     }
 
 }

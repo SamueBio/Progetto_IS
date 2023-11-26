@@ -31,61 +31,70 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/nome"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:hint="NOME"
+        android:hint="USERNAME"
         android:layout_marginTop="170dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"/>
 
-    <EditText
-        android:id="@+id/cognome"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/firstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:hint="FIRST NAME"
+        android:layout_marginTop="240dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/lastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="310dp"
         android:layout_marginRight="20dp"
-        android:hint="COGNOME" />
+        android:hint="LAST NAME" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:hint="EMAIL"
-        android:layout_marginTop="310dp"
+        android:layout_marginTop="380dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"        android:layout_marginLeft="20dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="460dp"
         android:layout_marginRight="20dp"
         android:hint="PASSWORD"
         android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHighlight="@color/cardview_dark_background" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="490dp"
-        android:text="REGISTRATI"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:text="REGISTER"
+        android:layout_alignParentBottom="true"
+        android:minHeight="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
 
 </RelativeLayout>
