@@ -37,7 +37,7 @@ public class AlloggioAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.cerca, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.cerca4, parent, false);
         }
 
         Alloggio accommodation = accommodationList.get(position);
