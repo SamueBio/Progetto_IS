@@ -168,17 +168,24 @@ public class Cerca extends AppCompatActivity {
         View dialogView = inflater.inflate(R.layout.servizi, null);
         dialogBuilder.setView(dialogView);
 
-        final CheckBox checkBoxService1 = dialogView.findViewById(R.id.checkBoxService1);
-        final CheckBox checkBoxService2 = dialogView.findViewById(R.id.checkBoxService2);
+        final CheckBox piscina = dialogView.findViewById(R.id.piscina);
+        final CheckBox animaliAmm = dialogView.findViewById(R.id.animaliAmm);
+        final CheckBox ariaCond = dialogView.findViewById(R.id.ariaCond);
+        final CheckBox ristorante = dialogView.findViewById(R.id.ristorante);
+        final CheckBox parcheggio = dialogView.findViewById(R.id.parcheggio);
+        final CheckBox accessoDisabili = dialogView.findViewById(R.id.accessoDisabili);
 
         Button btnSelectServices = dialogView.findViewById(R.id.btnSelectServices);
         btnSelectServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Ottieni lo stato delle caselle di controllo e gestisci di conseguenza
-                boolean isService1Selected = checkBoxService1.isChecked();
-                boolean isService2Selected = checkBoxService2.isChecked();
-
+                boolean isPiscina = piscina.isChecked();
+                boolean isanimaliAmm = animaliAmm.isChecked();
+                boolean isariaCond = ariaCond.isChecked();
+                boolean isristorante = ristorante.isChecked();
+                boolean isparcheggio = parcheggio.isChecked();
+                boolean isaccessoDisabili = accessoDisabili.isChecked();
                 // Esegui azioni in base alle selezioni dell'utente
                 // ...
 
@@ -270,18 +277,18 @@ public class Cerca extends AppCompatActivity {
         ArrayList<Alloggio> filteredAccommodations = new ArrayList<>();
         //Log.d("","valore00: "+keywords[0]);
         //Log.d("","valore01: "+keywords[1]);
-        for(int j=0; j<allAccommodations.size(); j++){
-            boolean matchesKeywords = true;
-            for(int i=0; i<keywords.length; i++){
-                Log.d("","valore: "+keywords[i]);
-                if (!accommodationContainsKeyword(allAccommodations.get(j), keywords[i])) {
-                    matchesKeywords = false;
-                    i=keywords.length;
-                }
-            }
+        String[] arrayStringhe = new String[keywords.length];
 
-            if (matchesKeywords) {
-                filteredAccommodations.add(allAccommodations.get(j));
+        for (int i = 0; i < keywords.length; i++) {
+           arrayStringhe[i] = String.valueOf(keywords[i]);
+        }
+
+        for(int j=0; j<allAccommodations.size(); j++){
+            for(int i=0; i<keywords.length; i++){
+                if (accommodationContainsKeyword(allAccommodations.get(j), keywords[i])) {
+                    filteredAccommodations.add(allAccommodations.get(j));
+                    i = keywords.length;
+                }
             }
         }
         return filteredAccommodations;
