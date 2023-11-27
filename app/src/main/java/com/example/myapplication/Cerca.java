@@ -100,7 +100,6 @@ public class Cerca extends AppCompatActivity {
     private ImageButton back;
     private ImageButton filtri;
 
-    private Button bpref;
     private ListView resultsListView;
     private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
     private ArrayList<Alloggio> allAccommodations; // La lista completa degli alloggi
