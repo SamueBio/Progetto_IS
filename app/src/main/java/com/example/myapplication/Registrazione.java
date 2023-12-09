@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -73,6 +74,7 @@ public class Registrazione extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
                                 Toast.makeText(Registrazione.this,"Registration successfull",Toast.LENGTH_SHORT).show();
+                                openLogin();
                             }
 
                             @Override
@@ -82,6 +84,9 @@ public class Registrazione extends AppCompatActivity {
                             }
                         });
             }
+
+           openLogin();
+
         });
     }
 
@@ -126,6 +131,11 @@ public class Registrazione extends AppCompatActivity {
             ret = false;
         }
         return ret;
+    }
+
+    public void openLogin(){
+        Intent intent=new Intent(this, Login.class);
+        startActivity(intent);
     }
 
 }
