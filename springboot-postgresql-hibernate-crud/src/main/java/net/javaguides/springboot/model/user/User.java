@@ -3,18 +3,19 @@ package net.javaguides.springboot.model.user;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="users")
+@Table(name="Users")
 public class User {
 	
 	@Id
+	@Column(name="Username")
 	private String username;
-	@Column(name = "firstName")
+	@Column(name = "FirstName")
 	private String firstName;
-	@Column(name = "lastName")
+	@Column(name = "LastName")
 	private String lastName;
-	@Column(name = "email")
+	@Column(name = "Email")
 	private String email;
-	@Column(name = "password")
+	@Column(name = "Password")
 	private String password;
 	
 	

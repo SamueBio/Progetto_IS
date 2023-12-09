@@ -22,12 +22,12 @@ public class UserController {
 	@Autowired
 	private UserDao userDao;
 	
-	@GetMapping("/users/get-all")
+	@GetMapping("/Users/get-all")
 	public List<User> getAllUsers(){
 		return userDao.getAllUsers();
 	}
 
 	// save user
-	@PostMapping("/users/save")
+	@PostMapping("/Users/save")
 	public void save(@RequestBody User user) {userDao.save(user); }
 }
