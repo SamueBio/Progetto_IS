@@ -1,0 +1,45 @@
+_______________________________________________________________________________________________________________
+
+FILE API IN LOCALE:
+
+Generare file .jar:
+-> spostarsi all'interno della cartella dell'API
+-> mvn clean install
+
+Successivamente, sempre rimanendo nella stessa cartella:
+-> java -jar target/springboot-postgresql-hibernate-crud-0.0.1-SNAPSHOT.jar &
+
+Per caricare il file jar nell'hosting:
+istruzioni comando cmd:
+scp -i /percorso/alla/tua/chiave/chiave_privata.pem -r /percorso/del/tuo/progetto/tuo_progetto/ ec2-user@indirizzo-ip-pubblico:/percorso/sul/server
+
+->scp -i C:/Users/samue/Downloads/springAPI.pem -r C:/Users/samue/Documents/GitHub/Progetto_IS/springboot-postgresql-hibernate-crud/target/springboot-postgresql-hibernate-crud-0.0.1-SNAPSHOT.jar ec2-user@16.171.234.236:/home/ec2-user
+
+_______________________________________________________________________________________________________________
+
+FILE API IN HOSTING
+
+Caricare la cartella in hosting zippata:
+->scp -i C:/Users/samue/Downloads/springAPI.pem -r C:/Users/samue/Documents/GitHub/Progetto_IS/springboot-postgresql-hibernate-crud.zip ec2-user@16.171.234.236:/home/ec2-user
+
+Colleghiamoci in SSH all'hosting inserendo il path o direttamente il nome della chiave privata:
+->ssh -i "springAPI.pem" ec2-user@16.171.234.236
+
+Estrarre file con comando ed entrare nella cartella:
+-> unzip springboot-postgresql-hibernate-crud.zip
+-> cd springboot-postgresql-hibernate-crud
+
+Compilare il progetto maven:
+-> mvn clean install 
+
+Eseguire il jar:
+->java -jar target/springboot-postgresql-hibernate-crud-0.0.1-SNAPSHOT.jar &
+
+_______________________________________________________________________________________________________________
+
+
+
+ps.
+se la cartella dell'API è in un hosting cloud, in questo caso in AWS, collegarsi in SSH:
+
+-> 
