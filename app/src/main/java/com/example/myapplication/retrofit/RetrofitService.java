@@ -18,11 +18,11 @@ public class RetrofitService {
     }
 
     private void initializeRetrofit() {
-        IpAddress ip = new IpAddress();
-        String url = "192.168.1.6";
+        IP ip = new IP();
+        //String url = "192.168.1.55";
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://"+url+":9000")
+                .baseUrl("http://"+ip.getIPAddress()+":9000")
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .build();
     }
