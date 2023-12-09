@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 public class AccomodationController {
-    @Autowired
-    private AccomodationRepository accomodationRepository;
 
     @Autowired
     private AccomodationDao accomodationDao;
+    @GetMapping("/Accomodations/get-all")
+    public List<Accomodation> getAllAccomodations(){return accomodationDao.getAllAccomodations();}
 
     @GetMapping("/Accomodations/get-accomodation-by-name")
     public List<Accomodation> getAccomodationsByName(@RequestParam String name){return accomodationDao.getAccomodationByName(name);}
@@ -26,7 +26,7 @@ public class AccomodationController {
     @GetMapping("/Accomodations/get-accomodation-by-services")
     public List<Accomodation> getAccomoddationByServices(@RequestParam Services services){return accomodationDao.getAccomodationByServices(services);}
 
-    @PostMapping("/Users/save")
+    @PostMapping("/Accommodations/save")
     public void save(@RequestBody Accomodation accomodation) {accomodationDao.save(accomodation); }
 
 }

@@ -43,5 +43,7 @@ public interface AccomodationRepository extends CrudRepository<Accomodation,Inte
             "AND (a.solarium = true AND :#{#services.solarium} = true OR a.solarium=false) " +
             "AND a.otherServices LIKE %:#{#services.otherServices}%")
     List<Accomodation> findByServices(@Param("services") Services services);
+    @Query("SELECT a.id,a.name FROM Accomodation a")
+    List<Accomodation> findAll();
 
 }
