@@ -22,7 +22,7 @@ public class RetrofitService {
         //String url = "192.168.1.55";
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://ec2-16-171-234-236.eu-north-1.compute.amazonaws.com:9000/")
+                .baseUrl("http://ec2-51-20-87-215.eu-north-1.compute.amazonaws.com:9000/")
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .build();
     }
