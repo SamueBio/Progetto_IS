@@ -104,32 +104,52 @@ public class Registrazione extends AppCompatActivity {
     boolean checkDataEntered() {
     boolean ret = true;
         if (isEmpty(inputEditTextUsername)) {
-            inputEditTextUsername.setError("Insert username!");
+            inputEditTextUsername.setError("Inserisci username!");
             ret = false;
         }
 
         if (isEmpty(inputEditTextFirstName)) {
-            inputEditTextFirstName.setError("Insert first name!");
+            inputEditTextFirstName.setError("Inserisci nome!");
             ret = false;
         }
 
         if (isEmpty(inputEditTextLastName)) {
-            inputEditTextLastName.setError("Insert last name!");
+            inputEditTextLastName.setError("Inserisci cognome!");
             ret = false;
         }
 
         if (isEmail(inputEditTextEmail) == false) {
-            inputEditTextEmail.setError("Insert email!");
+            inputEditTextEmail.setError("Inserisci mail valida!");
             ret = false;
         }
 
-        if(isPasswordSecure(inputEditTextPassword.getText().toString())) {
-            inputEditTextPassword.setError("Invalid password");
+        if(isEmpty(inputEditTextPassword)||is_Valid_Password(inputEditTextPassword.getText().toString())) {
+            inputEditTextPassword.setError("Password non valida");
             ret = false;
         }
         return ret;
     }
 
+    public boolean is_Valid_Password(String password) {
+        int mai=0, min=0, num=0, car=0;
+        if (password.length() < 8) return true;
+        for (int i = 0; i < password.length(); i++) {
+            char ch = password.charAt(i);
+            if(ch >= '0' && ch <= '9')
+                num=1;
+            else if (ch >= 'A' && ch <= 'Z')
+                mai=1;
+            else if (ch >= 'a' && ch <= 'z')
+                min=1;
+            else if (ch=='!'||ch=='('||ch==')'||ch=='{'||ch=='}'||ch=='+'||ch=='/'||ch=='-'
+                ||ch==':'||ch=='.'||ch==','||ch==';'||ch=='*'||ch=='?'||ch=='!'||ch=='=')
+                car=1;
+
+            if(mai==1&&min==1&&num==1&&car==1)
+                return false;
+        }
+        return true;
+    }
     public void openLogin(){
         Intent intent=new Intent(this, Login.class);
         startActivity(intent);
