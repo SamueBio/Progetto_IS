@@ -46,4 +46,24 @@ public interface AccomodationRepository extends CrudRepository<Accomodation,Inte
     @Query("SELECT a.id,a.name FROM Accomodation a")
     List<Accomodation> findAll();
 
+    @Query("SELECT a.id FROM Accommodations a WHERE LIKE %:cap% ")
+    List<Accomodation> findByCap(@Param("cap")String cap);
+
+    @Query("SELECT a.address FROM Accommodations a WHERE LIKE %:address% ")
+    List<Accomodation> findByAddress(@Param("address")String address);
+
+    @Query("SELECT a.area FROM Accommodations a WHERE LIKE %:area% ")
+    List<Accomodation> findByArea(@Param("area")String area);
+
+    @Query("SELECT a.province FROM Accommodations a WHERE LIKE %:province% ")
+    List<Accomodation> findByProvince(@Param("province")String province);
+
+    @Query("SELECT a.town FROM Accommodations a WHERE LIKE %:town% ")
+    List<Accomodation> findByTown(@Param("town")String town);
+
+    @Query("SELECT a.type FROM Accommodations a WHERE LIKE %:type% ")
+    List<Accomodation> findByType(@Param("type")String type);
+
+    @Query("SELECT a.location FROM Accommodations a WHERE LIKE %:location% ")
+    List<Accomodation> findByLocation(@Param("location")String location);
 }
