@@ -73,13 +73,13 @@ public class Registrazione extends AppCompatActivity {
 
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
-                                Toast.makeText(Registrazione.this,"Registration successfull",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Registrazione.this,"Registrazione completata",(int)2).show();
                                 openLogin();
                             }
 
                             @Override
                             public void onFailure(Call<User> call, Throwable t) {
-                                Toast.makeText(Registrazione.this,"Registration failed",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Registrazione.this,"Registrazione fallita",(int)2).show();
                                 Logger.getLogger(Registrazione.class.getName()).log(Level.SEVERE,"Error occurred",t);
                             }
                         });
