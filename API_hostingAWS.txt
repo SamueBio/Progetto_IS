@@ -13,7 +13,7 @@ Per caricare il file jar nell'hosting:
 istruzioni comando cmd:
 scp -i /percorso/alla/tua/chiave/chiave_privata.pem -r /percorso/del/tuo/progetto/tuo_progetto/ ec2-user@indirizzo-ip-pubblico:/percorso/sul/server
 
-->scp -i C:/Users/samue/Downloads/springAPI.pem -r C:/Users/samue/Documents/GitHub/Progetto_IS/springboot-postgresql-hibernate-crud/target/springboot-postgresql-hibernate-crud-0.0.1-SNAPSHOT.jar ec2-user@16.171.234.236:/home/ec2-user
+->scp -i C:/Users/samue/Downloads/springAPI.pem -r C:/Users/samue/Documents/GitHub/Progetto_IS/springboot-postgresql-hibernate-crud/target/springboot-postgresql-hibernate-crud-0.0.1-SNAPSHOT.jar ec2-user@51.20.87.215:/home/ec2-user
 
 _______________________________________________________________________________________________________________
 
@@ -23,7 +23,7 @@ Caricare la cartella in hosting zippata:
 ->scp -i C:/Users/samue/Downloads/springAPI.pem -r C:/Users/samue/Documents/GitHub/Progetto_IS/springboot-postgresql-hibernate-crud.zip ec2-user@16.171.234.236:/home/ec2-user
 
 Colleghiamoci in SSH all'hosting inserendo il path o direttamente il nome della chiave privata:
-->ssh -i "springAPI.pem" ec2-user@16.171.234.236
+->ssh -i "springAPI.pem" ec2-user@51.20.87.215
 
 Estrarre file con comando ed entrare nella cartella:
 -> unzip springboot-postgresql-hibernate-crud.zip
