@@ -1,9 +1,7 @@
 package net.javaguides.springboot.model.csv;
 
-import net.javaguides.springboot.model.accomodation.Accomodation;
-import net.javaguides.springboot.model.accomodation.AccomodationDao;
-import net.javaguides.springboot.model.user.User;
-import net.javaguides.springboot.model.user.UserDao;
+import net.javaguides.springboot.model.accomodation.Accommodation;
+import net.javaguides.springboot.model.accomodation.AccommodationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,7 @@ import java.util.List;
 @Service
 public class CsvDataService {
     @Autowired
-    private AccomodationDao accomodationDao;
+    private AccommodationDao accomodationDao;
     private boolean isInteger(String toVerify){
         toVerify=toVerify.replace("\"","");
         if (toVerify.isEmpty()) {
@@ -69,7 +67,7 @@ public class CsvDataService {
         }
         char v = 34;
         for(int i = 3657; i < records.size();++i){
-            Accomodation accomodation = new Accomodation();
+            Accommodation accomodation = new Accommodation();
             //Campi String
             int z = 0;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)

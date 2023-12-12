@@ -2,20 +2,18 @@ package net.javaguides.springboot.controller;
 
 import java.util.List;
 
-import net.javaguides.springboot.model.accomodation.Accomodation;
-import net.javaguides.springboot.model.accomodation.AccomodationDao;
-import net.javaguides.springboot.model.accomodation.Services;
+import net.javaguides.springboot.model.accomodation.Accommodation;
+import net.javaguides.springboot.model.accomodation.AccommodationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import net.javaguides.springboot.model.user.User;
 import net.javaguides.springboot.model.user.UserDao;
-import net.javaguides.springboot.model.user.UserRepository;
 
 @RestController
 public class UserController {
 	@Autowired
-	private AccomodationDao accomodationDao;
+	private AccommodationDao accomodationDao;
 	
 	@Autowired
 	private UserDao userDao;
@@ -30,14 +28,14 @@ public class UserController {
 	public void save(@RequestBody User user) {userDao.save(user); }
 
 	@GetMapping("/Accommodations/get-all")
-	public List<Accomodation> getAllAccomodations(){return accomodationDao.getAllAccomodations();}
+	public List<Accommodation> getAllAccomodations(){return accomodationDao.getAllAccomodations();}
 
 	@GetMapping("/Accomodations/get-accomodation-by-name")
-	public List<Accomodation> getAccomodationsByName(@RequestParam String name){return accomodationDao.getAccomodationByName(name);}
+	public List<Accommodation> getAccomodationsByName(@RequestParam String name){return accomodationDao.getAccomodationByName(name);}
 
 	@GetMapping("/Accomodations/get-accomodation-by-services")
-	public List<Accomodation> getAccomoddationByServices(@RequestParam Services services){return accomodationDao.getAccomodationByServices(services);}
+	public List<Accommodation> getAccomoddationByServices(@RequestParam Accommodation accommodation){return accomodationDao.getAccomodationByServices(accommodation);}
 
 	@PostMapping("/Accommodations/save")
-	public void save(@RequestBody Accomodation accomodation) {accomodationDao.save(accomodation); }
+	public void save(@RequestBody Accommodation accomodation) {accomodationDao.save(accomodation); }
 }

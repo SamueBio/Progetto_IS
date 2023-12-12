@@ -1,0 +1,38 @@
+COME FUNZIONA L'API
+
+package model
+	All'interno del package model sono presenti altri package, uno per ogni tabella presente a database. All'interno di ogni package specifico vi sono 3 file:
+	- Una classe nomeTabella.java
+	- Una classe nomeTabellaDao.java
+	- Un'interfaccia nomeTabellaRepository.java
+	
+	*** nomeTabella.java ***
+	All'interno di questa classi sono definiti i campi relativi alla tabella presente a database. In questa classe bisogna implementare:
+		- Costruttore di default
+		- Costruttore con passaggio di tutti i parametri (Non su tutti, per Accomodation ad esempio no)
+		- Metodi Getters e Setters relativi a tutti i campi
+		IMPORTANTE -> Usare le annotation, @Table, @Column, @Entity, @Id
+	
+	*** nomeTabellaRepository.java ***
+	Questa interfaccia definisce le query che ci interessa implementare. Le query vengono definite con delle annotation prima della firma del metodo che deve essere chiamato
+	Per invocare la query.
+	
+	*** nomeTabellaDao ***
+	In questa classe definiamo il corpo dei metodi implementati nell'interfaccia. In cui semplicemente si scrive la firma del metodo e si ritorna nomeTabellaRepository.nomeMetodo()
+	
+package controller
+	Dentro a controller c'è la sola classe UserController, dentro a questa classe vengono richiamati i metodi delle classi Dao. Qui viene definito l'url da digitare per richiedere
+	il servizio all'API. Questo si fa con le annotation
+	@GetMapping("Classe/qualcosa") qui si fa una richiesta all'API. L'API ritorna dei valori
+	@PostMapping("Classe/qualcosa2) qui si scrive qualcosa tramite l'API, generalmente usata dai metodi save
+
+TESTARE L'API
+
+	Samuele ha caricato l'API su aws (cloud), ma se ci si collega all'url specificato non si testano le ultime funzionalità implementate, questo perché in aws è salvato un file zip
+	relativo all'api e questo zip va aggiornato ogni volta. Purtroppo ci sono problemi con questo passaggio e il file deve sempre salvarlo Samuele (finché non si risolve questo problema).
+	Per testare l'API si può allora usare come URL l'indirizzo IP del proprio PC.
+	
+	Facciamo un esempio. Vorrei testare il metodo users.getAll()
+	Eseguo l'API su IntelliJ (schiaccio play)
+	Apro quindi il mio browser e digito: http://mio-ip-address/Users/get-all
+	Se l'API non è attiva la richiesta non va a buon fine

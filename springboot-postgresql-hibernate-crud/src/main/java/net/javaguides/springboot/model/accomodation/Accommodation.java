@@ -3,11 +3,10 @@ package net.javaguides.springboot.model.accomodation;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="Accommodations")
-public class Accomodation {
+public class Accommodation {
 
     @Id
     @Column(name = "id")
@@ -161,7 +160,7 @@ public class Accomodation {
     private String houseNumber;
 
 
-    public Accomodation(){super();}
+    public Accommodation(){super();}
 
     public int getId() {
         return id;
