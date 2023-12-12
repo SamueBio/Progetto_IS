@@ -23,11 +23,14 @@ public class RetrofitService {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://ec2-51-20-87-215.eu-north-1.compute.amazonaws.com:9000/")
-                .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                .addConverterFactory(new NullOnEmptyConverterFactory())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
     public Retrofit getRetrofit(){
         return retrofit;
     }
+
+
 }

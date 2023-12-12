@@ -69,8 +69,8 @@ public class Registrazione extends AppCompatActivity {
                 user.setEmail(email);
                 user.setPassword(password);
                 //TODO: Fix this instruction
-                userApi.save(user)
-                        .enqueue(new Callback<User>() {
+                userApi.save(user).enqueue(new Callback<User>() {
+
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
                                 Toast.makeText(Registrazione.this,"Registration successfull",Toast.LENGTH_SHORT).show();
@@ -84,9 +84,6 @@ public class Registrazione extends AppCompatActivity {
                             }
                         });
             }
-
-           openLogin();
-
         });
     }
 
