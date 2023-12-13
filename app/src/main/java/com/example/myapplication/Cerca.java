@@ -1,70 +1,4 @@
 package com.example.myapplication;
-/*
-import android.annotation.SuppressLint;
-import android.view.View;
-import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.widget.ListView;
-import java.util.ArrayList;
-
-public class Cerca extends AppCompatActivity {
-    private ListView accommodationListView;
-    private AlloggioAdapter adapter;
-    private ArrayList<Alloggio> accommodationList;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.cerca);
-
-        accommodationListView = findViewById(R.id.accommodationListView);
-
-        // Inizializza la lista degli alloggi con dati di esempio
-        accommodationList = new ArrayList<>();
-        accommodationList.add(new Alloggio("Nome Alloggio 1", "Posizione 1"));
-        accommodationList.add(new Alloggio("Nome Alloggio 2", "Posizione 2"));
-        accommodationList.add(new Alloggio("Nome Alloggio 3", "Posizione 3"));
-        View keywords = find(R.id.keywordEditText);
-
-        ArrayList<Alloggio> supp= filterAccommodationsByKeywords(accommodationList, keywords );
-
-        // Crea un adattatore personalizzato e assegnalo alla ListView
-        adapter = new AlloggioAdapter(this, accommodationList);
-        accommodationListView.setAdapter(adapter);
-    }
-
-    // Metodo per filtrare gli alloggi in base a più parole chiave
-    private ArrayList<Alloggio> filterAccommodationsByKeywords(ArrayList<Alloggio> allAccommodations, String[] keywords) {
-        ArrayList<Alloggio> filteredAccommodations = new ArrayList<>();
-
-        for (Alloggio accommodation : allAccommodations) {
-            boolean matchesKeywords = true;
-            for (String keyword : keywords) {
-                if (!accommodationContainsKeyword(accommodation, keyword)) {
-                    matchesKeywords = false;
-                    break;
-                }
-            }
-
-            if (matchesKeywords) {
-                filteredAccommodations.add(accommodation);
-            }
-        }
-
-        return filteredAccommodations;
-    }
-
-    // Metodo per verificare se un alloggio contiene una parola chiave
-    private boolean accommodationContainsKeyword(Alloggio accommodation, String keyword) {
-        return accommodation.getNome().toLowerCase().contains(keyword.toLowerCase())
-                || accommodation.getIndirizzo().toLowerCase().contains(keyword.toLowerCase())
-    }
-
-}
-*/
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -84,13 +18,15 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.app.AppLocalesMetadataHolderService;
 
 public class Cerca extends AppCompatActivity {
     private EditText nomeSearch;
     private EditText indirizzo;
 
     private TextView backk;
+
+    private TextView nomeAll;
 
     private Button searchButton;
     private ImageButton home;
@@ -208,10 +144,19 @@ public class Cerca extends AppCompatActivity {
 
         back=findViewById(R.id.back);
         backk=findViewById(R.id.back2);
+        nomeAll = findViewById(R.id.nameTextView);
+
         resultsListView = findViewById(R.id.accommodationListView);
         resultsListView.setAdapter(adapter);
 
         cuore = findViewById(R.id.pref);
+
+        nomeAll.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) { specAll(v);
+            }
+        });
+
        // bpref=findViewById(R.id.buttonPref);
        /* bpref.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,6 +200,12 @@ public class Cerca extends AppCompatActivity {
 
     private void backSearch(){
         Intent intent=new Intent(this, Cerca.class);
+        startActivity(intent);
+    }
+
+    public void specAll(View view){
+        Intent intent=new Intent(this, SpecAll.class);
+        intent.putExtra("nome_alloggio", nomeAll.getText());
         startActivity(intent);
     }
 

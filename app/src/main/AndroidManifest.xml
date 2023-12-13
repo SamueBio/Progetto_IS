@@ -67,6 +67,10 @@
             android:name=".Registrazione">
 
         </activity>
+        <activity
+            android:name=".SpecAll">
+
+        </activity>
 
     </application>
 
