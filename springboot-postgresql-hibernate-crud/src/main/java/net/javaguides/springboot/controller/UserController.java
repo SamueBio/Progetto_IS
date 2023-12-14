@@ -17,7 +17,13 @@ public class UserController {
 	
 	@Autowired
 	private UserDao userDao;
-	
+	@PostMapping("/Users/get-password-by-id")
+	public String getPasswordById(@RequestParam String username){return userDao.findPasswordById(username);}
+
+	@PostMapping("/Users/check-password")
+	public boolean checkPassword(@RequestParam String username, @RequestParam String pswToCheck){
+		return userDao.checkPassword(username,pswToCheck);
+	}
 	@GetMapping("/Users/get-all")
 	public List<User> getAllUsers(){
 		return userDao.getAllUsers();

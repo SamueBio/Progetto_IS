@@ -22,7 +22,9 @@ class SpringServerApplicationTests {
 		user.setLastName("Giga");
 		user.setEmail("cgiga@gmail.com");
 		user.setPassword("1234");
-		userDao.save(user);
+		//userDao.save(user);
+		String psw = userDao.findPasswordById("caneGignte");
+		System.out.println(psw);
 	}
 	//@Test
 	void getAllEmployeesAndDeleteThem() {

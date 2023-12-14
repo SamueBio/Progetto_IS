@@ -10,6 +10,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.crypto.CryptoUtils;
+import com.example.myapplication.retrofit.RetrofitService;
+import com.example.myapplication.retrofit.UserApi;
+import com.google.android.material.button.MaterialButton;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Login extends AppCompatActivity {
 
     EditText username;
@@ -26,19 +37,25 @@ public class Login extends AppCompatActivity {
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        loginButton = findViewById(R.id.loginButton);
+        MaterialButton loginButton = findViewById(R.id.loginButton);
         register=findViewById(R.id.register);
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (username.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
-                    Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+        RetrofitService retrofitService = new RetrofitService();
+        UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
+        String inputUsername = String.valueOf(username.getText());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain"), inputUsername);
+        loginButton.setOnClickListener( View -> {
+            userApi.findPasswordById(String.valueOf(username.getText())).enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
                     openSearch();
-                } else {
-                    Toast.makeText(Login.this, "Login Failed!", Toast.LENGTH_SHORT).show();
                 }
-            }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    // Handle the failure case
+                    Toast.makeText(Login.this, "Network request failed", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         register.setOnClickListener(new View.OnClickListener() {

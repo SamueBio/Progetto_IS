@@ -15,7 +15,7 @@ public interface AccommodationRepository extends CrudRepository<Accommodation,In
     List<Accommodation> findByName(@Param("name")String name);
     @Query("SELECT a FROM Accommodation a " +
             "WHERE (a.countryFair = true AND :#{#accommodation.countryFair} = true OR a.countryFair = false) " +
-            "AND (a.fsStation = true AND  :#{#accommodation.fsStation} = true OR a.fsStation = false) " +
+            "AND (a.fsStation = true AND :#{#accommodation.fsStation} = true OR a.fsStation = false) " +
             "AND (a.spanish = true AND :#{#accommodation.spanish} = true OR a.spanish = false) " +
             "AND (a.lake = true AND :#{#accommodation.lake} = true OR a.lake = false) " +
             "AND (a.airport = true AND :#{#accommodation.airport} = true OR a.airport=false) " +
@@ -42,15 +42,16 @@ public interface AccommodationRepository extends CrudRepository<Accommodation,In
             "AND (a.restaurant = true AND :#{#accommodation.restaurant} = true OR a.restaurant=false) " +
             "AND (a.coveredPool = true AND :#{#accommodation.coveredPool} = true OR a.coveredPool=false) " +
             "AND (a.solarium = true AND :#{#accommodation.solarium} = true OR a.solarium=false) " +
-            "AND a.otherServices LIKE %:#{#accommodation.otherServices}%"+
-            "AND a.cap LIKE %:#{#accommodation.cap}%" +
-            "AND a.address LIKE %:#{#accommodation.address}%" +
-            "AND a.area LIKE %:#{#area}%"+
-            "AND a.province LIKE %:#{#accommodation.province}%" +
-            "AND a.town LIKE %:#{#accommodation.town}%" +
-            "AND a.type LIKE %:#{#accommodation.type}%" +
-            "AND a.location LIKE %:#{#accommodation.location}")
-    List<Accommodation> findByServices(@Param("services") Accommodation accommodation);
+            "AND a.otherServices LIKE %:#{#accommodation.otherServices}% " +
+            "AND a.cap LIKE %:#{#accommodation.cap}% " +
+            "AND a.address LIKE %:#{#accommodation.address}% " +
+            "AND a.area LIKE %:#{#accommodation.area}% " +
+            "AND a.province LIKE %:#{#accommodation.province}% " +
+            "AND a.town LIKE %:#{#accommodation.town}% " +
+            "AND a.type LIKE %:#{#accommodation.type}% " +
+            "AND a.location LIKE %:#{#accommodation.location}%")
+    List<Accommodation> findByServices(@Param("accommodation") Accommodation accommodation);
+
     @Query("SELECT a FROM Accommodation a")
     List<Accommodation> findAll();
 }

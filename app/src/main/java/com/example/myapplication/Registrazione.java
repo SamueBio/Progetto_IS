@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.crypto.CryptoUtils;
 import com.example.myapplication.model.User;
 import com.example.myapplication.retrofit.RetrofitService;
 import com.example.myapplication.retrofit.UserApi;
@@ -67,8 +68,7 @@ public class Registrazione extends AppCompatActivity {
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
                 user.setEmail(email);
-                user.setPassword(password);
-                //TODO: Fix this instruction
+                user.setPassword(CryptoUtils.hashPassword(password));
                 userApi.save(user).enqueue(new Callback<User>() {
 
                             @Override
@@ -142,7 +142,7 @@ public class Registrazione extends AppCompatActivity {
             else if (ch >= 'a' && ch <= 'z')
                 min=1;
             else if (ch=='!'||ch=='('||ch==')'||ch=='{'||ch=='}'||ch=='+'||ch=='/'||ch=='-'
-                ||ch==':'||ch=='.'||ch==','||ch==';'||ch=='*'||ch=='?'||ch=='!'||ch=='=')
+                ||ch==':'||ch=='.'||ch==','||ch==';'||ch=='*'||ch=='?'||ch=='=')
                 car=1;
 
             if(mai==1&&min==1&&num==1&&car==1)
