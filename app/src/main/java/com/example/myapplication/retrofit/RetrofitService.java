@@ -19,7 +19,7 @@ public class RetrofitService {
 
     private void initializeRetrofit() {
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://ec2-51-20-87-215.eu-north-1.compute.amazonaws.com:9000/")
+                .baseUrl("http://ec2-13-51-165-225.eu-north-1.compute.amazonaws.com:9000/")
                 .addConverterFactory(new NullOnEmptyConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
