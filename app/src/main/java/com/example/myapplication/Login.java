@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,18 +45,28 @@ public class Login extends AppCompatActivity {
         String inputUsername = String.valueOf(username.getText());
         RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain"), inputUsername);
         loginButton.setOnClickListener( View -> {
-            userApi.findPasswordById(String.valueOf(username.getText())).enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-                    openSearch();
-                }
 
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-                    // Handle the failure case
-                    Toast.makeText(Login.this, "Network request failed", Toast.LENGTH_SHORT).show();
-                }
-            });
+            if(!isEmpty(username)&&!isEmpty(password)){
+                userApi.findPasswordById(String.valueOf(username.getText())).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if (response.isSuccessful()) {
+                            // Login riuscito
+                            String message = response.body();
+                            Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
+                            System.out.println("!!!  RESPONDE !!!: "+message);
+
+                        }
+                        openSearch();
+                    }
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        // Handle the failure case
+                        Toast.makeText(Login.this, "Login fallito", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
         });
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -74,5 +85,11 @@ public class Login extends AppCompatActivity {
         Intent intent=new Intent(this, Registrazione.class);
         startActivity(intent);
     }
+    boolean isEmpty(EditText text) {
+        CharSequence str = text.getText().toString();
+        return TextUtils.isEmpty(str);
+    }
+
+
 
 }

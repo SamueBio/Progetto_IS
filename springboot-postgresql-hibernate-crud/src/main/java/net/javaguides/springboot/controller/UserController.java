@@ -17,7 +17,7 @@ public class UserController {
 	
 	@Autowired
 	private UserDao userDao;
-	@PostMapping("/Users/get-password-by-id")
+	@RequestMapping(value = "/Users/get-password-by-id", method = RequestMethod.GET)
 	public String getPasswordById(@RequestParam String username){return userDao.findPasswordById(username);}
 
 	@PostMapping("/Users/check-password")
