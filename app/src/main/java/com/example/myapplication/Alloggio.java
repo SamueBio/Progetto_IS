@@ -1,6 +1,9 @@
 package com.example.myapplication;
 public class Alloggio {
     private String nome;
+
+    private String id;
+
     private String indirizzo;
 
     private boolean isFavorited;

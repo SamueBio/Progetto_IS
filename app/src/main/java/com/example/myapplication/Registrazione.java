@@ -123,14 +123,14 @@ public class Registrazione extends AppCompatActivity {
             ret = false;
         }
 
-        if(isEmpty(inputEditTextPassword)||is_Valid_Password(inputEditTextPassword.getText().toString())) {
+        if(isEmpty(inputEditTextPassword)||not_Valid_Password(inputEditTextPassword.getText().toString())) {
             inputEditTextPassword.setError("Password non valida");
             ret = false;
         }
         return ret;
     }
 
-    public boolean is_Valid_Password(String password) {
+    public boolean not_Valid_Password(String password) {
         int mai=0, min=0, num=0, car=0;
         if (password.length() < 8) return true;
         for (int i = 0; i < password.length(); i++) {
