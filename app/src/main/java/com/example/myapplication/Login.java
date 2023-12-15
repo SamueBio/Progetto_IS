@@ -11,13 +11,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.myapplication.crypto.CryptoUtils;
 import com.example.myapplication.retrofit.RetrofitService;
 import com.example.myapplication.retrofit.UserApi;
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 import okhttp3.MediaType;
+import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,22 +54,37 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener( View -> {
 
             if(!isEmpty(username)&&!isEmpty(password)){
-                userApi.findPasswordById(String.valueOf(username.getText())).enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        if (response.isSuccessful()) {
-                            // Login riuscito
-                            String message = response.body();
-                            Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
-                            System.out.println("!!!  RESPONDE !!!: "+message);
+                /*HashMap<String,String> param = new HashMap<String,String>();
+                param.put("username", String.valueOf(username.getText()));
+                param.put("password",String.valueOf(password.getText()));*/
 
-                        }
-                        openSearch();
-                    }
+                String hashedPassword = CryptoUtils.hashPassword(String.valueOf(password.getText()));
+                JsonObject jsonBody = new JsonObject();
+                jsonBody.addProperty("username", String.valueOf(username.getText()));
+                jsonBody.addProperty("password", hashedPassword);
+
+                Call<ResponseBody> call = userApi.login(jsonBody);
+                call.enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                        // Handle the failure case
-                        Toast.makeText(Login.this, "Login fallito", Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            try {
+                                String responseBody = response.body().string();
+                                Toast.makeText(Login.this, "LOGIN SUCCEFULL", Toast.LENGTH_SHORT).show();
+                                System.out.println("!!!  RESPONDE !!!: "+ responseBody);
+                                openSearch();
+                            } catch (IOException e) {
+                                System.out.println("!!!  ECCEZIONE !!!");
+                                e.printStackTrace();
+                            }
+                        } else {
+                            System.out.println("!!!  NON TROVATO !!!");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        // Gestisci il caso di fallimento qui
                     }
                 });
             }
@@ -89,7 +111,4 @@ public class Login extends AppCompatActivity {
         CharSequence str = text.getText().toString();
         return TextUtils.isEmpty(str);
     }
-
-
-
 }

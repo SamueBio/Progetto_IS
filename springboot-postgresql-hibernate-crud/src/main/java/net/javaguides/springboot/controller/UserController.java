@@ -1,6 +1,7 @@
 package net.javaguides.springboot.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import net.javaguides.springboot.model.accomodation.Accommodation;
 import net.javaguides.springboot.model.accomodation.AccommodationDao;
@@ -17,8 +18,12 @@ public class UserController {
 	
 	@Autowired
 	private UserDao userDao;
-	@RequestMapping(value = "/Users/get-password-by-id", method = RequestMethod.GET)
-	public String getPasswordById(@RequestParam String username){return userDao.findPasswordById(username);}
+
+	
+	@RequestMapping(value = "/Users/get-password-by-id", method = RequestMethod.POST)
+	public String getPasswordById(@RequestParam Map<String, String> request){
+		String username = request.get("username");
+		return userDao.findPasswordById(username);}
 
 	@PostMapping("/Users/check-password")
 	public boolean checkPassword(@RequestParam String username, @RequestParam String pswToCheck){

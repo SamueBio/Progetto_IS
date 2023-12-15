@@ -2,6 +2,7 @@ package net.javaguides.springboot;
 
 import java.util.List;
 
+import net.javaguides.springboot.controller.UserController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,8 @@ class SpringServerApplicationTests {
 		user.setPassword("1234");
 		//userDao.save(user);
 		String psw = userDao.findPasswordById("caneGignte");
+		UserController uc = new UserController();
+		//psw=uc.getPasswordById("marcolino");
 		System.out.println(psw);
 	}
 	//@Test

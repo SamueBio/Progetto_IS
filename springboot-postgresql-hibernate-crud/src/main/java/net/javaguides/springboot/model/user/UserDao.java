@@ -27,7 +27,11 @@ public class UserDao {
 		repository.deleteById(username);
 	}
 
-	public String findPasswordById(String username){return repository.findPasswordByUsername(username);}
+	public String findPasswordById(String username){
+		String psw = repository.findPasswordByUsername(username);
+		System.out.println(psw);
+		return psw;
+	}
 
 	public boolean checkPassword(String username, String pswToCheck){
 		return repository.checkPassword(username,pswToCheck);
