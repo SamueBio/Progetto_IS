@@ -83,6 +83,11 @@ public class Login extends AppCompatActivity {
                                 nome = myModel.getFirstName();
                                 cognome = myModel.getLastName();
                                 mail = myModel.getEmail();
+                                GlobalData.getInstance().setCognome(cognome);
+                                GlobalData.getInstance().setNome(nome);
+                                GlobalData.getInstance().setMail(mail);
+                                GlobalData.getInstance().setUsername(String.valueOf(username.getText()));
+                                GlobalData.getInstance().setPassword(String.valueOf(password.getText()));
                                 openSearch();
                             } catch (IOException e) {
                                 //System.out.println("!!!  ECCEZIONE !!!");
@@ -117,11 +122,6 @@ public class Login extends AppCompatActivity {
     }
     public void openSearch(){
         Intent intent=new Intent(this, Dashboard.class);
-        intent.putExtra("user", String.valueOf(username.getText()));
-        intent.putExtra("pw", String.valueOf(password.getText()));
-        intent.putExtra("nome",nome);
-        intent.putExtra("cognome",cognome);
-        intent.putExtra("mail",mail);
         startActivity(intent);
     }
     public void openRegis(){

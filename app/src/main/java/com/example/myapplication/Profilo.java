@@ -35,14 +35,14 @@ public class Profilo extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.profilo);
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
 
         // Recupero della variabile dalla chiave specificata
-        username = intent.getStringExtra("user");
-        password = intent.getStringExtra("pw");
-        nomee = intent.getStringExtra("nome");
-        cognomee = intent.getStringExtra("cognome");
-        maill = intent.getStringExtra("mail");
+        username =  GlobalData.getInstance().getUsername();
+        password = GlobalData.getInstance().getPassword();
+        nomee = GlobalData.getInstance().getNome();
+        cognomee = GlobalData.getInstance().getCognome();
+        maill = GlobalData.getInstance().getMail();
         //System.out.println("USERNAME: "+username+"\nPW: "+password+nome+cognome+mail);
         EditText nome = findViewById(R.id.nome2);
         nome.setText(nomee);

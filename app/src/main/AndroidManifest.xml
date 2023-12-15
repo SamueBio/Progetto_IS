@@ -71,6 +71,10 @@
             android:name=".SpecAll">
 
         </activity>
+        <activity
+            android:name=".Data">
+
+        </activity>
 
     </application>
 

@@ -13,11 +13,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class Dashboard extends AppCompatActivity {
-    private String username;
-    private String password;
-    private String nome;
-    private String cognome;
-    private String mail;
     private ImageButton search;
     private ImageButton profilo;
     private ImageButton preferiti;
@@ -32,14 +27,6 @@ public class Dashboard extends AppCompatActivity {
 
         setContentView(R.layout.dashboard);
 
-        Intent intent = getIntent();
-
-        // Recupero della variabile dalla chiave specificata
-        username = intent.getStringExtra("user");
-        password = intent.getStringExtra("pw");
-        nome = intent.getStringExtra("nome");
-        cognome = intent.getStringExtra("cognome");
-        mail = intent.getStringExtra("mail");
         search = (ImageButton) findViewById(R.id.lente);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +65,6 @@ public class Dashboard extends AppCompatActivity {
 
     public void openProfile(){
         Intent intent=new Intent(this, Profilo.class);
-        intent.putExtra("user", username);
-        intent.putExtra("pw", password);
-        intent.putExtra("nome",nome);
-        intent.putExtra("cognome",cognome);
-        intent.putExtra("mail",mail);
         startActivity(intent);
     }
 
