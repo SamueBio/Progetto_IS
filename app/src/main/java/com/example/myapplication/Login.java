@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.myapplication.crypto.CryptoUtils;
 import com.example.myapplication.retrofit.RetrofitService;
 import com.example.myapplication.retrofit.UserApi;
@@ -70,15 +69,17 @@ public class Login extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             try {
                                 String responseBody = response.body().string();
-                                Toast.makeText(Login.this, "LOGIN SUCCEFULL", Toast.LENGTH_SHORT).show();
-                                System.out.println("!!!  RESPONDE !!!: "+ responseBody);
+                                Toast.makeText(Login.this, "Login effettuato", Toast.LENGTH_SHORT).show();
+                                //System.out.println("!!!  RESPONDE !!!: "+ responseBody);
                                 openSearch();
                             } catch (IOException e) {
-                                System.out.println("!!!  ECCEZIONE !!!");
+                                //System.out.println("!!!  ECCEZIONE !!!");
                                 e.printStackTrace();
                             }
                         } else {
-                            System.out.println("!!!  NON TROVATO !!!");
+                            //System.out.println("!!!  NON TROVATO !!!");
+                            Toast.makeText(Login.this, "Login fallito", Toast.LENGTH_SHORT).show();
+
                         }
                     }
 
