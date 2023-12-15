@@ -12,13 +12,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.crypto.CryptoUtils;
+import com.example.myapplication.model.User;
 import com.example.myapplication.retrofit.RetrofitService;
 import com.example.myapplication.retrofit.UserApi;
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -29,7 +33,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
-
+    private String nome;
+    private String cognome;
+    private String mail;
     EditText username;
     EditText password;
     Button loginButton;
@@ -69,8 +75,14 @@ public class Login extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             try {
                                 String responseBody = response.body().string();
+
                                 Toast.makeText(Login.this, "Login effettuato", Toast.LENGTH_SHORT).show();
-                                //System.out.println("!!!  RESPONDE !!!: "+ responseBody);
+                                System.out.println("!!!  RISPONDE !!!: "+ responseBody);
+                                Gson gson = new Gson();
+                                User myModel = gson.fromJson(responseBody, User.class);
+                                nome = myModel.getFirstName();
+                                cognome = myModel.getLastName();
+                                mail = myModel.getEmail();
                                 openSearch();
                             } catch (IOException e) {
                                 //System.out.println("!!!  ECCEZIONE !!!");
@@ -88,6 +100,9 @@ public class Login extends AppCompatActivity {
                         // Gestisci il caso di fallimento qui
                     }
                 });
+            }else{
+                Toast.makeText(Login.this, "Inserisci credenziali", Toast.LENGTH_SHORT).show();
+
             }
 
         });
@@ -102,6 +117,11 @@ public class Login extends AppCompatActivity {
     }
     public void openSearch(){
         Intent intent=new Intent(this, Dashboard.class);
+        intent.putExtra("user", String.valueOf(username.getText()));
+        intent.putExtra("pw", String.valueOf(password.getText()));
+        intent.putExtra("nome",nome);
+        intent.putExtra("cognome",cognome);
+        intent.putExtra("mail",mail);
         startActivity(intent);
     }
     public void openRegis(){

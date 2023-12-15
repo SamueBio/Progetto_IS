@@ -15,6 +15,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Profilo extends AppCompatActivity {
+    private String username;
+    private String password;
+    private String nomee;
+    private String cognomee;
+    private String maill;
 
     private AlertDialog alertDialog;
 
@@ -30,15 +35,23 @@ public class Profilo extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.profilo);
+        Intent intent = getIntent();
 
+        // Recupero della variabile dalla chiave specificata
+        username = intent.getStringExtra("user");
+        password = intent.getStringExtra("pw");
+        nomee = intent.getStringExtra("nome");
+        cognomee = intent.getStringExtra("cognome");
+        maill = intent.getStringExtra("mail");
+        //System.out.println("USERNAME: "+username+"\nPW: "+password+nome+cognome+mail);
         EditText nome = findViewById(R.id.nome2);
-        nome.setText("Samuele");
+        nome.setText(nomee);
         EditText cognome = findViewById(R.id.cognome2);
-        cognome.setText("Biondo");
+        cognome.setText(cognomee);
         EditText mail = findViewById(R.id.email2);
-        mail.setText("samu.bio@gmail.com");
+        mail.setText(maill);
         EditText pw = findViewById(R.id.editTextPassword);
-        pw.setText("prova123");
+        pw.setText(password);
 
         home = (ImageButton) findViewById(R.id.house);
         nomeMod = (ImageButton) findViewById(R.id.nomeMod);
