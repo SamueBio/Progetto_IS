@@ -10,30 +10,42 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDao {
 	@Autowired
-	private UserRepository repository;
+	private UserRepository userRepository;
+
+	public List<String> checkUsername(String username){
+		return userRepository.checkUsername(username);
+	}
+
+	public String checkUserPasswordByUsername(String username){
+		return userRepository.checkUserPasswordByUsername(username);
+	}
+
+	public User getUserDetailsByUsername(String username){
+		return userRepository.GetUserDetailsByUsername(username);
+	}
 	
 	public void save(User user) {
-		repository.save(user);
+		userRepository.save(user);
 	}
 	
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<>();
-		Streamable.of(repository.findAll())
+		Streamable.of(userRepository.findAll())
 		.forEach(users::add);
 		return users;
 	}
 	
 	public void delete(String username) {
-		repository.deleteById(username);
+		userRepository.deleteById(username);
 	}
 
 	public String findPasswordById(String username){
-		String psw = repository.findPasswordByUsername(username);
+		String psw = userRepository.findPasswordByUsername(username);
 		System.out.println(psw);
 		return psw;
 	}
 
 	public boolean checkPassword(String username, String pswToCheck){
-		return repository.checkPassword(username,pswToCheck);
+		return userRepository.checkPassword(username,pswToCheck);
 	}
 }
