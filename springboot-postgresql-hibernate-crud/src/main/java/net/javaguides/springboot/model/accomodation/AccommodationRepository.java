@@ -59,12 +59,6 @@ public interface AccommodationRepository extends CrudRepository<Accommodation,In
     @Query("SELECT a FROM Accommodation a")
     List<Accommodation> findAll();
 
-   // @Query("SELECT a FROM Accomodation a WHERE a.stars = :stars")            //Ricerca in base alle stelle
-    //List<Accomodation> findByStars(@Param("stars") int stars);
-
-   // @Query("SELECT a FROM Accomodation a WHERE a.category = :category")    //Ricerca in base all categoria
- //   List<Accomodation> findByCategory(@Param("category") String category);
-
 
 
 }
