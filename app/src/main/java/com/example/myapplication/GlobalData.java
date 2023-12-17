@@ -285,4 +285,32 @@ public class GlobalData {
     public void setFrancese(boolean francese) {
         this.francese = francese;
     }
+
+    public void setFalse(){
+        piscina = false;
+        piscinaCoperta = false;
+        animaliAmm = false;
+        ariaCond = false;
+        ristorante = false;
+        parcheggio  = false;
+        accessoDisabili  = false;
+        stazioneFs  = false;
+        lago  = false;
+        aeroporto  = false;
+        sauna = false;
+        terme = false;
+        salaConferenze  = false;
+        areaBimbi = false;
+        solarium = false;
+        mare  = false;
+        periferia  = false;
+        campagna  = false;
+        centroStorico  = false;
+        palestra  = false;
+        skilift = false;
+        inglese  = false;
+        francese = false;
+        spagnolo  = false;
+        tedesco = false;
+    }
 }

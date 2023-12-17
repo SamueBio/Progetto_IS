@@ -27,6 +27,9 @@ public class Dashboard extends AppCompatActivity {
 
         setContentView(R.layout.dashboard);
 
+        //SERVIZI RESET
+        GlobalData.getInstance().setFalse();
+
         search = (ImageButton) findViewById(R.id.lente);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
