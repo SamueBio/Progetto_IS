@@ -6,7 +6,7 @@ public class Alloggio {
 
     private String indirizzo;
 
-    private boolean isFavorited;
+    private boolean isFavourited;
 
 
     public Alloggio(String nome, String indirizzo) {
@@ -14,12 +14,12 @@ public class Alloggio {
         this.indirizzo = indirizzo;
     }
 
-    public boolean isFavorited() {
-        return isFavorited;
+    public boolean isFavourited() {
+        return isFavourited;
     }
 
-    public void setFavorited(boolean favorited) {
-        isFavorited = favorited;
+    public void setFavourited(boolean favourited) {
+        isFavourited = favourited;
     }
     public String getNome() {
         return nome;

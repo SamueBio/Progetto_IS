@@ -24,10 +24,8 @@ class SpringServerApplicationTests {
 		user.setEmail("cgiga@gmail.com");
 		user.setPassword("1234");
 		//userDao.save(user);
-		String psw = userDao.findPasswordById("caneGignte");
 		UserController uc = new UserController();
 		//psw=uc.getPasswordById("marcolino");
-		System.out.println(psw);
 	}
 	//@Test
 	void getAllEmployeesAndDeleteThem() {

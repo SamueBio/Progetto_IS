@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -18,7 +17,6 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppLocalesMetadataHolderService;
 
 public class Cerca extends AppCompatActivity {
     private EditText nomeSearch;
@@ -184,14 +182,14 @@ public class Cerca extends AppCompatActivity {
         ImageView heartIcon = (ImageView) view;
         Alloggio accommodation = (Alloggio) heartIcon.getTag();
 
-        if (accommodation.isFavorited()) {
+        if (accommodation.isFavourited()) {
             heartIcon.setImageResource(R.drawable.cuore);
            // removeFromFavorites(accommodation);
         } else {
             heartIcon.setImageResource(R.drawable.cuore_si);
             //addToFavorites(accommodation);
         }
-        accommodation.setFavorited(!accommodation.isFavorited());
+        accommodation.setFavourited(!accommodation.isFavourited());
     }
     private void openDashboard(){
         Intent intent=new Intent(this, Dashboard.class);

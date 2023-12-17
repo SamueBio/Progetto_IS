@@ -60,10 +60,6 @@ public class User {
 		this.password = password;
 	}
 
-	public void prova() {
-
-	}
-
 	@Override
 	public String toString() {
 		return "User{"+

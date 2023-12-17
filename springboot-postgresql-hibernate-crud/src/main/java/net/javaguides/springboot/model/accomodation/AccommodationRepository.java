@@ -49,11 +49,10 @@ public interface AccommodationRepository extends CrudRepository<Accommodation,In
             "AND a.province LIKE %:#{#accommodation.province}% " +
             "AND a.town LIKE %:#{#accommodation.town}% " +
             "AND a.type LIKE %:#{#accommodation.type}% " +
-            "AND a.location LIKE %:#{#accommodation.location}%" +
-             "AND a.stars LIKE %:#{#accomodation.stars}%" +
-            "AND a.category LIKE %:#{#accomodation.category}% "
-
-       )
+            "AND a.location LIKE %:#{#accommodation.location}% " +
+            "AND a.stars LIKE %:#{#accommodation.stars}% " +
+            "AND a.category LIKE %:#{#accommodation.category}% " +
+            "AND a.name LIKE %:#{#accommodation.name} " )
     List<Accommodation> findByServices(@Param("accommodation") Accommodation accommodation);
 
     @Query("SELECT a FROM Accommodation a")

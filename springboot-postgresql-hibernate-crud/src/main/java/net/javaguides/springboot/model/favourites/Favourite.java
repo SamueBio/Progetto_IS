@@ -1,21 +1,25 @@
-package net.javaguides.springboot.model.favorites;
+package net.javaguides.springboot.model.favourites;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
-@Table(name="Favorites")
-public class Favorites {
+@Table(name="favourites")
+public class Favourite {
 
-    @User
-    @Column(name = "user", length = 50)
+    @Id
+    @Column(name = "user")
     private String user;
-
     @Column(name = "accommodation")
     private Integer accommodation;
 
-    public Favorites {super();}
+    public Favourite() {
+        super();
+    }
+
+    public Favourite(String user, Integer accommodation) {
+        this.user = user;
+        this.accommodation = accommodation;
+    }
 
     public String getUser() {
         return user;
