@@ -33,6 +33,25 @@ public class GlobalData {
     private boolean skilift = false;
     private boolean inglese  = false;
     private boolean francese = false;
+    private boolean spagnolo  = false;
+    private boolean tedesco = false;
+
+    public boolean isSpagnolo() {
+        return spagnolo;
+    }
+
+    public void setSpagnolo(boolean spagnolo) {
+        this.spagnolo = spagnolo;
+    }
+
+    public boolean isTedesco() {
+        return tedesco;
+    }
+
+    public void setTedesco(boolean tedesco) {
+        this.tedesco = tedesco;
+    }
+
     private GlobalData() {
         // Costruttore privato per impedire l'istanziazione diretta
     }
