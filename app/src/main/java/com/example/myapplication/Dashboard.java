@@ -27,8 +27,6 @@ public class Dashboard extends AppCompatActivity {
 
         setContentView(R.layout.dashboard);
 
-        //SERVIZI RESET
-        GlobalData.getInstance().setFalse();
 
         search = (ImageButton) findViewById(R.id.lente);
         search.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +60,9 @@ public class Dashboard extends AppCompatActivity {
         });
     }
     public void openSearch(){
+        //SERVIZI RESET
+        GlobalData.getInstance().setFalse();
+
         Intent intent=new Intent(this, Cerca.class);
         startActivity(intent);
     }
