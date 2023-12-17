@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="5dp">
 
     <CheckBox
         android:id="@+id/accessoDisabili"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="150dp"
         android:text="ACCESSO AI DISABILI"/>
 
     <CheckBox
@@ -35,21 +37,187 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
+        android:layout_marginLeft="150dp"
         android:text="ARIA CONDIZIONATA"/>
-
     <CheckBox
         android:id="@+id/animaliAmm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
+        android:layout_marginLeft="150dp"
         android:text="ANIMALI AMMESSI"/>
-
-    <Button
-        android:id="@+id/btnSelectServices"
-        android:layout_width="305dp"
+    <CheckBox
+        android:id="@+id/bimbi"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
-        android:text="SELEZIONA SERVIZI" />
+        android:layout_marginTop="180dp"
+        android:text="AREA BIMBI"/>
+    <CheckBox
+        android:id="@+id/conferenze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:layout_marginLeft="150dp"
+        android:text="SALA CONFERENZE"/>
+    <CheckBox
+        android:id="@+id/mare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:text="MARE"/>
+    <CheckBox
+        android:id="@+id/palestra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:text="PALESTRA"/>
+    <CheckBox
+        android:id="@+id/skilift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:layout_marginLeft="150dp"
+        android:text="SKILIFT"/>
+
+    <CheckBox
+        android:id="@+id/piscinaCoperta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="150dp"
+        android:text="PISCINA COPERTA"/>
+
+    <CheckBox
+        android:id="@+id/stazioneFs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="150dp"
+        android:text="STAZIONE F.S."/>
+    <CheckBox
+        android:id="@+id/lago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LAGO"/>
+    <CheckBox
+        android:id="@+id/aeroporto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="150dp"
+        android:text="AEROPORTO"/>
+    <CheckBox
+        android:id="@+id/sauna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+
+        android:text="SAUNA"/>
+    <CheckBox
+        android:id="@+id/terme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="TERME"/>
+    <CheckBox
+        android:id="@+id/solarium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="150dp"
+        android:text="SOLARIUM"/>
+
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="280dp"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/zona"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="ZONA"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/periferia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="PERIFERIA"/>
+        <CheckBox
+            android:id="@+id/centroStorico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="CENTRO STORICO"/>
+
+        <CheckBox
+            android:id="@+id/campagna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="CAMPAGNA"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="400dp"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/lingue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="LINGUE"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/inglese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="INGLESE"/>
+        <CheckBox
+            android:id="@+id/spagnolo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="SPAGNOLO"/>
+        <CheckBox
+            android:id="@+id/tedesco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="150dp"
+            android:text="TEDESCO"/>
+
+        <CheckBox
+            android:id="@+id/francese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="150dp"
+            android:text="FRANCESE"/>
+
+        <Button
+            android:id="@+id/btnSelectServices"
+            android:layout_width="305dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:layout_centerHorizontal="true"
+            android:text="SELEZIONA SERVIZI" />
+    </RelativeLayout>
+
 
 </RelativeLayout>
