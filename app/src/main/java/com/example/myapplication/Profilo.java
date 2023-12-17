@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Profilo extends AppCompatActivity {
+
     private String username;
     private String password;
     private String nomee;

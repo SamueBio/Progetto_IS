@@ -19,6 +19,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Cerca extends AppCompatActivity {
+    private static GlobalData instance;
+
     private EditText nomeSearch;
     private EditText indirizzo;
 
@@ -102,6 +104,16 @@ public class Cerca extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final CheckBox piscina = dialogView.findViewById(R.id.piscina);
+        if(GlobalData.getInstance().isPiscina())
+            piscina.setChecked(true);
+        piscina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                piscina.setChecked(!GlobalData.getInstance().isPiscina());
+                boolean sup =!GlobalData.getInstance().isPiscina();
+                GlobalData.getInstance().setPiscina(sup);
+            }
+        });
         final CheckBox piscinaCoperta = dialogView.findViewById(R.id.piscinaCoperta);
         final CheckBox animaliAmm = dialogView.findViewById(R.id.animaliAmm);
         final CheckBox ariaCond = dialogView.findViewById(R.id.ariaCond);
@@ -127,8 +139,6 @@ public class Cerca extends AppCompatActivity {
         final CheckBox spagnolo = dialogView.findViewById(R.id.spagnolo);
         final CheckBox tedesco = dialogView.findViewById(R.id.tedesco);
         final CheckBox francese = dialogView.findViewById(R.id.francese);
-
-
 
 
         Button btnSelectServices = dialogView.findViewById(R.id.btnSelectServices);
