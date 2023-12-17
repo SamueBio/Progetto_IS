@@ -102,11 +102,34 @@ public class Cerca extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final CheckBox piscina = dialogView.findViewById(R.id.piscina);
+        final CheckBox piscinaCoperta = dialogView.findViewById(R.id.piscinaCoperta);
         final CheckBox animaliAmm = dialogView.findViewById(R.id.animaliAmm);
         final CheckBox ariaCond = dialogView.findViewById(R.id.ariaCond);
         final CheckBox ristorante = dialogView.findViewById(R.id.ristorante);
         final CheckBox parcheggio = dialogView.findViewById(R.id.parcheggio);
         final CheckBox accessoDisabili = dialogView.findViewById(R.id.accessoDisabili);
+        final CheckBox stazioneFs = dialogView.findViewById(R.id.stazioneFs);
+        final CheckBox lago = dialogView.findViewById(R.id.lago);
+        final CheckBox aeroporto = dialogView.findViewById(R.id.aeroporto);
+        final CheckBox sauna = dialogView.findViewById(R.id.sauna);
+        final CheckBox terme = dialogView.findViewById(R.id.terme);
+        final CheckBox salaConferenze = dialogView.findViewById(R.id.conferenze);
+        final CheckBox areaBimbi = dialogView.findViewById(R.id.bimbi);
+        final CheckBox solarium = dialogView.findViewById(R.id.solarium);
+        final CheckBox mare = dialogView.findViewById(R.id.mare);
+        final CheckBox periferia = dialogView.findViewById(R.id.periferia);
+        final CheckBox campagna = dialogView.findViewById(R.id.campagna);
+        final CheckBox centroStorico = dialogView.findViewById(R.id.centroStorico);
+        final CheckBox palestra = dialogView.findViewById(R.id.palestra);
+        final CheckBox skilift = dialogView.findViewById(R.id.skilift);
+
+        final CheckBox inglese = dialogView.findViewById(R.id.inglese);
+        final CheckBox spagnolo = dialogView.findViewById(R.id.spagnolo);
+        final CheckBox tedesco = dialogView.findViewById(R.id.tedesco);
+        final CheckBox francese = dialogView.findViewById(R.id.francese);
+
+
+
 
         Button btnSelectServices = dialogView.findViewById(R.id.btnSelectServices);
         btnSelectServices.setOnClickListener(new View.OnClickListener() {
