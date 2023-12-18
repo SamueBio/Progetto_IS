@@ -72,7 +72,11 @@
 
         </activity>
         <activity
-            android:name=".Data">
+            android:name=".GlobalData">
+
+        </activity>
+        <activity
+            android:name=".InviaRichiesta">
 
         </activity>
 

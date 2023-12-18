@@ -24,6 +24,7 @@
         android:layout_height="24dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="54dp"
+        android:layout_marginBottom="20dp"
         android:textSize="17sp"
         android:textStyle="italic" />
 
@@ -32,7 +33,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         app:srcCompat="@drawable/accomodation" />
 
     <ImageView
@@ -40,7 +41,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="37dp"
         android:layout_marginRight="20dp"
         app:srcCompat="@drawable/cuore"
         android:onClick="onHeartIconClick"
@@ -55,8 +56,8 @@
         android:layout_marginRight="20dp"
         android:backgroundTint="#CFD2F0" />-->
 
-    <TextView
-        android:id="@+id/back2"
+   <!-- <TextView
+        android:id="@+id/inviaRichiesta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
@@ -65,7 +66,7 @@
         android:text="INVIA RICHIESTA"
         android:textColor="#CC4747"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
 
 

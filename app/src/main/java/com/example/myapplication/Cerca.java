@@ -28,6 +28,8 @@ public class Cerca extends AppCompatActivity {
 
     private TextView nomeAll;
 
+    private TextView inviaRichiesta;
+
     private Button searchButton;
     private ImageButton home;
 
@@ -446,8 +448,10 @@ public class Cerca extends AppCompatActivity {
         backk=findViewById(R.id.back2);
         nomeAll = findViewById(R.id.nameTextView);
 
+
         resultsListView = findViewById(R.id.accommodationListView);
         resultsListView.setAdapter(adapter);
+
 
         cuore = findViewById(R.id.pref);
 
@@ -456,6 +460,8 @@ public class Cerca extends AppCompatActivity {
             public void onClick(View v) { specAll(v);
             }
         });
+
+
 
        // bpref=findViewById(R.id.buttonPref);
        /* bpref.setOnClickListener(new View.OnClickListener() {
@@ -508,6 +514,8 @@ public class Cerca extends AppCompatActivity {
         intent.putExtra("nome_alloggio", nomeAll.getText());
         startActivity(intent);
     }
+
+
 
     // Metodo per filtrare gli alloggi in base alla parola chiave
     private ArrayList<Alloggio> filterAccommodationsByKeyword(String keyword) {

@@ -50,6 +50,8 @@
         android:textSize="14sp"
         android:textStyle="italic" />
 
+
+
     <ListView
         android:id="@+id/accommodationListView"
         android:layout_width="wrap_content"

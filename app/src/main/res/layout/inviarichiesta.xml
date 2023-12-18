@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="INVIA RICHIESTA"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#AC0D0D"/>
+
+    <TextView
+        android:id="@+id/nomeCognome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="NOME e COGNOME"
+        android:layout_marginTop="50dp"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextNomeCognome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:hint=""/>
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="EMAIL"
+        android:layout_marginTop="150dp"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:hint=""
+            android:inputType="textEmailAddress"/>
+
+    <TextView
+        android:id="@+id/oggetto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="OGGETTO"
+        android:layout_marginTop="250dp"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextOggetto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="280dp"
+            android:hint=""/>
+
+    <TextView
+        android:id="@+id/messaggio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="TESTO MESSAGGIO"
+        android:layout_marginTop="350dp"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextTestoMessaggio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="380dp"
+            android:hint=""
+            android:inputType="textMultiLine"
+            android:lines="4"/>
+
+    <Button
+        android:id="@+id/buttonInviaRichiesta"
+        android:layout_width="234dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="550dp"
+        android:layout_centerHorizontal="true"
+        android:text="INVIA RICHIESTA"
+        android:textSize="20sp" />
+
+
+
+</RelativeLayout>
