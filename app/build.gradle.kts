@@ -47,6 +47,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
     runtimeOnly("androidx.appcompat:appcompat:1.6.0")
+    implementation("com.sun.mail:javax.mail:1.6.2") // La versione potrebbe essere diversa, verifica la più recente
+
 
 
 
