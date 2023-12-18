@@ -2,13 +2,17 @@ package com.example.myapplication;
 
 import android.widget.CheckBox;
 
+import com.example.myapplication.model.User;
+
 public class GlobalData {
     private static GlobalData instance;
-    private String username;
+
+    private User u = new User();
+   /* private String username;
     private String nome;
     private String cognome;
     private String mail;
-    private String password;
+    private String password;*/
 
     private boolean piscina = false;
     private boolean piscinaCoperta = false;
@@ -63,43 +67,41 @@ public class GlobalData {
     }
 
     public String getUsername() {
-        return username;
+        return u.getUsername();
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        u.setUsername(username);
     }
 
     public String getNome() {
-        return nome;
+        return u.getFirstName();
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        u.setFirstName(nome);
     }
 
     public String getCognome() {
-        return cognome;
+        return u.getLastName();
     }
 
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
+    public void setCognome(String cognome) { u.setLastName(cognome); }
 
     public String getMail() {
-        return mail;
+        return u.getEmail();
     }
 
     public void setMail(String mail) {
-        this.mail = mail;
+        u.setEmail(mail);
     }
 
     public String getPassword() {
-        return password;
+        return u.getPassword();
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        u.setPassword(password);
     }
 
     public boolean isPiscina() {
