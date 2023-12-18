@@ -2,17 +2,22 @@ package com.example.myapplication;
 
 import android.widget.CheckBox;
 
+import com.example.myapplication.model.Accommodation;
 import com.example.myapplication.model.User;
 
 public class GlobalData {
     private static GlobalData instance;
 
+    //INFORMAZIONI GLOBALI DELL'UTENTE CHE EFFETTUA L'ACCESSO
     private User u = new User();
    /* private String username;
     private String nome;
     private String cognome;
     private String mail;
     private String password;*/
+
+    //INFORMAZIONI GLOBALI DEI SERVIZI SCELTI PER LA RICERCA ALLOGGI
+    private Accommodation a = new Accommodation();
 
     private boolean piscina = false;
     private boolean piscinaCoperta = false;
