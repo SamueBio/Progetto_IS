@@ -23,6 +23,7 @@ public class Accommodation {
     private String stars;
     private String category;
     private Date lastTimeUpdated;
+    //Zona Fiera
     private boolean countryFair;
     private boolean fsStation;
     private boolean spanish;
@@ -38,13 +39,16 @@ public class Accommodation {
     private boolean conferenceRoom;
     private boolean childrensGames;
     private boolean parking;
+    //Periferia
     private boolean outskirts;
+    //Centro storico
     private boolean oldTown;
     private boolean airConditioning;
     private boolean sea;
     private boolean pets;
     private boolean pool;
     private boolean german;
+    //Collinare
     private boolean hilly;
     private boolean temporaryClosure;
     private boolean french;

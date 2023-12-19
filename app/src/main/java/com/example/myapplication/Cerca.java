@@ -18,6 +18,15 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.model.Accommodation;
+import com.example.myapplication.retrofit.AccommodationApi;
+import com.example.myapplication.retrofit.RetrofitService;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Cerca extends AppCompatActivity {
     private static GlobalData instance;
 
@@ -99,6 +108,14 @@ public class Cerca extends AppCompatActivity {
         });
     }
 
+    /*
+    * In this popup there aren't:
+    *   highway
+    *   countryFair
+    *   otherServices (String field)
+    *
+    *   There is also an error. Campagna does not exist. The correct voice is Collina
+    * */
     private void showPopup() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -437,7 +454,30 @@ public class Cerca extends AppCompatActivity {
     // Metodo per eseguire la ricerca
     @SuppressLint("MissingInflatedId")
     private void performSearch() {
+        RetrofitService retrofitService = new RetrofitService();
+        AccommodationApi accommodationApi = retrofitService.getRetrofit().create(AccommodationApi.class);
 
+        //TODO: query
+        Accommodation accommodation = GlobalData.getInstance().getAccommodation();
+        accommodation.setName(nomeSearch.getText().toString());
+        accommodation.setArea(indirizzo.getText().toString());
+
+        Call<ResponseBody> call = accommodationApi.search(accommodation.generateJson());
+        /*
+        * The query is ready but before the test we need to make order on this class
+        * because it's impossible to understard a single row
+        * */
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
         String keyword = nomeSearch.getText().toString();
         String keyword2 = indirizzo.getText().toString();
         String[] inputArray = (keyword+" "+keyword2).trim().split(" ");

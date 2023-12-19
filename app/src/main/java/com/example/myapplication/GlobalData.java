@@ -17,7 +17,7 @@ public class GlobalData {
     private String password;*/
 
     //INFORMAZIONI GLOBALI DEI SERVIZI SCELTI PER LA RICERCA ALLOGGI
-    private Accommodation a = new Accommodation();
+    private Accommodation accommodation = new Accommodation();
 
     private boolean piscina = false;
     private boolean piscinaCoperta = false;
@@ -46,19 +46,19 @@ public class GlobalData {
     private boolean tedesco = false;
 
     public boolean isSpagnolo() {
-        return spagnolo;
+        return accommodation.isSpanish();
     }
 
     public void setSpagnolo(boolean spagnolo) {
-        this.spagnolo = spagnolo;
+        this.accommodation.setSpanish(spagnolo);
     }
 
     public boolean isTedesco() {
-        return tedesco;
+        return accommodation.isGerman();
     }
 
     public void setTedesco(boolean tedesco) {
-        this.tedesco = tedesco;
+        this.accommodation.setGerman(tedesco);
     }
 
     private GlobalData() {
@@ -109,189 +109,226 @@ public class GlobalData {
         u.setPassword(password);
     }
 
+
     public boolean isPiscina() {
-        return piscina;
+        return accommodation.isPool();
     }
 
     public void setPiscina(boolean piscina) {
-        this.piscina = piscina;
+        this.accommodation.setPool(piscina);
     }
 
     public boolean isPiscinaCoperta() {
-        return piscinaCoperta;
+        return accommodation.isCoveredPool();
     }
 
     public void setPiscinaCoperta(boolean piscinaCoperta) {
-        this.piscinaCoperta = piscinaCoperta;
+        this.accommodation.setCoveredPool(piscinaCoperta);
     }
 
     public boolean isAnimaliAmm() {
-        return animaliAmm;
+        return accommodation.isPets();
     }
 
     public void setAnimaliAmm(boolean animaliAmm) {
-        this.animaliAmm = animaliAmm;
+        this.accommodation.setPets(animaliAmm);
     }
 
     public boolean isAriaCond() {
-        return ariaCond;
+        return accommodation.isAirConditioning();
     }
 
     public void setAriaCond(boolean ariaCond) {
-        this.ariaCond = ariaCond;
+        this.accommodation.setAirConditioning(ariaCond);
     }
 
     public boolean isRistorante() {
-        return ristorante;
+        return accommodation.isRestaurant();
     }
 
     public void setRistorante(boolean ristorante) {
-        this.ristorante = ristorante;
+        this.accommodation.setRestaurant(ristorante);
     }
 
     public boolean isParcheggio() {
-        return parcheggio;
+        return accommodation.isParking();
     }
 
     public void setParcheggio(boolean parcheggio) {
-        this.parcheggio = parcheggio;
+        this.accommodation.setParking(parcheggio);
     }
 
     public boolean isAccessoDisabili() {
-        return accessoDisabili;
+        return accommodation.isDisablePeopleAccess();
     }
 
     public void setAccessoDisabili(boolean accessoDisabili) {
-        this.accessoDisabili = accessoDisabili;
+        this.accommodation.setDisablePeopleAccess(accessoDisabili);
     }
 
     public boolean isStazioneFs() {
-        return stazioneFs;
+        return accommodation.isFsStation();
     }
 
     public void setStazioneFs(boolean stazioneFs) {
-        this.stazioneFs = stazioneFs;
+        this.accommodation.setFsStation(stazioneFs);
     }
 
     public boolean isLago() {
-        return lago;
+        return accommodation.isLake();
     }
 
     public void setLago(boolean lago) {
-        this.lago = lago;
+        this.accommodation.setLake(lago);
     }
 
     public boolean isAeroporto() {
-        return aeroporto;
+        return accommodation.isAirport();
     }
 
     public void setAeroporto(boolean aeroporto) {
-        this.aeroporto = aeroporto;
+        this.accommodation.setAirport(aeroporto);
     }
 
     public boolean isSauna() {
-        return sauna;
+        return accommodation.isSauna();
     }
 
     public void setSauna(boolean sauna) {
-        this.sauna = sauna;
+        this.accommodation.setSauna(sauna);
     }
 
     public boolean isTerme() {
-        return terme;
+        return accommodation.isThermal();
     }
 
     public void setTerme(boolean terme) {
-        this.terme = terme;
+        this.accommodation.setThermal(terme);
     }
 
     public boolean isSalaConferenze() {
-        return salaConferenze;
+        return accommodation.isConferenceRoom();
     }
 
     public void setSalaConferenze(boolean salaConferenze) {
-        this.salaConferenze = salaConferenze;
+        this.accommodation.setConferenceRoom(salaConferenze);
     }
 
     public boolean isAreaBimbi() {
-        return areaBimbi;
+        return accommodation.isChildrensGames();
     }
 
     public void setAreaBimbi(boolean areaBimbi) {
-        this.areaBimbi = areaBimbi;
+        this.accommodation.setChildrensGames(areaBimbi);
     }
 
     public boolean isSolarium() {
-        return solarium;
+        return accommodation.isSolarium();
     }
 
     public void setSolarium(boolean solarium) {
-        this.solarium = solarium;
+        this.accommodation.setSolarium(solarium);
     }
 
     public boolean isMare() {
-        return mare;
+        return accommodation.isSea();
     }
 
     public void setMare(boolean mare) {
-        this.mare = mare;
+        this.accommodation.setSea(mare);
     }
 
     public boolean isPeriferia() {
-        return periferia;
+        return accommodation.isOutskirts();
     }
 
     public void setPeriferia(boolean periferia) {
-        this.periferia = periferia;
+        this.accommodation.setOutskirts(periferia);
     }
 
+    /*
+    Campagna errato -> collinare corretto
+    * */
+
     public boolean isCampagna() {
-        return campagna;
+        return accommodation.isHilly();
     }
 
     public void setCampagna(boolean campagna) {
-        this.campagna = campagna;
+        this.accommodation.setHilly(campagna);
     }
 
     public boolean isCentroStorico() {
-        return centroStorico;
+        return accommodation.isOldTown();
     }
 
     public void setCentroStorico(boolean centroStorico) {
-        this.centroStorico = centroStorico;
+        this.accommodation.setOldTown(centroStorico);
     }
 
     public boolean isPalestra() {
-        return palestra;
+        return accommodation.isFitness();
     }
 
     public void setPalestra(boolean palestra) {
-        this.palestra = palestra;
+        this.accommodation.setFitness(palestra);
     }
 
     public boolean isSkilift() {
-        return skilift;
+        return accommodation.isSkiLifts();
     }
 
     public void setSkilift(boolean skilift) {
-        this.skilift = skilift;
+        this.accommodation.setSkiLifts(skilift);
     }
 
     public boolean isInglese() {
-        return inglese;
+        return accommodation.isEnglish();
     }
 
     public void setInglese(boolean inglese) {
-        this.inglese = inglese;
+        this.accommodation.setEnglish(inglese);
     }
 
     public boolean isFrancese() {
-        return francese;
+        return accommodation.isFrench();
     }
 
     public void setFrancese(boolean francese) {
-        this.francese = francese;
+        this.accommodation.setFrench(francese);
     }
+
+    public boolean isZonaFiera(){
+        return accommodation.isCountryFair();
+    }
+
+    public void setZonaFiera(boolean zonaFiera){
+        this.accommodation.setCountryFair(zonaFiera);
+    }
+
+    public boolean isHighway(){
+        return accommodation.isHighway();
+    }
+
+    public void setHighway(boolean highway){
+        accommodation.setHighway(highway);
+    }
+
+    public String getOtherServices(){
+        return this.accommodation.getOtherServices();
+    }
+
+    public void setOtherServices(String otherServices){
+        this.accommodation.setOtherServices(otherServices);
+    }
+
+    public Accommodation getAccommodation(){
+        return this.accommodation;
+    }
+
+    /*
+    Questo metodo non serve più. Il costruttore di accommodation setta tutto a afalse
+    * */
 
     public void setFalse(){
         piscina = false;
