@@ -41,6 +41,8 @@ public class Cerca extends AppCompatActivity {
     private ImageButton filtri;
     private ListView resultsListView;
     private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
+    private AccomodationAdapter adapterAcc;
+    private ArrayList<Accommodation> resultAcc;
     private ArrayList<Alloggio> allAccommodations; // La lista completa degli alloggi
     private AlertDialog alertDialog;
 
@@ -72,6 +74,7 @@ public class Cerca extends AppCompatActivity {
 
         // Inizializza l'adattatore con la lista completa degli alloggi
         adapter = new AlloggioAdapter(this, allAccommodations);
+        adapterAcc = new AccomodationAdapter(this, resultAcc);
 
         // Imposta l'adattatore per la ListView
         //resultsListView.setAdapter(adapter);
@@ -106,6 +109,7 @@ public class Cerca extends AppCompatActivity {
     *   otherServices (String field)
     *
     * */
+    //METODO PER GESTIRE I SERVIZI DELLA RICERCA ALLOGGI
     private void showPopup() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -416,90 +420,85 @@ public class Cerca extends AppCompatActivity {
                 GlobalData.getInstance().setFrancese(sup);
             }
         });
-
-
-
         Button btnSelectServices = dialogView.findViewById(R.id.btnSelectServices);
         btnSelectServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Ottieni lo stato delle caselle di controllo e gestisci di conseguenza
-                boolean isPiscina = piscina.isChecked();
-                boolean isanimaliAmm = animaliAmm.isChecked();
-                boolean isariaCond = ariaCond.isChecked();
-                boolean isristorante = ristorante.isChecked();
-                boolean isparcheggio = parcheggio.isChecked();
-                boolean isaccessoDisabili = accessoDisabili.isChecked();
-                // Esegui azioni in base alle selezioni dell'utente
-                // ...
-
-                // Chiudi il popup
                 alertDialog.dismiss();
             }
         });
-
         alertDialog = dialogBuilder.create();
         alertDialog.show();
     }
-    // Metodo per eseguire la ricerca
+
+
+    //METODO PER EFFETTUARE LA RICERCA
     @SuppressLint("MissingInflatedId")
     private void performSearch() {
         RetrofitService retrofitService = new RetrofitService();
         AccommodationApi accommodationApi = retrofitService.getRetrofit().create(AccommodationApi.class);
 
+        //ARRAYLIST DEI RISULTATI DELLA RICERCA
+        ArrayList<Accommodation> result = new ArrayList<>();
+
         //TODO: query
         Accommodation accommodation = GlobalData.getInstance().getAccommodation();
         accommodation.setName(nomeSearch.getText().toString());
-        accommodation.setArea(indirizzo.getText().toString());
+        accommodation.setAddress(indirizzo.getText().toString());
 
         Call<ResponseBody> call = accommodationApi.search(accommodation.generateJson());
-        /*
-        * The query is ready but before the test we need to make order on this class
-        * because it's impossible to understard a single row
-        * */
-        call.enqueue(new Callback<ResponseBody>() {
+
+        /*call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+                //da implementare il salvataggio della response della chiamata API nella
+               // lista "resultAcc"
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
             }
-        });
-        String keyword = nomeSearch.getText().toString();
+        });*/
+
+
+        result.add(accommodation);
+        adapterAcc = new AccomodationAdapter(this, result);
+        //passo alla visualizzazione della pagina di ricerca eseguita
+        setContentView(R.layout.cerca2);
+        //setto gli elementi della pagina
+        back=findViewById(R.id.back);
+        backk=findViewById(R.id.back2);
+        nomeAll = findViewById(R.id.nameTextView);
+        resultsListView = findViewById(R.id.accommodationListView);
+        resultsListView.setAdapter(adapter);
+        cuore = findViewById(R.id.pref);
+        resultsListView = findViewById(R.id.accommodationListView);
+        //setto dall'adapter, visualizzando nome e indirizzo dei risultati
+        resultsListView.setAdapter(adapterAcc);
+
+        //------------------------------------
+        /*String keyword = nomeSearch.getText().toString();
         String keyword2 = indirizzo.getText().toString();
         String[] inputArray = (keyword+" "+keyword2).trim().split(" ");
         adapter = new AlloggioAdapter(this, filterAccommodationsByKeywords(allAccommodations, inputArray));
         setContentView(R.layout.cerca2);
-
         back=findViewById(R.id.back);
         backk=findViewById(R.id.back2);
         nomeAll = findViewById(R.id.nameTextView);
-
-
         resultsListView = findViewById(R.id.accommodationListView);
         resultsListView.setAdapter(adapter);
-
-
         cuore = findViewById(R.id.pref);
+        //------------------------------------
+        //righe da eliminare se query di ricerca funziona correttamente
+
+*/
 
         nomeAll.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) { specAll(v);
             }
         });
-
-
-
-       // bpref=findViewById(R.id.buttonPref);
-       /* bpref.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cuore.setImageResource(R.drawable.cuore_si);
-            }
-        });*/
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -512,14 +511,12 @@ public class Cerca extends AppCompatActivity {
                 backSearch();
             }
         });
-
-
     }
 
+    //GESTIONE ALLOGGIO PREFERITO
     public void onHeartIconClick(View view) {
         ImageView heartIcon = (ImageView) view;
         Alloggio accommodation = (Alloggio) heartIcon.getTag();
-
         if (accommodation.isFavourited()) {
             heartIcon.setImageResource(R.drawable.cuore);
            // removeFromFavorites(accommodation);
@@ -529,16 +526,20 @@ public class Cerca extends AppCompatActivity {
         }
         accommodation.setFavourited(!accommodation.isFavourited());
     }
+
+    //METODO VISUALIZZAZIONE DASHBOARD
     private void openDashboard(){
         Intent intent=new Intent(this, Dashboard.class);
         startActivity(intent);
     }
 
+    //METODO PER TORNARE INDIETRO NELLA PAGINA DI RICERCA ALLOGGIO
     private void backSearch(){
         Intent intent=new Intent(this, Cerca.class);
         startActivity(intent);
     }
 
+    //VISUALIZZAZIONE PAGINA SPECIFICA ALLOGGIO
     public void specAll(View view){
         Intent intent=new Intent(this, SpecAll.class);
         intent.putExtra("nome_alloggio", nomeAll.getText());
@@ -546,31 +547,16 @@ public class Cerca extends AppCompatActivity {
     }
 
 
+    //METODI PER FILTRARE LA RICERCA IN BASE A NOME E/O INDIRIZZO
 
-    // Metodo per filtrare gli alloggi in base alla parola chiave
-    private ArrayList<Alloggio> filterAccommodationsByKeyword(String keyword) {
-        ArrayList<Alloggio> filteredAccommodations = new ArrayList<>();
-
-        for (Alloggio accommodation : allAccommodations) {
-            if (accommodation.getNome().toLowerCase().contains(keyword) ||
-                    accommodation.getIndirizzo().toLowerCase().contains(keyword)){
-                filteredAccommodations.add(accommodation);
-            }
-        }
-
-        return filteredAccommodations;
-    }
+    // --->  METODI DA ELIMINARE UNA VOLTA IMPLEMENTATA CORRETTAMENTE LA RICERCA CON QUERY  <----
 
     private ArrayList<Alloggio> filterAccommodationsByKeywords(ArrayList<Alloggio> allAccommodations, String[] keywords) {
         ArrayList<Alloggio> filteredAccommodations = new ArrayList<>();
-        //Log.d("","valore00: "+keywords[0]);
-        //Log.d("","valore01: "+keywords[1]);
         String[] arrayStringhe = new String[keywords.length];
-
         for (int i = 0; i < keywords.length; i++) {
            arrayStringhe[i] = String.valueOf(keywords[i]);
         }
-
         for(int j=0; j<allAccommodations.size(); j++){
             for(int i=0; i<keywords.length; i++){
                 if (accommodationContainsKeyword(allAccommodations.get(j), keywords[i])) {
@@ -581,7 +567,6 @@ public class Cerca extends AppCompatActivity {
         }
         return filteredAccommodations;
     }
-
     private boolean accommodationContainsKeyword(Alloggio accommodation, String keyword) {
         return accommodation.getNome().toLowerCase().contains(keyword.toLowerCase())
                 || accommodation.getIndirizzo().toLowerCase().contains(keyword.toLowerCase());

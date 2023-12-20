@@ -101,6 +101,8 @@ public class Accommodation {
         this.coveredPool = false;
         this.solarium = false;
         this.otherServices = "";
+        long miliseconds = System.currentTimeMillis();
+        this.lastTimeUpdated=new Date(miliseconds);
     }
 
     public Integer getId() {
