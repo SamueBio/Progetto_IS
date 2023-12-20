@@ -269,6 +269,14 @@ public class GlobalData {
         accommodation.setHighway(highway);
     }
 
+    public boolean isCountryFair(){
+        return accommodation.isCountryFair();
+    }
+
+    public void setCountryFair(boolean highway){
+        accommodation.setCountryFair(highway);
+    }
+
     public String getOtherServices(){
         return this.accommodation.getOtherServices();
     }
@@ -284,4 +292,6 @@ public class GlobalData {
     public void setFalse(){
         accommodation = new Accommodation();
     }
+
+
 }

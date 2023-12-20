@@ -83,7 +83,6 @@ public class Cerca extends AppCompatActivity {
 
     /*
     * In this popup there aren't:
-    *   highway
     *   countryFair
     *   otherServices (String field)
     *
@@ -94,6 +93,42 @@ public class Cerca extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.servizi, null);
         dialogBuilder.setView(dialogView);
+
+        final CheckBox autostrada = dialogView.findViewById(R.id.autostrada);
+        if(GlobalData.getInstance().isHighway())
+            autostrada.setChecked(true);
+        autostrada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                autostrada.setChecked(!GlobalData.getInstance().isHighway());
+                boolean sup =!GlobalData.getInstance().isHighway();
+                GlobalData.getInstance().setHighway(sup);
+            }
+        });
+
+        final CheckBox sagra = dialogView.findViewById(R.id.sagra);
+        if(GlobalData.getInstance().isCountryFair())
+            sagra.setChecked(true);
+        autostrada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                autostrada.setChecked(!GlobalData.getInstance().isCountryFair());
+                boolean sup =!GlobalData.getInstance().isCountryFair();
+                GlobalData.getInstance().setCountryFair(sup);
+            }
+        });
+
+        /*final String altro = findViewById(R.id.altroText);
+        if(GlobalData.getInstance().setOtherServices(altro)){
+            autostrada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                autostrada.setChecked(!GlobalData.getInstance().isCountryFair());
+                boolean sup =!GlobalData.getInstance().isCountryFair();
+                GlobalData.getInstance().setCountryFair(sup);
+            }
+        });*/
+
 
         final CheckBox piscina = dialogView.findViewById(R.id.piscina);
         if(GlobalData.getInstance().isPiscina())
