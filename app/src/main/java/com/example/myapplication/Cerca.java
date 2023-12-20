@@ -29,24 +29,16 @@ import retrofit2.Response;
 
 public class Cerca extends AppCompatActivity {
     private static GlobalData instance;
-
     private EditText nomeSearch;
     private EditText indirizzo;
-
     private TextView backk;
-
     private TextView nomeAll;
-
     private TextView inviaRichiesta;
-
     private Button searchButton;
     private ImageButton home;
-
     private ImageView cuore;
-
     private ImageButton back;
     private ImageButton filtri;
-
     private ListView resultsListView;
     private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
     private ArrayList<Alloggio> allAccommodations; // La lista completa degli alloggi
@@ -56,7 +48,6 @@ public class Cerca extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.cerca);
 
         // Inizializza i componenti dell'interfaccia utente
@@ -64,7 +55,7 @@ public class Cerca extends AppCompatActivity {
         searchButton = findViewById(R.id.searchButton);
         filtri= findViewById(R.id.filtri);
         indirizzo = findViewById(R.id.indirizzo);
-       // resultsListView = findViewById(R.id.accommodationListView);
+        // resultsListView = findViewById(R.id.accommodationListView);
         home = (ImageButton) findViewById(R.id.house);
 
         // Inizializza la lista completa degli alloggi con dati di esempio
@@ -114,7 +105,6 @@ public class Cerca extends AppCompatActivity {
     *   countryFair
     *   otherServices (String field)
     *
-    *   There is also an error. Campagna does not exist. The correct voice is Collina
     * */
     private void showPopup() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -135,14 +125,14 @@ public class Cerca extends AppCompatActivity {
         });
 
         final CheckBox piscinaCoperta = dialogView.findViewById(R.id.piscinaCoperta);
-        if(GlobalData.getInstance().isPiscina())
-            piscina.setChecked(true);
-        piscina.setOnClickListener(new View.OnClickListener() {
+        if(GlobalData.getInstance().isPiscinaCoperta())
+            piscinaCoperta.setChecked(true);
+        piscinaCoperta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                piscina.setChecked(!GlobalData.getInstance().isPiscina());
-                boolean sup =!GlobalData.getInstance().isPiscina();
-                GlobalData.getInstance().setPiscina(sup);
+                piscinaCoperta.setChecked(!GlobalData.getInstance().isPiscinaCoperta());
+                boolean sup =!GlobalData.getInstance().isPiscinaCoperta();
+                GlobalData.getInstance().setPiscinaCoperta(sup);
             }
         });
 
@@ -329,15 +319,15 @@ public class Cerca extends AppCompatActivity {
             }
         });
 
-        final CheckBox campagna = dialogView.findViewById(R.id.campagna);
-        if(GlobalData.getInstance().isCampagna())
-            campagna.setChecked(true);
-        campagna.setOnClickListener(new View.OnClickListener() {
+        final CheckBox collina = dialogView.findViewById(R.id.collina);
+        if(GlobalData.getInstance().isCollinare())
+            collina.setChecked(true);
+        collina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                campagna.setChecked(!GlobalData.getInstance().isCampagna());
-                boolean sup =!GlobalData.getInstance().isCampagna();
-                GlobalData.getInstance().setCampagna(sup);
+                collina.setChecked(!GlobalData.getInstance().isCollinare());
+                boolean sup =!GlobalData.getInstance().isCollinare();
+                GlobalData.getInstance().setCollinare(sup);
             }
         });
 

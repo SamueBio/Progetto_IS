@@ -158,7 +158,7 @@
             android:text="CENTRO STORICO"/>
 
         <CheckBox
-            android:id="@+id/campagna"
+            android:id="@+id/collina"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"

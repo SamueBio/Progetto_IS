@@ -9,42 +9,12 @@ public class GlobalData {
     private static GlobalData instance;
 
     //INFORMAZIONI GLOBALI DELL'UTENTE CHE EFFETTUA L'ACCESSO
-    private User u = new User();
-   /* private String username;
-    private String nome;
-    private String cognome;
-    private String mail;
-    private String password;*/
+     private User u = new User();
 
     //INFORMAZIONI GLOBALI DEI SERVIZI SCELTI PER LA RICERCA ALLOGGI
     private Accommodation accommodation = new Accommodation();
 
-    private boolean piscina = false;
-    private boolean piscinaCoperta = false;
-    private boolean animaliAmm = false;
-    private boolean ariaCond = false;
-    private boolean ristorante = false;
-    private boolean parcheggio  = false;
-    private boolean accessoDisabili  = false;
-    private boolean stazioneFs  = false;
-    private boolean lago  = false;
-    private boolean aeroporto  = false;
-    private boolean sauna = false;
-    private boolean terme = false;
-    private boolean salaConferenze  = false;
-    private boolean areaBimbi = false;
-    private boolean solarium = false;
-    private boolean mare  = false;
-    private boolean periferia  = false;
-    private boolean campagna  = false;
-    private boolean centroStorico  = false;
-    private boolean palestra  = false;
-    private boolean skilift = false;
-    private boolean inglese  = false;
-    private boolean francese = false;
-    private boolean spagnolo  = false;
-    private boolean tedesco = false;
-
+    //GETTER & SETTER
     public boolean isSpagnolo() {
         return accommodation.isSpanish();
     }
@@ -109,7 +79,6 @@ public class GlobalData {
         u.setPassword(password);
     }
 
-
     public boolean isPiscina() {
         return accommodation.isPool();
     }
@@ -122,9 +91,7 @@ public class GlobalData {
         return accommodation.isCoveredPool();
     }
 
-    public void setPiscinaCoperta(boolean piscinaCoperta) {
-        this.accommodation.setCoveredPool(piscinaCoperta);
-    }
+    public void setPiscinaCoperta(boolean piscinaCoperta) { this.accommodation.setCoveredPool(piscinaCoperta);}
 
     public boolean isAnimaliAmm() {
         return accommodation.isPets();
@@ -162,9 +129,7 @@ public class GlobalData {
         return accommodation.isDisablePeopleAccess();
     }
 
-    public void setAccessoDisabili(boolean accessoDisabili) {
-        this.accommodation.setDisablePeopleAccess(accessoDisabili);
-    }
+    public void setAccessoDisabili(boolean accessoDisabili) {        this.accommodation.setDisablePeopleAccess(accessoDisabili);}
 
     public boolean isStazioneFs() {
         return accommodation.isFsStation();
@@ -210,9 +175,7 @@ public class GlobalData {
         return accommodation.isConferenceRoom();
     }
 
-    public void setSalaConferenze(boolean salaConferenze) {
-        this.accommodation.setConferenceRoom(salaConferenze);
-    }
+    public void setSalaConferenze(boolean salaConferenze) {this.accommodation.setConferenceRoom(salaConferenze);}
 
     public boolean isAreaBimbi() {
         return accommodation.isChildrensGames();
@@ -246,25 +209,17 @@ public class GlobalData {
         this.accommodation.setOutskirts(periferia);
     }
 
-    /*
-    Campagna errato -> collinare corretto
-    * */
-
-    public boolean isCampagna() {
+    public boolean isCollinare() {
         return accommodation.isHilly();
     }
 
-    public void setCampagna(boolean campagna) {
-        this.accommodation.setHilly(campagna);
+    public void setCollinare(boolean hill) {
+        this.accommodation.setHilly(hill);
     }
 
-    public boolean isCentroStorico() {
-        return accommodation.isOldTown();
-    }
+    public boolean isCentroStorico() {return accommodation.isOldTown();}
 
-    public void setCentroStorico(boolean centroStorico) {
-        this.accommodation.setOldTown(centroStorico);
-    }
+    public void setCentroStorico(boolean centroStorico) {this.accommodation.setOldTown(centroStorico);}
 
     public boolean isPalestra() {
         return accommodation.isFitness();
@@ -326,35 +281,7 @@ public class GlobalData {
         return this.accommodation;
     }
 
-    /*
-    Questo metodo non serve più. Il costruttore di accommodation setta tutto a afalse
-    * */
-
     public void setFalse(){
-        piscina = false;
-        piscinaCoperta = false;
-        animaliAmm = false;
-        ariaCond = false;
-        ristorante = false;
-        parcheggio  = false;
-        accessoDisabili  = false;
-        stazioneFs  = false;
-        lago  = false;
-        aeroporto  = false;
-        sauna = false;
-        terme = false;
-        salaConferenze  = false;
-        areaBimbi = false;
-        solarium = false;
-        mare  = false;
-        periferia  = false;
-        campagna  = false;
-        centroStorico  = false;
-        palestra  = false;
-        skilift = false;
-        inglese  = false;
-        francese = false;
-        spagnolo  = false;
-        tedesco = false;
+        accommodation = new Accommodation();
     }
 }
