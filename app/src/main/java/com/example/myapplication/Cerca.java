@@ -40,10 +40,8 @@ public class Cerca extends AppCompatActivity {
     private ImageButton back;
     private ImageButton filtri;
     private ListView resultsListView;
-    //private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
     private AccomodationAdapter adapterAcc; //adattatore personalizzato per gli alloggi
     private ArrayList<Accommodation> resultAcc; //risultati ricerca accomodations
-    //private ArrayList<Alloggio> allAccommodations; // La lista completa degli alloggi
     private AlertDialog alertDialog;
 
     @Override
@@ -59,20 +57,7 @@ public class Cerca extends AppCompatActivity {
         indirizzo = findViewById(R.id.indirizzo);
         home = (ImageButton) findViewById(R.id.house);
 
-        // Inizializza la lista completa degli alloggi con dati di esempio
-        /*allAccommodations = new ArrayList<>();
-        allAccommodations.add(new Alloggio("Nome Alloggio 1", "Posizione 1"));
-        allAccommodations.add(new Alloggio("Nome Alloggio 2", "Posizione 2"));
-        allAccommodations.add(new Alloggio("Nome Alloggio 3", "Posizione 3"));
-        allAccommodations.add(new Alloggio("Nome Alloggio 4", "Posizione 4"));
-        allAccommodations.add(new Alloggio("Nome Alloggio 5", "Posizione 5"));
-        allAccommodations.add(new Alloggio("Nome Alloggio 6", "Posizione 6"));
-        allAccommodations.add(new Alloggio("Nome Alloggio 7", "Posizione 7"));
-        allAccommodations.add(new Alloggio("Nome Alloggio 8", "Posizione 8"));
-        allAccommodations.add(new Alloggio("Nome Alloggio 9", "Posizione 9"));*/
-
         // Inizializza l'adattatore con la lista completa degli alloggi
-        //adapter = new AlloggioAdapter(this, allAccommodations);
         adapterAcc = new AccomodationAdapter(this, resultAcc);
 
         // Gestisci il clic del pulsante di ricerca
@@ -433,7 +418,7 @@ public class Cerca extends AppCompatActivity {
         AccommodationApi accommodationApi = retrofitService.getRetrofit().create(AccommodationApi.class);
 
         //ARRAYLIST DEI RISULTATI DELLA RICERCA
-        ArrayList<Accommodation> result = new ArrayList<>();
+        resultAcc = new ArrayList<>();
 
         //TODO: query
         Accommodation accommodation = GlobalData.getInstance().getAccommodation();
@@ -442,7 +427,8 @@ public class Cerca extends AppCompatActivity {
 
         Call<ResponseBody> call = accommodationApi.search(accommodation.generateJson());
 
-        /*call.enqueue(new Callback<ResponseBody>() {
+        /*
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 //da implementare il salvataggio della response della chiamata API nella
@@ -453,11 +439,17 @@ public class Cerca extends AppCompatActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
             }
-        });*/
+        });
+
+        */
+
+        // esempio per visualizzazione risultati
+        // (in questo caso per l'esempio, viene visualizzata un alloggio con nome e
+        // indirizzo inseriti per la ricerca
+        resultAcc.add(accommodation);
 
 
-        result.add(accommodation);
-        adapterAcc = new AccomodationAdapter(this, result);
+        adapterAcc = new AccomodationAdapter(this, resultAcc);
         //passo alla visualizzazione della pagina di ricerca eseguita
         setContentView(R.layout.cerca2);
         //setto gli elementi della pagina
@@ -468,23 +460,6 @@ public class Cerca extends AppCompatActivity {
         cuore = findViewById(R.id.pref);
         //setto dall'adapter, visualizzando nome e indirizzo dei risultati
         resultsListView.setAdapter(adapterAcc);
-
-        //------------------------------------
-        /*String keyword = nomeSearch.getText().toString();
-        String keyword2 = indirizzo.getText().toString();
-        String[] inputArray = (keyword+" "+keyword2).trim().split(" ");
-        adapter = new AlloggioAdapter(this, filterAccommodationsByKeywords(allAccommodations, inputArray));
-        setContentView(R.layout.cerca2);
-        back=findViewById(R.id.back);
-        backk=findViewById(R.id.back2);
-        nomeAll = findViewById(R.id.nameTextView);
-        resultsListView = findViewById(R.id.accommodationListView);
-        resultsListView.setAdapter(adapter);
-        cuore = findViewById(R.id.pref);
-        //------------------------------------
-        //righe da eliminare se query di ricerca funziona correttamente
-
-*/
 
         nomeAll.setOnClickListener(new View.OnClickListener(){
             @Override
