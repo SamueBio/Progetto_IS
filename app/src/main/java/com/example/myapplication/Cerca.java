@@ -40,10 +40,10 @@ public class Cerca extends AppCompatActivity {
     private ImageButton back;
     private ImageButton filtri;
     private ListView resultsListView;
-    private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
-    private AccomodationAdapter adapterAcc;
-    private ArrayList<Accommodation> resultAcc;
-    private ArrayList<Alloggio> allAccommodations; // La lista completa degli alloggi
+    //private AlloggioAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
+    private AccomodationAdapter adapterAcc; //adattatore personalizzato per gli alloggi
+    private ArrayList<Accommodation> resultAcc; //risultati ricerca accomodations
+    //private ArrayList<Alloggio> allAccommodations; // La lista completa degli alloggi
     private AlertDialog alertDialog;
 
     @Override
@@ -57,11 +57,10 @@ public class Cerca extends AppCompatActivity {
         searchButton = findViewById(R.id.searchButton);
         filtri= findViewById(R.id.filtri);
         indirizzo = findViewById(R.id.indirizzo);
-        // resultsListView = findViewById(R.id.accommodationListView);
         home = (ImageButton) findViewById(R.id.house);
 
         // Inizializza la lista completa degli alloggi con dati di esempio
-        allAccommodations = new ArrayList<>();
+        /*allAccommodations = new ArrayList<>();
         allAccommodations.add(new Alloggio("Nome Alloggio 1", "Posizione 1"));
         allAccommodations.add(new Alloggio("Nome Alloggio 2", "Posizione 2"));
         allAccommodations.add(new Alloggio("Nome Alloggio 3", "Posizione 3"));
@@ -70,14 +69,11 @@ public class Cerca extends AppCompatActivity {
         allAccommodations.add(new Alloggio("Nome Alloggio 6", "Posizione 6"));
         allAccommodations.add(new Alloggio("Nome Alloggio 7", "Posizione 7"));
         allAccommodations.add(new Alloggio("Nome Alloggio 8", "Posizione 8"));
-        allAccommodations.add(new Alloggio("Nome Alloggio 9", "Posizione 9"));
+        allAccommodations.add(new Alloggio("Nome Alloggio 9", "Posizione 9"));*/
 
         // Inizializza l'adattatore con la lista completa degli alloggi
-        adapter = new AlloggioAdapter(this, allAccommodations);
+        //adapter = new AlloggioAdapter(this, allAccommodations);
         adapterAcc = new AccomodationAdapter(this, resultAcc);
-
-        // Imposta l'adattatore per la ListView
-        //resultsListView.setAdapter(adapter);
 
         // Gestisci il clic del pulsante di ricerca
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -86,14 +82,12 @@ public class Cerca extends AppCompatActivity {
                 performSearch();
             }
         });
-
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDashboard();
             }
         });
-
         filtri.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -471,9 +465,7 @@ public class Cerca extends AppCompatActivity {
         backk=findViewById(R.id.back2);
         nomeAll = findViewById(R.id.nameTextView);
         resultsListView = findViewById(R.id.accommodationListView);
-        resultsListView.setAdapter(adapter);
         cuore = findViewById(R.id.pref);
-        resultsListView = findViewById(R.id.accommodationListView);
         //setto dall'adapter, visualizzando nome e indirizzo dei risultati
         resultsListView.setAdapter(adapterAcc);
 
@@ -544,31 +536,5 @@ public class Cerca extends AppCompatActivity {
         Intent intent=new Intent(this, SpecAll.class);
         intent.putExtra("nome_alloggio", nomeAll.getText());
         startActivity(intent);
-    }
-
-
-    //METODI PER FILTRARE LA RICERCA IN BASE A NOME E/O INDIRIZZO
-
-    // --->  METODI DA ELIMINARE UNA VOLTA IMPLEMENTATA CORRETTAMENTE LA RICERCA CON QUERY  <----
-
-    private ArrayList<Alloggio> filterAccommodationsByKeywords(ArrayList<Alloggio> allAccommodations, String[] keywords) {
-        ArrayList<Alloggio> filteredAccommodations = new ArrayList<>();
-        String[] arrayStringhe = new String[keywords.length];
-        for (int i = 0; i < keywords.length; i++) {
-           arrayStringhe[i] = String.valueOf(keywords[i]);
-        }
-        for(int j=0; j<allAccommodations.size(); j++){
-            for(int i=0; i<keywords.length; i++){
-                if (accommodationContainsKeyword(allAccommodations.get(j), keywords[i])) {
-                    filteredAccommodations.add(allAccommodations.get(j));
-                    i = keywords.length;
-                }
-            }
-        }
-        return filteredAccommodations;
-    }
-    private boolean accommodationContainsKeyword(Alloggio accommodation, String keyword) {
-        return accommodation.getNome().toLowerCase().contains(keyword.toLowerCase())
-                || accommodation.getIndirizzo().toLowerCase().contains(keyword.toLowerCase());
     }
 }
