@@ -39,6 +39,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment:2.7.5")
     implementation("androidx.navigation:navigation-ui:2.7.5")
+    implementation(files("jar\\activation.jar"))
+    implementation(files("jar\\additionnal.jar"))
+    implementation(files("jar\\mail.jar"))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -46,5 +49,5 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     runtimeOnly("androidx.appcompat:appcompat:1.6.0")
-    implementation("com.sun.mail:javax.mail:1.6.2")
+   // implementation("com.sun.mail:javax.mail:1.6.2")
 }
