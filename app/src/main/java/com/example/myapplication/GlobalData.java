@@ -273,8 +273,8 @@ public class GlobalData {
         return accommodation.isCountryFair();
     }
 
-    public void setCountryFair(boolean highway){
-        accommodation.setCountryFair(highway);
+    public void setCountryFair(boolean country){
+        accommodation.setCountryFair(country);
     }
 
     public String getOtherServices(){

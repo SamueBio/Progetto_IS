@@ -109,10 +109,10 @@ public class Cerca extends AppCompatActivity {
         final CheckBox sagra = dialogView.findViewById(R.id.sagra);
         if(GlobalData.getInstance().isCountryFair())
             sagra.setChecked(true);
-        autostrada.setOnClickListener(new View.OnClickListener() {
+        sagra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                autostrada.setChecked(!GlobalData.getInstance().isCountryFair());
+                sagra.setChecked(!GlobalData.getInstance().isCountryFair());
                 boolean sup =!GlobalData.getInstance().isCountryFair();
                 GlobalData.getInstance().setCountryFair(sup);
             }
