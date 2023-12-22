@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -10,8 +12,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Properties;
-import javax.mail.*;
-import javax.mail.internet.*;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class InviaRichiesta extends AppCompatActivity {
 
@@ -35,49 +42,7 @@ public class InviaRichiesta extends AppCompatActivity {
         buttonInviaRichiesta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Properties props = new Properties();
-                props.put("mail.smtp.host", "smtp.example.com"); // Sostituisci con il tuo server SMTP
-                props.put("mail.smtp.port", "587"); // Porta del server SMTP (potrebbe essere diversa)
-                props.put("mail.smtp.auth", "true");
-                props.put("mail.smtp.starttls.enable", "true");
-
-                // Crea l'oggetto Session
-                Session session = Session.getInstance(props, new Authenticator() {
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("tua-email@example.com", "tua-password");
-                    }
-                });
-
-                try {
-                    // Crea l'oggetto Message
-                    Message message = new MimeMessage(session);
-
-                    // Imposta il mittente
-                    message.setFrom(new InternetAddress(editTextNomeCognome.getText().toString()));
-
-                    // Aggiungi il destinatario
-                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("samuele.biondo.lavoro@gmail.com"));
-
-                    // Imposta l'oggetto del messaggio
-                    message.setSubject(editTextOggetto.getText().toString());
-
-                    // Aggiungi il corpo del messaggio
-                    String corpoMessaggio = editTextTestoMessaggio.getText().toString();
-                    message.setText(corpoMessaggio);
-
-                    // Invia il messaggio
-                    Transport.send(message);
-
-                    System.out.println("Mail inviata con successo.");
-                    //Toast.makeText(this, "Mail inviata", Toast.LENGTH_LONG).show();
-
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                    System.err.println("Errore nell'invio della mail: " + e.getMessage());
-                }
-                //inviaRichiesta();
+                inviaRichiesta();
             }
         });
     }
@@ -89,13 +54,46 @@ public class InviaRichiesta extends AppCompatActivity {
         String oggetto = editTextOggetto.getText().toString();
         String testoMessaggio = editTextTestoMessaggio.getText().toString();
 
-        // Puoi qui gestire l'invio dei dati (ad esempio, inviare una mail)
-        // In questo esempio, visualizziamo solo i dati nel Toast
-        String messaggio = "Nome e Cognome: " + nomeCognome +
-                "\nEmail: " + email +
-                "\nOggetto: " + oggetto +
-                "\nTesto Messaggio: " + testoMessaggio;
+        String[] destinatario = {"destinatario@example.com"};
 
-        Toast.makeText(this, messaggio, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setData(Uri.parse("mailto:")); // Solo app email
+        intent.putExtra(Intent.EXTRA_EMAIL, "samuele.biondo.lavoro@gmail.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT, oggetto);
+        intent.putExtra(Intent.EXTRA_TEXT, testoMessaggio);
+        startActivity(Intent.createChooser(intent, "Scegli il client email:"));
+
+        /*final String username = "traveltogether.uni@gmail.com";
+        final String password = "ahasgdrt36!::";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("traveltogether@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("samuele.biondo.lavoro@gmail.com"));
+            message.setSubject("ciao");
+            message.setText("bella");
+
+            Transport.send(message);
+
+            System.out.println("Email inviata con successo!");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }*/
+
     }
 }
