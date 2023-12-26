@@ -9,11 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.model.Accommodation;
 import com.example.myapplication.retrofit.AccommodationApi;
 import com.example.myapplication.retrofit.RetrofitService;
+import com.google.gson.JsonObject;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,7 +34,7 @@ import retrofit2.Response;
 public class Cerca extends AppCompatActivity {
     private static GlobalData instance;
     private EditText nomeSearch;
-    private EditText indirizzo;
+    private EditText geographicArea;
     private TextView backk;
     private TextView nomeAll;
     private TextView inviaRichiesta;
@@ -54,7 +58,7 @@ public class Cerca extends AppCompatActivity {
         nomeSearch = findViewById(R.id.nome);
         searchButton = findViewById(R.id.searchButton);
         filtri= findViewById(R.id.filtri);
-        indirizzo = findViewById(R.id.indirizzo);
+        geographicArea = findViewById(R.id.geographicArea);
         home = (ImageButton) findViewById(R.id.house);
 
         // Inizializza l'adattatore con la lista completa degli alloggi
@@ -458,25 +462,34 @@ public class Cerca extends AppCompatActivity {
         //TODO: query
         Accommodation accommodation = GlobalData.getInstance().getAccommodation();
         accommodation.setName(nomeSearch.getText().toString());
-        accommodation.setAddress(indirizzo.getText().toString());
+        accommodation.setArea(geographicArea.getText().toString());
+
 
         Call<ResponseBody> call = accommodationApi.search(accommodation.generateJson());
 
-        /*
+
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                //da implementare il salvataggio della response della chiamata API nella
-               // lista "resultAcc"
+                if(response.isSuccessful()){
+                    //Entra qui dentro, capire come estrapolare dati
+                    try {
+                        String responseBody = response.body().string();
+                        //Design a method to parse the body.string()
+                        Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Toast.makeText(Cerca.this, "Ricerca NON effettuata", Toast.LENGTH_SHORT).show();
             }
         });
 
-        */
+
 
         // esempio per visualizzazione risultati
         // (in questo caso per l'esempio, viene visualizzata un alloggio con nome e

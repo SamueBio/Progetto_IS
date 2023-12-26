@@ -8,6 +8,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface AccommodationApi {
-    @POST("/Accomodations/get-accomodation-by-services")
+    @POST("/Accommodations/get-accomodation-by-services")
     Call<ResponseBody> search(@Body JsonObject search);
 }

@@ -101,6 +101,7 @@ public class Accommodation {
         this.coveredPool = false;
         this.solarium = false;
         this.otherServices = "";
+        //Non mi convince per niente sta roba. Probabilmente è inutile.
         long miliseconds = System.currentTimeMillis();
         this.lastTimeUpdated=new Date(miliseconds);
     }
@@ -508,23 +509,23 @@ public class Accommodation {
     public JsonObject generateJson(){
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("id",0);
-        jsonObject.addProperty("name",this.name);
-        jsonObject.addProperty("address",address);
-        jsonObject.addProperty("cap",cap);
-        jsonObject.addProperty("interno",interno);
+        jsonObject.addProperty("name",name);
+        jsonObject.addProperty("address","");
+        jsonObject.addProperty("cap","");
+        jsonObject.addProperty("interno","");
         jsonObject.addProperty("area",area);
         jsonObject.addProperty("province",province);
-        jsonObject.addProperty("website",website);
+        jsonObject.addProperty("website","");
         jsonObject.addProperty("location",location);
-        jsonObject.addProperty("fax",fax);
-        jsonObject.addProperty("newLR11Classification",newLR11Classification);
-        jsonObject.addProperty("telephone",telephone);
+        jsonObject.addProperty("fax","");
+        jsonObject.addProperty("newLR11Classification","");
+        jsonObject.addProperty("telephone","");
         jsonObject.addProperty("town",town);
         jsonObject.addProperty("type",type);
-        jsonObject.addProperty("email",email);
+        jsonObject.addProperty("email","");
         jsonObject.addProperty("stars",stars);
         jsonObject.addProperty("category",category);
-        jsonObject.addProperty("lastTimeUpdated",lastTimeUpdated.toString());
+        jsonObject.addProperty("lastTimeUpdated","");
         jsonObject.addProperty("countryFair",countryFair);
         jsonObject.addProperty("fsStation",fsStation);
         jsonObject.addProperty("spanish",spanish);
@@ -553,10 +554,10 @@ public class Accommodation {
         jsonObject.addProperty("restaurant",restaurant);
         jsonObject.addProperty("coveredPool",coveredPool);
         jsonObject.addProperty("solarium",solarium);
-        jsonObject.addProperty("holder",holder);
-        jsonObject.addProperty("tourismPromoter",tourismPromoter);
+        jsonObject.addProperty("holder","");
+        jsonObject.addProperty("tourismPromoter","");
         jsonObject.addProperty("otherServices",otherServices);
-        jsonObject.addProperty("houseNumber",houseNumber);
+        jsonObject.addProperty("houseNumber","");
 
         return jsonObject;
     }
