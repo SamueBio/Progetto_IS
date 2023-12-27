@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 public class Favourite {
 
     @Id
-    @Column(name = "user")
-    private String user;
+    @Column(name = "username")
+    private String username;
     @Column(name = "accommodation")
     private Integer accommodation;
 
@@ -17,16 +17,16 @@ public class Favourite {
     }
 
     public Favourite(String user, Integer accommodation) {
-        this.user = user;
+        this.username = user;
         this.accommodation = accommodation;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String user) {
+        this.username = user;
     }
 
     public Integer getAccommodation() {
@@ -40,7 +40,7 @@ public class Favourite {
     @Override
     public String toString() {
         return "Favorites{" +
-                "user=" + user +
+                "user=" + username +
                 ", accommodation='" + accommodation +
                 '}';
     }

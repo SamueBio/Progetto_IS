@@ -2,7 +2,11 @@ package com.example.myapplication.model;
 
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import kotlin.collections.ArrayDeque;
 
 public class Accommodation {
     private Integer id;
@@ -560,5 +564,10 @@ public class Accommodation {
         jsonObject.addProperty("houseNumber","");
 
         return jsonObject;
+    }
+
+    public List<Accommodation> parseJson(String file){
+        List<Accommodation> accommodations = new ArrayList<>();
+        return accommodations;
     }
 }
