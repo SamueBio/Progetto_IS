@@ -11,7 +11,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
+
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -24,7 +27,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.model.Accommodation;
 import com.example.myapplication.retrofit.AccommodationApi;
 import com.example.myapplication.retrofit.RetrofitService;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -465,17 +471,33 @@ public class Cerca extends AppCompatActivity {
         accommodation.setArea(geographicArea.getText().toString());
 
 
+        /*
+        * TODO
+        *  La query è stat correttamente implementata. In questo momento vengono restituiti gli alloggi
+        *  che rispondono alle richieste dell'utente.
+        *  Dobbiamo però considerare che nell'elenco alloggi deve essere presente anche un parametro
+        *  che spcifica se l'alloggio è tra i preferiti o meno dell'utente. Per questo ho creato la classe
+        *  AccommodationFavourite. Prossimamente modificherò l'API in modo da fare la query corretta, che è la seguente:
+        *  select f.username, a.*
+        *  from accommodations a LEFT JOIN favourites f ON a.id = f.accommodation AND f.username = 'stefanoforin00'
+        *  where a.hilly=true
+        *  order by f.username
+        *  Chiaramente invece di stefanoforin00 andrà messo il nome utente.
+        *  Implementare il FRONT-END di conseguenza
+        *
+        * */
+
         Call<ResponseBody> call = accommodationApi.search(accommodation.generateJson());
-
-
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
                     //Entra qui dentro, capire come estrapolare dati
                     try {
+
                         String responseBody = response.body().string();
-                        //Design a method to parse the body.string()
+                        resultAcc = (ArrayList<Accommodation>) Accommodation.parseString(responseBody);
+
                         Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -488,13 +510,6 @@ public class Cerca extends AppCompatActivity {
                 Toast.makeText(Cerca.this, "Ricerca NON effettuata", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-        // esempio per visualizzazione risultati
-        // (in questo caso per l'esempio, viene visualizzata un alloggio con nome e
-        // indirizzo inseriti per la ricerca
-        resultAcc.add(accommodation);
 
 
         adapterAcc = new AccomodationAdapter(this, resultAcc);
