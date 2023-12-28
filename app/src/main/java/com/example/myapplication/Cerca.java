@@ -41,6 +41,7 @@ public class Cerca extends AppCompatActivity {
     private static GlobalData instance;
     private EditText nomeSearch;
     private EditText geographicArea;
+    private EditText provincia;
     private TextView backk;
     private TextView nomeAll;
     private TextView inviaRichiesta;
@@ -65,6 +66,7 @@ public class Cerca extends AppCompatActivity {
         searchButton = findViewById(R.id.searchButton);
         filtri= findViewById(R.id.filtri);
         geographicArea = findViewById(R.id.geographicArea);
+        provincia = findViewById(R.id.provincia);
         home = (ImageButton) findViewById(R.id.house);
 
         // Inizializza l'adattatore con la lista completa degli alloggi
@@ -93,7 +95,6 @@ public class Cerca extends AppCompatActivity {
 
     /*
     * In this popup there aren't:
-    *   countryFair
     *   otherServices (String field)
     *
     * */
@@ -469,6 +470,7 @@ public class Cerca extends AppCompatActivity {
         Accommodation accommodation = GlobalData.getInstance().getAccommodation();
         accommodation.setName(nomeSearch.getText().toString().toUpperCase());
         accommodation.setTown(geographicArea.getText().toString().toUpperCase());
+        accommodation.setProvince(provincia.getText().toString().toUpperCase());
 
 
         /*
