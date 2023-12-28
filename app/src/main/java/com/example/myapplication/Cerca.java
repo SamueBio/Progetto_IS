@@ -547,7 +547,7 @@ public class Cerca extends AppCompatActivity {
     //GESTIONE ALLOGGIO PREFERITO
     public void onHeartIconClick(View view) {
         ImageView heartIcon = (ImageView) view;
-        Alloggio accommodation = (Alloggio) heartIcon.getTag();
+        Accommodation accommodation = (Accommodation) heartIcon.getTag();
         if (accommodation.isFavourited()) {
             heartIcon.setImageResource(R.drawable.cuore);
            // removeFromFavorites(accommodation);

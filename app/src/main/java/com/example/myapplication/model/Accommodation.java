@@ -67,10 +67,13 @@ public class Accommodation {
     private String otherServices;
     private String houseNumber;
 
+    //PREFERITO
+    private boolean isFavourited;
 
 
     public Accommodation() {
         super();
+        this.isFavourited=false;
         this.name = "";
         this.area = "";
         this.province = "";
@@ -111,6 +114,13 @@ public class Accommodation {
         //Non mi convince per niente sta roba. Probabilmente è inutile.
         long miliseconds = System.currentTimeMillis();
         this.lastTimeUpdated=new Date(miliseconds);
+    }
+
+    public boolean isFavourited() {
+        return isFavourited;
+    }
+    public void setFavourited(boolean favourited) {
+        isFavourited = favourited;
     }
 
     public Integer getId() {
