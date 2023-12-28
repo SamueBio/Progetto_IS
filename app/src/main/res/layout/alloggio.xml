@@ -6,25 +6,97 @@
     android:layout_height="match_parent"
     android:background="@color/bg">
 
-
+    <TextView
+        android:id="@+id/back2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="130dp"
+        android:text="NOME: "
+        android:textSize="20sp"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/nameTextView"
-        android:layout_width="267dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="150dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="20sp"/>
+
 
     <TextView
+        android:id="@+id/indirizzo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="210dp"
+        android:text="INDIRIZZO: "
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
         android:id="@+id/locationTextView"
-        android:layout_width="244dp"
-        android:layout_height="24dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="210dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="290dp"
+        android:text="TELEFONO: "
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/telefono2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="290dp"
+        android:textSize="20sp"
+        android:autoLink="phone"/>
+
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="370dp"
+        android:text="EMAIL: "
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/email2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="220dp"
-        android:textSize="18sp"
-        android:textStyle="italic" />
+        android:layout_marginTop="370dp"
+        android:textSize="20sp"
+        android:autoLink="email"/>
+
+
+
+    <TextView
+        android:id="@+id/sito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="440dp"
+        android:text="SITO: "
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/sito2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="440dp"
+        android:textSize="20sp"
+        android:autoLink="web"/>
 
     <ImageView
         android:id="@+id/home"

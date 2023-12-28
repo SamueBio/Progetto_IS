@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -501,7 +503,21 @@ public class Cerca extends AppCompatActivity {
                 .asGif()
                 .load(R.drawable.loading)
                 .into(loading);
+
         resultsListView = findViewById(R.id.accommodationListView);
+
+        ArrayAdapter<Accommodation> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                resultAcc
+        );
+
+        resultsListView.setAdapter(adapter);
+
+
+
+
+
         cuore = findViewById(R.id.pref);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -517,6 +533,21 @@ public class Cerca extends AppCompatActivity {
                         adapterAcc = new AccomodationAdapter(Cerca.this, resultAcc);
                         loading.setVisibility(View.GONE);
                         resultsListView.setAdapter(adapterAcc);
+
+                        //VISUALIZZAZIONE PAGINA SPECIFICA ALLOGGIO
+                        resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                // Alloggio selezionato dalla lista
+                                Accommodation alloggioSelezionato = resultAcc.get(position);
+                                // Creazione di un Intent
+                                Intent intent=new Intent(Cerca.this, SpecAll.class);
+                                // Passaggio dell'alloggio attraverso l'Intent
+                                intent.putExtra("alloggio", alloggioSelezionato);
+                                // Avvio dell'attività successiva
+                                startActivity(intent);
+                            }
+                        });
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -569,12 +600,4 @@ public class Cerca extends AppCompatActivity {
         Intent intent=new Intent(this, Cerca.class);
         startActivity(intent);
     }
-
-    //VISUALIZZAZIONE PAGINA SPECIFICA ALLOGGIO
-    public void specAll(View view){
-        Intent intent=new Intent(this, SpecAll.class);
-        intent.putExtra("nome_alloggio","casa rossa");
-        startActivity(intent);
-    }
-
 }

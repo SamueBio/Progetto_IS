@@ -16,7 +16,7 @@
         android:layout_marginTop="12dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:onClick="specAll"/>
+        />
 
     <TextView
         android:id="@+id/locationTextView"
