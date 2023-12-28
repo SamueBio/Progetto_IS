@@ -24,6 +24,10 @@ public class AccommodationDao {
         return accomodationRepository.findByServices(accommodation);
     }
 
+    public List<AccommodationFavourite> search(AccommodationFavourite accommodationFavourite){
+        return accomodationRepository.search(accommodationFavourite);
+    }
+
     public void delete(int id) {
         accomodationRepository.deleteById(id);
     }
