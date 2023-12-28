@@ -42,4 +42,9 @@ ________________________________________________________________________________
 ps.
 se la cartella dell'API è in un hosting cloud, in questo caso in AWS, collegarsi in SSH:
 
--> 
+->
+
+
+_______________________________________________________________________________________________________________
+KILLARE PROCESSO SU PORTA 9000
+sudo kill -9 `sudo lsof -t -i:9000`

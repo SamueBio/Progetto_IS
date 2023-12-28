@@ -488,6 +488,15 @@ public class Cerca extends AppCompatActivity {
         * */
 
         Call<ResponseBody> call = accommodationApi.search(accommodation.generateJson());
+        //passo alla visualizzazione della pagina di ricerca eseguita
+        setContentView(R.layout.cerca2);
+        //setto gli elementi della pagina
+        back=findViewById(R.id.back);
+        backk=findViewById(R.id.back2);
+        nomeAll = findViewById(R.id.nameTextView);
+        resultsListView = findViewById(R.id.accommodationListView);
+        cuore = findViewById(R.id.pref);
+        //setto dall'adapter, visualizzando nome e indirizzo dei risultati
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -497,8 +506,11 @@ public class Cerca extends AppCompatActivity {
 
                         String responseBody = response.body().string();
                         resultAcc = (ArrayList<Accommodation>) Accommodation.parseString(responseBody);
+                       // System.out.print("\n\n\n\n\nSUCCESSFULLLLL\n\n\n\n\n"+responseBody+"\n\n\n\n\n\n\n\n");
+                       // Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
+                        adapterAcc = new AccomodationAdapter(Cerca.this, resultAcc);
+                        resultsListView.setAdapter(adapterAcc);
 
-                        Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -510,19 +522,6 @@ public class Cerca extends AppCompatActivity {
                 Toast.makeText(Cerca.this, "Ricerca NON effettuata", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-        adapterAcc = new AccomodationAdapter(this, resultAcc);
-        //passo alla visualizzazione della pagina di ricerca eseguita
-        setContentView(R.layout.cerca2);
-        //setto gli elementi della pagina
-        back=findViewById(R.id.back);
-        backk=findViewById(R.id.back2);
-        nomeAll = findViewById(R.id.nameTextView);
-        resultsListView = findViewById(R.id.accommodationListView);
-        cuore = findViewById(R.id.pref);
-        //setto dall'adapter, visualizzando nome e indirizzo dei risultati
-        resultsListView.setAdapter(adapterAcc);
 
         nomeAll.setOnClickListener(new View.OnClickListener(){
             @Override

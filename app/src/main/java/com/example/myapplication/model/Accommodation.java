@@ -576,9 +576,4 @@ public class Accommodation {
         accommodationList = gson.fromJson(responseBody,listType);
         return accommodationList;
     }
-
-    public List<Accommodation> parseJson(String file){
-        List<Accommodation> accommodations = new ArrayList<>();
-        return accommodations;
-    }
 }
