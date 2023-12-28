@@ -564,13 +564,13 @@ public class Cerca extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                finish();
+                backSearch();
             }
         });
         backk.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                finish();
+                backSearch();
             }
         });
     }
@@ -592,6 +592,12 @@ public class Cerca extends AppCompatActivity {
     //METODO VISUALIZZAZIONE DASHBOARD
     private void openDashboard(){
         Intent intent=new Intent(this, Dashboard.class);
+        startActivity(intent);
+    }
+
+    //METODO PER TORNARE INDIETRO NELLA PAGINA DI RICERCA ALLOGGIO
+    private void backSearch(){
+        Intent intent=new Intent(this, Cerca.class);
         startActivity(intent);
     }
 }
