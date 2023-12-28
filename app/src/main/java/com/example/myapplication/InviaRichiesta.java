@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.model.Accommodation;
+
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -20,7 +22,7 @@ public class InviaRichiesta extends AppCompatActivity {
 
     private EditText editTextNomeCognome, editTextEmail, editTextOggetto, editTextTestoMessaggio;
     private Button buttonInviaRichiesta;
-
+    private Accommodation acc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,8 @@ public class InviaRichiesta extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
+        Intent intent = getIntent();
+        acc = (Accommodation) intent.getSerializableExtra("alloggio");
 
         // Inizializza gli elementi UI
         editTextNomeCognome = findViewById(R.id.editTextNomeCognome);
@@ -56,16 +60,8 @@ public class InviaRichiesta extends AppCompatActivity {
         String oggetto = editTextOggetto.getText().toString();
         String testoMessaggio = editTextTestoMessaggio.getText().toString();
 
-       /* String[] destinatario = {"destinatario@example.com"};
 
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setData(Uri.parse("mailto:")); // Solo app email
-        intent.putExtra(Intent.EXTRA_EMAIL, "samuele.biondo.lavoro@gmail.com");
-        intent.putExtra(Intent.EXTRA_SUBJECT, oggetto);
-        intent.putExtra(Intent.EXTRA_TEXT, testoMessaggio);
-        startActivity(Intent.createChooser(intent, "Scegli il client email:"));
-
-        */final String username = "traveltogether.uni@gmail.com";
+        final String username = "traveltogether.uni@gmail.com";
         final String password = "2E496FE5317A48E25B731E133332F24666F0";
 
         Properties props = new Properties();

@@ -27,11 +27,14 @@ public class SpecAll extends AppCompatActivity {
     private TextView inviaRichiesta;
     private ImageView cuore;
 
+    private Accommodation acc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.alloggio);
+
 
         cuore = findViewById(R.id.pref);
         nome= findViewById(R.id.nameTextView);
@@ -48,7 +51,7 @@ public class SpecAll extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        Accommodation acc = (Accommodation) intent.getSerializableExtra("alloggio");
+        acc = (Accommodation) intent.getSerializableExtra("alloggio");
         nome.setText(acc.getName());
         indirizzo.setText(acc.getAddress()+", "+acc.getInterno()+" "+acc.getCap()+" "+acc.getTown());
         telefono.setText(acc.getTelephone());
@@ -58,6 +61,7 @@ public class SpecAll extends AppCompatActivity {
 
     public void inviaRic(View view){
         Intent intent=new Intent(this, InviaRichiesta.class);
+        intent.putExtra("alloggio", acc);
         startActivity(intent);
     }
 }
