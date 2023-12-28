@@ -250,7 +250,7 @@ public class Cerca extends AppCompatActivity {
         });
 
         final CheckBox aeroporto = dialogView.findViewById(R.id.aeroporto);
-        if(GlobalData.getInstance().isParcheggio())
+        if(GlobalData.getInstance().isAeroporto())
             aeroporto.setChecked(true);
         aeroporto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -495,7 +495,7 @@ public class Cerca extends AppCompatActivity {
         //setto gli elementi della pagina
         back=findViewById(R.id.back);
         backk=findViewById(R.id.back2);
-        nomeAll = findViewById(R.id.nameTextView);
+        //nomeAll = findViewById(R.id.nameTextView);
         resultsListView = findViewById(R.id.accommodationListView);
         cuore = findViewById(R.id.pref);
         //setto dall'adapter, visualizzando nome e indirizzo dei risultati
@@ -525,11 +525,11 @@ public class Cerca extends AppCompatActivity {
             }
         });
 
-        nomeAll.setOnClickListener(new View.OnClickListener(){
+       /*nomeAll.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) { specAll(v);
             }
-        });
+        });*/
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -573,7 +573,8 @@ public class Cerca extends AppCompatActivity {
     //VISUALIZZAZIONE PAGINA SPECIFICA ALLOGGIO
     public void specAll(View view){
         Intent intent=new Intent(this, SpecAll.class);
-        intent.putExtra("nome_alloggio", nomeAll.getText());
+        intent.putExtra("nome_alloggio","casa rossa");
         startActivity(intent);
     }
+
 }

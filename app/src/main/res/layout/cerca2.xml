@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/back" />
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/nameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="32dp"
         android:textSize="14sp"
-        android:textStyle="italic" />
+        android:textStyle="italic" />-->
 
 
 
