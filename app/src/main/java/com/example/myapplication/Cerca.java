@@ -24,6 +24,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.model.Accommodation;
 import com.example.myapplication.retrofit.AccommodationApi;
 import com.example.myapplication.retrofit.RetrofitService;
@@ -48,6 +49,7 @@ public class Cerca extends AppCompatActivity {
     private Button searchButton;
     private ImageButton home;
     private ImageView cuore;
+    private ImageView loading;
     private ImageButton back;
     private ImageButton filtri;
     private ListView resultsListView;
@@ -490,15 +492,17 @@ public class Cerca extends AppCompatActivity {
         * */
 
         Call<ResponseBody> call = accommodationApi.search(accommodation.generateJson());
-        //passo alla visualizzazione della pagina di ricerca eseguita
         setContentView(R.layout.cerca2);
         //setto gli elementi della pagina
         back=findViewById(R.id.back);
         backk=findViewById(R.id.back2);
-        //nomeAll = findViewById(R.id.nameTextView);
+        loading = findViewById(R.id.loading);
+        Glide.with(this)
+                .asGif()
+                .load(R.drawable.loading)
+                .into(loading);
         resultsListView = findViewById(R.id.accommodationListView);
         cuore = findViewById(R.id.pref);
-        //setto dall'adapter, visualizzando nome e indirizzo dei risultati
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -508,9 +512,10 @@ public class Cerca extends AppCompatActivity {
 
                         String responseBody = response.body().string();
                         resultAcc = (ArrayList<Accommodation>) Accommodation.parseString(responseBody);
-                       // System.out.print("\n\n\n\n\nSUCCESSFULLLLL\n\n\n\n\n"+responseBody+"\n\n\n\n\n\n\n\n");
                        // Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
+                        //setto dall'adapter, visualizzando nome e indirizzo dei risultati
                         adapterAcc = new AccomodationAdapter(Cerca.this, resultAcc);
+                        loading.setVisibility(View.GONE);
                         resultsListView.setAdapter(adapterAcc);
 
                     } catch (IOException e) {
@@ -525,11 +530,6 @@ public class Cerca extends AppCompatActivity {
             }
         });
 
-       /*nomeAll.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) { specAll(v);
-            }
-        });*/
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

@@ -31,6 +31,14 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/back" />
 
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="131dp"
+        android:layout_height="123dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/loading" />
+
     <ListView
         android:id="@+id/accommodationListView"
         android:layout_width="wrap_content"
@@ -41,6 +49,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="68dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp" >
+
+
+    </ListView>
 
 </RelativeLayout>
