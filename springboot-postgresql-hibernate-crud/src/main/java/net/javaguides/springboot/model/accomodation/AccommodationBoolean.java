@@ -4,13 +4,13 @@ import net.javaguides.springboot.model.favourites.Favourite;
 
 import java.util.Date;
 
-public class AccommodationFavourite {
+public class AccommodationBoolean {
     private Accommodation accommodation;
-    private String username;
+    private boolean favourite;
 	
-	public AccommodationFavourite(String username,Accommodation accommodation) {
+	public AccommodationBoolean(boolean favourite,Accommodation accommodation) {
 		this.accommodation = accommodation;
-        this.username = username;
+        this.favourite = favourite;
     }
 	
 	public Accommodation getAccommodation() {
@@ -21,11 +21,11 @@ public class AccommodationFavourite {
         this.accommodation = accommodation;
 	}
 	
-	public String getUsername() {
-        return username;
+	public boolean getFavourite() {
+        return favourite;
 	}
 	
-	public void setUsername(String username) {
-        this.username = username;
+	public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
 	}
 }

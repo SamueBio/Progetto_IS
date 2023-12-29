@@ -579,6 +579,72 @@ public class Accommodation implements Serializable {
 
         return jsonObject;
     }
+	
+	/*
+	To test: when this method will be tested and when we'll be sure that it works we'll delete the previous method
+	
+	
+	public JsonObject generateJsonUsername(String username){
+		
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id",0);
+        jsonObject.addProperty("name",name);
+        jsonObject.addProperty("address","");
+        jsonObject.addProperty("cap","");
+        jsonObject.addProperty("interno","");
+        jsonObject.addProperty("area",area);
+        jsonObject.addProperty("province",province);
+        jsonObject.addProperty("website","");
+        jsonObject.addProperty("location",location);
+        jsonObject.addProperty("fax","");
+        jsonObject.addProperty("newLR11Classification","");
+        jsonObject.addProperty("telephone","");
+        jsonObject.addProperty("town",town);
+        jsonObject.addProperty("type",type);
+        jsonObject.addProperty("email","");
+        jsonObject.addProperty("stars",stars);
+        jsonObject.addProperty("category",category);
+        jsonObject.addProperty("lastTimeUpdated","");
+        jsonObject.addProperty("countryFair",countryFair);
+        jsonObject.addProperty("fsStation",fsStation);
+        jsonObject.addProperty("spanish",spanish);
+        jsonObject.addProperty("lake",lake);
+        jsonObject.addProperty("airport",airport);
+        jsonObject.addProperty("highway",highway);
+        jsonObject.addProperty("fitness",fitness);
+        jsonObject.addProperty("sauna",sauna);
+        jsonObject.addProperty("skiLifts",skiLifts);
+        jsonObject.addProperty("english",english);
+        jsonObject.addProperty("thermal",thermal);
+        jsonObject.addProperty("disablePeopleAccess",disablePeopleAccess);
+        jsonObject.addProperty("conferenceRoom",conferenceRoom);
+        jsonObject.addProperty("childrensGames",childrensGames);
+        jsonObject.addProperty("parking",parking);
+        jsonObject.addProperty("outskirts",outskirts);
+        jsonObject.addProperty("oldTown",oldTown);
+        jsonObject.addProperty("airConditioning",airConditioning);
+        jsonObject.addProperty("sea",sea);
+        jsonObject.addProperty("pets",pets);
+        jsonObject.addProperty("pool",pool);
+        jsonObject.addProperty("german",german);
+        jsonObject.addProperty("hilly",hilly);
+        jsonObject.addProperty("temporaryClosure",temporaryClosure);
+        jsonObject.addProperty("french",french);
+        jsonObject.addProperty("restaurant",restaurant);
+        jsonObject.addProperty("coveredPool",coveredPool);
+        jsonObject.addProperty("solarium",solarium);
+        jsonObject.addProperty("holder","");
+        jsonObject.addProperty("tourismPromoter","");
+        jsonObject.addProperty("otherServices",otherServices);
+        jsonObject.addProperty("houseNumber","");
+		
+		JsonObject accommodationJson = new JsonObject();
+		accommodationJson.addProperty("accommodation", jsonObject);
+		accommodationJson.addProperty("username",username);
+
+        return accommodationJson;
+    }
+	*/
 
     public static List<Accommodation> parseString(String responseBody){
         List<Accommodation> accommodationList = new ArrayList<>();
