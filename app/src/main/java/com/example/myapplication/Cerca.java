@@ -505,35 +505,9 @@ public class Cerca extends AppCompatActivity {
                 .into(loading);
 
         resultsListView = findViewById(R.id.accommodationListView);
+
         cuore = findViewById(R.id.pref);
-
-
-        adapterAcc = new AccomodationAdapter(Cerca.this, resultAcc);
-        Accommodation a = new Accommodation();
-        a.setFavourited(true);
-        a.setAddress("via mia");
-        a.setName("ciaone");
-        Accommodation b = new Accommodation();
-        b.setFavourited(false);
-        b.setAddress("via tua");
-        b.setName("fkslff");
-        Accommodation c = new Accommodation();
-        c.setFavourited(true);
-        c.setAddress("sole mia");
-        c.setName("ciaone");
-        Accommodation d = new Accommodation();
-        d.setFavourited(false);
-        d.setAddress("via esssaa");
-        d.setName("bella li");
-        resultAcc.add(a);
-        resultAcc.add(b);
-        resultAcc.add(c);
-        resultAcc.add(d);
-        loading.setVisibility(View.GONE);
-        resultsListView.setAdapter(adapterAcc);
-
-
-        /*call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
@@ -573,7 +547,7 @@ public class Cerca extends AppCompatActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(Cerca.this, "Ricerca NON effettuata", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
         back.setOnClickListener(new View.OnClickListener(){
             @Override
