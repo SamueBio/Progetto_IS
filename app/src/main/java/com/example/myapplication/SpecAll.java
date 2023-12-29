@@ -53,7 +53,7 @@ public class SpecAll extends AppCompatActivity {
         Intent intent = getIntent();
         acc = (Accommodation) intent.getSerializableExtra("alloggio");
         nome.setText(acc.getName());
-        indirizzo.setText(acc.getAddress()+", "+acc.getInterno()+" "+acc.getCap()+" "+acc.getTown());
+        indirizzo.setText(acc.getAddress()+", "+acc.getHouseNumber()+" "+acc.getCap()+" "+acc.getTown());
         telefono.setText(acc.getTelephone());
         email.setText(acc.getEmail());
         sito.setText(acc.getWebsite());
