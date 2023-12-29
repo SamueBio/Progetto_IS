@@ -46,10 +46,13 @@ public class AccomodationAdapter extends BaseAdapter {
         Accommodation accommodation = accommodationList.get(position);
         ImageView heartIcon = (ImageView) convertView.findViewById(R.id.pref);
         heartIcon.setTag(accommodation);
+        if(accommodation.isFavourited())
+            heartIcon.setImageResource(R.drawable.cuore_si);
 
         // Ottieni riferimenti agli elementi del layout dell'elemento ListView
         TextView nameTextView = convertView.findViewById(R.id.nameTextView);
         TextView locationTextView = convertView.findViewById(R.id.locationTextView);
+
 
         // Imposta i dati dell'alloggio sugli elementi del layout
         nameTextView.setText(accommodation.getName());
