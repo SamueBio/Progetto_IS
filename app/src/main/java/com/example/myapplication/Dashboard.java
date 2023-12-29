@@ -17,6 +17,8 @@ public class Dashboard extends AppCompatActivity {
     private ImageButton profilo;
     private ImageButton preferiti;
 
+    private ImageButton faq;
+
     private ImageButton notif;
 
     @SuppressLint("MissingInflatedId")
@@ -27,7 +29,7 @@ public class Dashboard extends AppCompatActivity {
 
         setContentView(R.layout.dashboard);
 
-
+        faq = (ImageButton) findViewById(R.id.faq);
         search = (ImageButton) findViewById(R.id.lente);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,13 +53,13 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        notif = (ImageButton) findViewById(R.id.notifica);
+       /* notif = (ImageButton) findViewById(R.id.notifica);
         notif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openNot();
             }
-        });
+        });*/
     }
     public void openSearch(){
         //SERVIZI RESET

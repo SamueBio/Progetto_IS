@@ -9,16 +9,15 @@
 
 
     <ImageButton
-        android:id="@+id/btnProfilo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="20dp"
+        android:id="@+id/faq"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
         android:background="#CFD2F0"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/profilo" />
+        app:srcCompat="@drawable/puntodomanda" />
 
 
     <androidx.cardview.widget.CardView
@@ -56,6 +55,18 @@
                 app:srcCompat="@drawable/lente" />
 
             <ImageButton
+                android:id="@+id/btnProfilo"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="35dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/profilo" />
+
+
+            <!--<ImageButton
                 android:id="@+id/notifica"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
@@ -64,7 +75,7 @@
                 android:layout_marginRight="35dp"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/notifica" />
+                app:srcCompat="@drawable/notifica" />-->
 
         </RelativeLayout></androidx.cardview.widget.CardView>
 
