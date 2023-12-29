@@ -17,6 +17,9 @@ public class AccomodationController {
     @GetMapping("/Accommodations/get-all")
     public List<Accommodation> getAllAccomodations(){return accomodationDao.getAllAccomodations();}
 
+    @GetMapping("/Accommodations/get-all-f")
+    public List<AccommodationFavourite> getAllAccommodationFavourite(){return accomodationDao.getAllAccommodationFavourite();}
+
     @GetMapping("/Accommodations/get-accomodation-by-name")
     public List<Accommodation> getAccomodationsByName(@RequestBody String name){return accomodationDao.getAccomodationByName(name);}
 
@@ -32,4 +35,5 @@ public class AccomodationController {
     }
     @PostMapping("/Accommodations/save")
     public void save(@RequestBody Accommodation accomodation) {accomodationDao.save(accomodation); }
+
 }

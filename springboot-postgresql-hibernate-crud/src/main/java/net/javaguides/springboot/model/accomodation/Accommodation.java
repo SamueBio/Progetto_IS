@@ -8,10 +8,10 @@ import java.util.Date;
 @Table(name="Accommodations")
 public class Accommodation {
 
+
     @Id
     @Column(name = "id")
     private Integer id;
-
     @Column(name = "name", length = 50)
     private String name;
 

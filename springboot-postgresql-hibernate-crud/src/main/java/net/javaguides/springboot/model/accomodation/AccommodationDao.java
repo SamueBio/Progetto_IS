@@ -15,6 +15,8 @@ public class AccommodationDao {
         return accomodationRepository.findAll();
     }
 
+    public List<AccommodationFavourite> getAllAccommodationFavourite(){return accomodationRepository.getAllAccommodationFavourite();}
+
     public List<Accommodation> getAccomodationByName(String name){
         return accomodationRepository.findByName(name);
     }
