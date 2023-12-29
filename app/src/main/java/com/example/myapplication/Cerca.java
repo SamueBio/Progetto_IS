@@ -472,9 +472,9 @@ public class Cerca extends AppCompatActivity {
 
         //TODO: query
         Accommodation accommodation = GlobalData.getInstance().getAccommodation();
-        accommodation.setName(nomeSearch.getText().toString().toUpperCase());
-        accommodation.setTown(geographicArea.getText().toString().toUpperCase());
-        accommodation.setProvince(provincia.getText().toString().toUpperCase());
+        accommodation.setName(nomeSearch.getText().toString().toUpperCase().trim());
+        accommodation.setTown(geographicArea.getText().toString().toUpperCase().trim());
+        accommodation.setProvince(provincia.getText().toString().toUpperCase().trim());
 
 
         /*

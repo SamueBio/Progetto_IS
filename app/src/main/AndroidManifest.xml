@@ -79,7 +79,10 @@
             android:name=".InviaRichiesta">
 
         </activity>
+        <activity
+            android:name=".Faq">
 
+        </activity>
     </application>
 
 

@@ -30,6 +30,14 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.dashboard);
 
         faq = (ImageButton) findViewById(R.id.faq);
+        faq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFaq();
+            }
+        });
+
+
         search = (ImageButton) findViewById(R.id.lente);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +69,12 @@ public class Dashboard extends AppCompatActivity {
             }
         });*/
     }
+
+    public void openFaq(){
+        Intent intent=new Intent(this, Faq.class);
+        startActivity(intent);
+    }
+
     public void openSearch(){
         //SERVIZI RESET
         GlobalData.getInstance().setFalse();
