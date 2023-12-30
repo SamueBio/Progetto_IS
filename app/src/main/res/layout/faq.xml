@@ -42,6 +42,64 @@
         android:textStyle="bold"
         android:textColor="#005FBE"/>
 
+    <TextView
+        android:id="@+id/credit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="65dp"
+        android:text="TravelTogether APP developed by:"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/stefano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="110dp"
+        android:text="Stefano Forin"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"/>
+
+    <TextView
+        android:id="@+id/samuele"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="35dp"
+        android:text="Samuele Biondo"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"/>
+
+    <TextView
+        android:id="@+id/davide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="35dp"
+        android:text="Ferro Davide"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"/>
+
+    <TextView
+        android:id="@+id/matteo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="Matteo Boscolo Pecchie Botti"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"/>
+
 
     <!--
         TEXTVIEW DA CREARE PER OGNI FAQ
