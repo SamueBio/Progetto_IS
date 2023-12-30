@@ -494,29 +494,36 @@ public class Cerca extends AppCompatActivity {
                     try {
 
                         String responseBody = response.body().string();
-                        resultAcc = (ArrayList<Accommodation>) Accommodation.parseString(responseBody);
-                       // Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
-                        //setto dall'adapter, visualizzando nome e indirizzo dei risultati
-                        adapterAcc = new AccomodationAdapter(Cerca.this, resultAcc);
-                        loading.setVisibility(View.GONE);
-                        resultsListView.setAdapter(adapterAcc);
+                        if(responseBody.equals("[]")){
+                            Toast.makeText(Cerca.this,"NESSUN RISULTATO",(int)4).show();
+                            backSearch();
 
-                        //VISUALIZZAZIONE PAGINA SPECIFICA ALLOGGIO
-                        resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                // Alloggio selezionato dalla lista
-                                Accommodation alloggioSelezionato = resultAcc.get(position);
-                                pos=position;
-                                // Creazione di un Intent
-                                Intent intent=new Intent(Cerca.this, SpecAll.class);
-                                // Passaggio dell'alloggio attraverso l'Intent
-                                intent.putExtra("alloggio", alloggioSelezionato);
-                                // Avvio dell'attività successiva
-                                startActivityForResult(intent, 123);
+                        }else{
+                            resultAcc = (ArrayList<Accommodation>) Accommodation.parseString(responseBody);
+                            // Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
+                            //setto dall'adapter, visualizzando nome e indirizzo dei risultati
+                            adapterAcc = new AccomodationAdapter(Cerca.this, resultAcc);
+                            loading.setVisibility(View.GONE);
+                            resultsListView.setAdapter(adapterAcc);
 
-                            }
-                        });
+                            //VISUALIZZAZIONE PAGINA SPECIFICA ALLOGGIO
+                            resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    // Alloggio selezionato dalla lista
+                                    Accommodation alloggioSelezionato = resultAcc.get(position);
+                                    pos=position;
+                                    // Creazione di un Intent
+                                    Intent intent=new Intent(Cerca.this, SpecAll.class);
+                                    // Passaggio dell'alloggio attraverso l'Intent
+                                    intent.putExtra("alloggio", alloggioSelezionato);
+                                    // Avvio dell'attività successiva
+                                    startActivityForResult(intent, 123);
+
+                                }
+                            });
+
+                        }
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);

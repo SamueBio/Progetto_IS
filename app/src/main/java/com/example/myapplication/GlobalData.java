@@ -2,10 +2,12 @@ package com.example.myapplication;
 
 import android.widget.CheckBox;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myapplication.model.Accommodation;
 import com.example.myapplication.model.User;
 
-public class GlobalData {
+public class GlobalData extends AppCompatActivity {
     private static GlobalData instance;
 
     //INFORMAZIONI GLOBALI DELL'UTENTE CHE EFFETTUA L'ACCESSO
@@ -31,7 +33,7 @@ public class GlobalData {
         this.accommodation.setGerman(tedesco);
     }
 
-    private GlobalData() {
+    public GlobalData() {
         // Costruttore privato per impedire l'istanziazione diretta
     }
     public static synchronized GlobalData getInstance() {
