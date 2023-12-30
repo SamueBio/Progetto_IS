@@ -86,7 +86,7 @@ public class Faq extends AppCompatActivity {
             public void onClick(View v) {
                 open7();
 
-                
+
             }
         });
 
