@@ -104,5 +104,26 @@
         android:textStyle="bold"
         android:textColor="#005FBE"/>
 
+    <TextView
+        android:id="@+id/faq6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="430dp"
+        android:text= " ➣  Modifica profilo"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#005FBE"/>
+
+    <TextView
+        android:id="@+id/faq7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="490dp"
+        android:text= " ➣  Contatta proprietario alloggio"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#005FBE"/>
 
 </RelativeLayout>

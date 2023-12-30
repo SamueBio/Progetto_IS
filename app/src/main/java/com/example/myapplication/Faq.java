@@ -23,6 +23,8 @@ public class Faq extends AppCompatActivity {
     private TextView faq3;
     private TextView faq4;
     private TextView faq5;
+    private TextView faq6;
+    private TextView faq7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,24 @@ public class Faq extends AppCompatActivity {
             }
         });
 
+        faq6 = findViewById(R.id.faq6);
+        faq6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open6();
+            }
+        });
+
+        faq7 = findViewById(R.id.faq7);
+        faq7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open7();
+
+
+            }
+        });
+
 
         /*
             QUI SETTARE LE VARIE FAQ COME A RIGA 29 E 30
@@ -109,6 +129,20 @@ public class Faq extends AppCompatActivity {
         showFAQ(domanda, spiegazione);
     }
 
+
+    private void open6(){
+        String domanda = "Modifica profilo";
+        String spiegazione = "All'interno della pagina del profilo selezionare l'icona della matita corrispondente al  " +
+                "campo che si intende modificare";
+        showFAQ(domanda, spiegazione);
+    }
+
+    private void open7(){
+        String domanda = "Contatta proprietario alloggio";
+        String spiegazione = "All'interno della pagina dell'alloggio di interesse sarà possibile contattare il proprietario " +
+                "selezionando l'email";
+        showFAQ(domanda, spiegazione);
+    }
     /*
         qui creare altre FAQ con open2, open3, e avanti...
 
