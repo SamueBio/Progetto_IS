@@ -1,7 +1,6 @@
 package net.javaguides.springboot.controller;
 
 
-import net.javaguides.springboot.model.accomodation.Accommodation;
 import net.javaguides.springboot.model.favourites.Favourite;
 import net.javaguides.springboot.model.favourites.FavouriteDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +12,9 @@ import java.util.List;
 public class FavouriteController {
     @Autowired
     private FavouriteDao favouriteDao;
-    @GetMapping("/Favourites/get-all")
-    public List<Favourite> getAllAccomodations(){return favouriteDao.getAllFavourites();}
 
-    @PostMapping("/Favourites/get-favouriteaccomodation-by-user")
-    public List<Accommodation> getFavouritesAccomodationByUser(@RequestBody Favourite favourite){return favouriteDao.getFavouritesAccomodationByUser(favourite);}
+    @GetMapping("/Favourites/get-favouriteaccomodation-by-user")
+    public List<Favourite> getFavouritesAccomodationByUser(@RequestBody String user){return favouriteDao.getFavouritesAccomodationByUser(user);}
 
     @PostMapping("/Favourites/save")
     public void save(@RequestBody Favourite favourite) {favouriteDao.save(favourite); }
