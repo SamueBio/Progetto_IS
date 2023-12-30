@@ -31,6 +31,7 @@ public class Preferiti extends AppCompatActivity {
     private ListView resultsListView;
     private AccomodationAdapter adapter; // Supponiamo che tu abbia un adattatore personalizzato per gli alloggi
     private ArrayList<Accommodation> allAccommodations; // La lista completa degli alloggi
+    private int pos;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,26 +114,33 @@ public class Preferiti extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             // Alloggio selezionato dalla lista
                             Accommodation alloggioSelezionato = allAccommodations.get(position);
+                            pos=position;
                             // Creazione di un Intent
                             Intent intent=new Intent(Preferiti.this, SpecAll.class);
                             // Passaggio dell'alloggio attraverso l'Intent
                             intent.putExtra("alloggio", alloggioSelezionato);
                             // Avvio dell'attività successiva
-                            startActivity(intent);
-                        }
+                            startActivityForResult(intent, 123);                        }
                     });
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
             }
         });
+    }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 123) {
+            Accommodation alloggio = (Accommodation) data.getSerializableExtra("alloggioAgg");
+            allAccommodations.get(pos).setFavourite(alloggio.isFavourite());
+            resultsListView.setAdapter(adapter);
+        }
     }
 }
