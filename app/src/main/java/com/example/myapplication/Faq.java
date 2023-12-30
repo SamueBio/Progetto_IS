@@ -38,7 +38,7 @@ public class Faq extends AppCompatActivity {
             }
         });
 
-        //faq2 = findViewById(R.id.faq2);
+        faq2 = findViewById(R.id.faq2);
         faq2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +46,7 @@ public class Faq extends AppCompatActivity {
             }
         });
 
-        //faq3 = findViewById(R.id.faq3);
+        faq3 = findViewById(R.id.faq3);
         faq3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +54,7 @@ public class Faq extends AppCompatActivity {
             }
         });
 
-        //faq4 = findViewById(R.id.faq4);
+        faq4 = findViewById(R.id.faq4);
         faq4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,7 @@ public class Faq extends AppCompatActivity {
             }
         });
 
-        //faq5 = findViewById(R.id.faq5);
+        faq5 = findViewById(R.id.faq5);
         faq5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,24 +90,25 @@ public class Faq extends AppCompatActivity {
     }
 
     private void open3(){
-        String domanda = "Effettuare una ricerca filtrando i servizi";
+        String domanda = "Ricerca tramite servizi";
         String spiegazione = "Nella sezione dedicata alla ricerca, cliccare sull'opzione 'FILTRI', dopodiché selezionare i servizi dedicati per la ricerca";
         showFAQ(domanda, spiegazione);
     }
 
     private void open4(){
         String domanda = "Aggiunta di un alloggio ai preferiti";
-        String spiegazione = "Dopo aver effettuato una ricerca, accanto al nome dell'alloggio è possibile cliccare sull'icona del cuore per agggiungere quell'alloggio" +
+        String spiegazione = "Dopo aver effettuato una ricerca, accanto al nome dell'alloggio è possibile cliccare sull'icona del cuore per aggiungere quell'alloggio" +
                 "ai preferiti. Questa azione può essere effettuata anche all'interno della pagina dell'alloggio stesso, con l'icona del cuore in alto a destra.";
         showFAQ(domanda, spiegazione);
     }
 
     private void open5(){
-        String domanda = "Visualizzazione degli alloggi preferiti";
+        String domanda = "Visualizzazione alloggi preferiti";
         String spiegazione = "Nella schermata home, attraverso l'icona a forma di cuore in basso a sinistra si può accedere alla pagina dedicata agli alloggi preferiti " +
                 "aggiungti durante la ricerca";
         showFAQ(domanda, spiegazione);
     }
+
     /*
         qui creare altre FAQ con open2, open3, e avanti...
 
