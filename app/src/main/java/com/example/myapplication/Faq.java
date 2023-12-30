@@ -19,6 +19,10 @@ public class Faq extends AppCompatActivity {
 
     //DICHIARAZIONE TEXTVIEW DELLE VARIE FAQ
     private TextView faq1;
+    private TextView faq2;
+    private TextView faq3;
+    private TextView faq4;
+    private TextView faq5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,39 @@ public class Faq extends AppCompatActivity {
             }
         });
 
+        //faq2 = findViewById(R.id.faq2);
+        faq2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open2();
+            }
+        });
+
+        //faq3 = findViewById(R.id.faq3);
+        faq3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open3();
+            }
+        });
+
+        //faq4 = findViewById(R.id.faq4);
+        faq4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open4();
+            }
+        });
+
+        //faq5 = findViewById(R.id.faq5);
+        faq5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open5();
+            }
+        });
+
+
         /*
             QUI SETTARE LE VARIE FAQ COME A RIGA 29 E 30
          */
@@ -46,13 +83,35 @@ public class Faq extends AppCompatActivity {
         showFAQ(domanda, spiegazione);
     }
 
+    private void open2(){
+        String domanda = "Effettuare una ricerca";
+        String spiegazione = "Dalla dashboard, cliccare in basso sull'icona centrale della lente d'ingrandimento per aprire la sezione dedicata alla ricerca degli alloggi";
+        showFAQ(domanda, spiegazione);
+    }
 
+    private void open3(){
+        String domanda = "Effettuare una ricerca filtrando i servizi";
+        String spiegazione = "Nella sezione dedicata alla ricerca, cliccare sull'opzione 'FILTRI', dopodiché selezionare i servizi dedicati per la ricerca";
+        showFAQ(domanda, spiegazione);
+    }
+
+    private void open4(){
+        String domanda = "Aggiunta di un alloggio ai preferiti";
+        String spiegazione = "Dopo aver effettuato una ricerca, accanto al nome dell'alloggio è possibile cliccare sull'icona del cuore per agggiungere quell'alloggio" +
+                "ai preferiti. Questa azione può essere effettuata anche all'interno della pagina dell'alloggio stesso, con l'icona del cuore in alto a destra.";
+        showFAQ(domanda, spiegazione);
+    }
+
+    private void open5(){
+        String domanda = "Visualizzazione degli alloggi preferiti";
+        String spiegazione = "Nella schermata home, attraverso l'icona a forma di cuore in basso a sinistra si può accedere alla pagina dedicata agli alloggi preferiti " +
+                "aggiungti durante la ricerca";
+        showFAQ(domanda, spiegazione);
+    }
     /*
         qui creare altre FAQ con open2, open3, e avanti...
 
         delle possibili FAQ sono:
-            dove andare per ricerca
-            come effettuare una ricerca
             ricerca per servizi come funziona
             visualizzazione preferiti
             ecc
