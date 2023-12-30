@@ -32,7 +32,8 @@ android {
 }
 
 dependencies {
-    implementation ("com.google.code.gson:gson:2.8.9") // Aggiorna la versione se necessario
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.google.code.gson:gson:2.8.9")
     implementation ("com.android.volley:volley:1.2.1")
     implementation ("androidx.security:security-crypto:1.1.0-alpha02")
     implementation("androidx.appcompat:appcompat:1.6.1")
