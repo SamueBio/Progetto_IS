@@ -53,6 +53,7 @@ public class Cerca extends AppCompatActivity {
     private AccomodationAdapter adapterAcc; //adattatore personalizzato per gli alloggi
     private ArrayList<Accommodation> resultAcc; //risultati ricerca accomodations
     private AlertDialog alertDialog;
+    private int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -506,12 +507,14 @@ public class Cerca extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 // Alloggio selezionato dalla lista
                                 Accommodation alloggioSelezionato = resultAcc.get(position);
+                                pos=position;
                                 // Creazione di un Intent
                                 Intent intent=new Intent(Cerca.this, SpecAll.class);
                                 // Passaggio dell'alloggio attraverso l'Intent
                                 intent.putExtra("alloggio", alloggioSelezionato);
                                 // Avvio dell'attività successiva
-                                startActivity(intent);
+                                startActivityForResult(intent, 123);
+
                             }
                         });
 
@@ -539,7 +542,19 @@ public class Cerca extends AppCompatActivity {
                 backSearch();
             }
         });
+
+
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 123) {
+            Accommodation alloggio = (Accommodation) data.getSerializableExtra("alloggioAgg");
+            resultAcc.get(pos).setFavourite(alloggio.isFavourite());
+            resultsListView.setAdapter(adapterAcc);
+        }
+    }
+
 
     //GESTIONE ALLOGGIO PREFERITO
     public void onHeartIconClick(View view) {

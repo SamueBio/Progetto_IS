@@ -77,6 +77,9 @@ public class SpecAll extends AppCompatActivity {
     }
 
     public void onBackImageClick(View view) {
+        Intent intent = new Intent();
+        intent.putExtra("alloggioAgg", acc);
+        setResult(RESULT_OK, intent);
         finish();
     }
 
