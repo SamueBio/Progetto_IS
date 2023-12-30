@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import kotlin.collections.ArrayDeque;
-
 public class Accommodation implements Serializable {
     private Integer id;
     private String name;
@@ -69,12 +67,12 @@ public class Accommodation implements Serializable {
     private String houseNumber;
 
     //PREFERITO
-    private boolean isFavourited;
+    private boolean favourite;
 
 
     public Accommodation() {
         super();
-        this.isFavourited=false;
+        this.favourite =false;
         this.name = "";
         this.area = "";
         this.province = "";
@@ -117,11 +115,11 @@ public class Accommodation implements Serializable {
         this.lastTimeUpdated=new Date(miliseconds);
     }
 
-    public boolean isFavourited() {
-        return isFavourited;
+    public boolean isFavourite() {
+        return favourite;
     }
-    public void setFavourited(boolean favourited) {
-        isFavourited = favourited;
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
 
     public Integer getId() {
@@ -580,8 +578,8 @@ public class Accommodation implements Serializable {
         return jsonObject;
     }
 	
-	/*
-	To test: when this method will be tested and when we'll be sure that it works we'll delete the previous method
+
+	//To test: when this method will be tested and when we'll be sure that it works we'll delete the previous method
 	
 	
 	public JsonObject generateJsonUsername(String username){
@@ -639,12 +637,12 @@ public class Accommodation implements Serializable {
         jsonObject.addProperty("houseNumber","");
 		
 		JsonObject accommodationJson = new JsonObject();
-		accommodationJson.addProperty("accommodation", jsonObject);
+		accommodationJson.add("accommodation",jsonObject);
 		accommodationJson.addProperty("username",username);
 
         return accommodationJson;
     }
-	*/
+
 
     public static List<Accommodation> parseString(String responseBody){
         List<Accommodation> accommodationList = new ArrayList<>();

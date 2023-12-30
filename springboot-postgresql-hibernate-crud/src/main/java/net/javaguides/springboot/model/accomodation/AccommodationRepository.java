@@ -13,7 +13,7 @@ public interface AccommodationRepository extends CrudRepository<Accommodation,In
     //Interno,Stars, Category, OtherServices
     @Query("SELECT a FROM Accommodation a WHERE a.name LIKE %:name%")
     List<Accommodation> findByName(@Param("name")String name);
-    @Query("SELECT a FROM Accommodation a " +
+    @Query("SELECT a, CASE WHEN f.username IS NOT NULL THEN true ELSE false END FROM Accommodation a LEFT JOIN Favourite f ON a.id = f.accommodation AND f.username = :#{#accommodation.username} " +
             "WHERE (a.countryFair = true AND :#{#accommodation.countryFair} = true OR :#{#accommodation.countryFair} = false) " +
             "AND (a.fsStation = true AND :#{#accommodation.fsStation} = true OR :#{#accommodation.fsStation} = false) " +
             "AND (a.spanish = true AND :#{#accommodation.spanish} = true OR :#{#accommodation.spanish} = false) " +
@@ -54,7 +54,7 @@ public interface AccommodationRepository extends CrudRepository<Accommodation,In
             "AND a.category LIKE %:#{#accommodation.category}% " +
             "AND a.name LIKE %:#{#accommodation.name} " )
     List<Accommodation> findByServices(@Param("accommodation") Accommodation accommodation);
-    @Query("SELECT new net.javaguides.springboot.model.accomodation.AccommodationFavourite(f.username, a) FROM Accommodation a LEFT JOIN Favourite f ON a.id = f.accommodation AND f.username = :#{#accommodation.favourite.username} " +
+    @Query("SELECT new net.javaguides.springboot.model.accomodation.AccommodationBoolean(a, CASE WHEN f.username IS NOT NULL THEN true ELSE false END) FROM Accommodation a LEFT JOIN Favourite f ON a.id = f.accommodation AND f.username = :#{#accommodation.username} " +
             "WHERE (a.countryFair = true AND :#{#accommodation.accommodation.countryFair} = true OR :#{#accommodation.accommodation.countryFair} = false) " +
             "AND (a.fsStation = true AND :#{#accommodation.accommodation.fsStation} = true OR :#{#accommodation.accommodation.fsStation} = false) " +
             "AND (a.spanish = true AND :#{#accommodation.accommodation.spanish} = true OR :#{#accommodation.accommodation.spanish} = false) " +
@@ -94,7 +94,7 @@ public interface AccommodationRepository extends CrudRepository<Accommodation,In
             "AND a.stars LIKE %:#{#accommodation.accommodation.stars}% " +
             "AND a.category LIKE %:#{#accommodation.accommodation.category}% " +
             "AND a.name LIKE %:#{#accommodation.accommodation.name} " )
-    List<AccommodationFavourite> search(@Param("accommodation")AccommodationFavourite accommodation);
+    List<AccommodationBoolean> search(@Param("accommodation")AccommodationFavourite accommodation);
 	/*
 	Those two methods are only for testing phase.
 	After the testing phase delete also the methods from AccommodationDao and AccommodationController
@@ -103,8 +103,8 @@ public interface AccommodationRepository extends CrudRepository<Accommodation,In
     @Query("SELECT new net.javaguides.springboot.model.accomodation.AccommodationFavourite(f.username, a) FROM Accommodation a LEFT JOIN Favourite f ON a.id = f.accommodation AND f.username ='stefanoforin00'")
     List<AccommodationFavourite> getAllAccommodationFavourite();
 	
-	@Query("SELECT new net.javaguides.springboot.model.accomodation.AccommodationFavourite(CASE WHEN f.username IS NOT NULL THEN true ELSE false END, a) FROM Accommodation a LEFT JOIN Favourite f ON a.id = f.accommodation AND f.username ='stefanoforin00'")
-    List<AccommodationBoolean> getAllAccommodationBoolean();
+	@Query("SELECT new net.javaguides.springboot.model.accomodation.AccommodationBoolean(a,CASE WHEN f.username IS NOT NULL THEN true ELSE false END) FROM Accommodation a LEFT JOIN Favourite f ON a.id = f.accommodation AND f.username =:#{#accommodationFavourite.username}")
+    List<AccommodationBoolean> getAllAccommodationBoolean(@Param("accommodation")AccommodationFavourite accommodationFavourite);
 
     @Query("SELECT a FROM Accommodation a")
     List<Accommodation> findAll();

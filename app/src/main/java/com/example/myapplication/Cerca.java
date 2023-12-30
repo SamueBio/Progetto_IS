@@ -6,16 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
@@ -28,12 +25,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.model.Accommodation;
+import com.example.myapplication.model.Favourite;
 import com.example.myapplication.retrofit.AccommodationApi;
+import com.example.myapplication.retrofit.FavouritesApi;
 import com.example.myapplication.retrofit.RetrofitService;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -58,6 +53,7 @@ public class Cerca extends AppCompatActivity {
     private AccomodationAdapter adapterAcc; //adattatore personalizzato per gli alloggi
     private ArrayList<Accommodation> resultAcc; //risultati ricerca accomodations
     private AlertDialog alertDialog;
+    private int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -476,24 +472,7 @@ public class Cerca extends AppCompatActivity {
         accommodation.setTown(geographicArea.getText().toString().toUpperCase().trim());
         accommodation.setProvince(provincia.getText().toString().toUpperCase().trim());
 
-
-        /*
-        * TODO
-        *  La query è stat correttamente implementata. In questo momento vengono restituiti gli alloggi
-        *  che rispondono alle richieste dell'utente.
-        *  Dobbiamo però considerare che nell'elenco alloggi deve essere presente anche un parametro
-        *  che spcifica se l'alloggio è tra i preferiti o meno dell'utente. Per questo ho creato la classe
-        *  AccommodationFavourite. Prossimamente modificherò l'API in modo da fare la query corretta, che è la seguente:
-        *  select f.username, a.*
-        *  from accommodations a LEFT JOIN favourites f ON a.id = f.accommodation AND f.username = 'stefanoforin00'
-        *  where a.hilly=true
-        *  order by f.username
-        *  Chiaramente invece di stefanoforin00 andrà messo il nome utente.
-        *  Implementare il FRONT-END di conseguenza
-        *
-        * */
-
-        Call<ResponseBody> call = accommodationApi.search(accommodation.generateJson());
+        Call<ResponseBody> call = accommodationApi.search(accommodation.generateJsonUsername(GlobalData.getInstance().getUsername()));
         setContentView(R.layout.cerca2);
         //setto gli elementi della pagina
         back=findViewById(R.id.back);
@@ -528,12 +507,14 @@ public class Cerca extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 // Alloggio selezionato dalla lista
                                 Accommodation alloggioSelezionato = resultAcc.get(position);
+                                pos=position;
                                 // Creazione di un Intent
                                 Intent intent=new Intent(Cerca.this, SpecAll.class);
                                 // Passaggio dell'alloggio attraverso l'Intent
                                 intent.putExtra("alloggio", alloggioSelezionato);
                                 // Avvio dell'attività successiva
-                                startActivity(intent);
+                                startActivityForResult(intent, 123);
+
                             }
                         });
 
@@ -561,20 +542,55 @@ public class Cerca extends AppCompatActivity {
                 backSearch();
             }
         });
+
+
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 123) {
+            Accommodation alloggio = (Accommodation) data.getSerializableExtra("alloggioAgg");
+            resultAcc.get(pos).setFavourite(alloggio.isFavourite());
+            resultsListView.setAdapter(adapterAcc);
+        }
+    }
+
 
     //GESTIONE ALLOGGIO PREFERITO
     public void onHeartIconClick(View view) {
+        RetrofitService retrofitService = new RetrofitService();
+        FavouritesApi favouritesApi = retrofitService.getRetrofit().create(FavouritesApi.class);
         ImageView heartIcon = (ImageView) view;
         Accommodation accommodation = (Accommodation) heartIcon.getTag();
-        if (accommodation.isFavourited()) {
-            heartIcon.setImageResource(R.drawable.cuore);
-           // removeFromFavorites(accommodation);
+        Favourite favourite = new Favourite(GlobalData.getInstance().getUsername(), accommodation.getId());
+        if (accommodation.isFavourite()) {
+            Call<ResponseBody> call = favouritesApi.delete(favourite.generateJson());
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    heartIcon.setImageResource(R.drawable.cuore);
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
         } else {
-            heartIcon.setImageResource(R.drawable.cuore_si);
-            //addToFavorites(accommodation);
+            Call<ResponseBody> call = favouritesApi.save(favourite.generateJson());
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    heartIcon.setImageResource(R.drawable.cuore_si);
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
         }
-        accommodation.setFavourited(!accommodation.isFavourited());
+        accommodation.setFavourite(!accommodation.isFavourite());
     }
 
     //METODO VISUALIZZAZIONE DASHBOARD

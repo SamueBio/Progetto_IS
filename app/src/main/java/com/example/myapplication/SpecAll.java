@@ -17,6 +17,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.model.Accommodation;
+import com.example.myapplication.model.Favourite;
+import com.example.myapplication.retrofit.FavouritesApi;
+import com.example.myapplication.retrofit.RetrofitService;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SpecAll extends AppCompatActivity {
     private TextView indirizzo;
@@ -37,6 +45,7 @@ public class SpecAll extends AppCompatActivity {
 
 
         cuore = findViewById(R.id.pref);
+
         nome= findViewById(R.id.nameTextView);
         indirizzo = findViewById(R.id.locationTextView);
         telefono=findViewById(R.id.telefono2);
@@ -52,6 +61,8 @@ public class SpecAll extends AppCompatActivity {
 
         Intent intent = getIntent();
         acc = (Accommodation) intent.getSerializableExtra("alloggio");
+        if(acc.isFavourite())
+            cuore.setImageResource(R.drawable.cuore_si);
         nome.setText(acc.getName());
         indirizzo.setText(acc.getAddress()+", "+acc.getHouseNumber()+" "+acc.getCap()+" "+acc.getTown());
         telefono.setText(acc.getTelephone());
@@ -66,7 +77,40 @@ public class SpecAll extends AppCompatActivity {
     }
 
     public void onBackImageClick(View view) {
+        Intent intent = new Intent();
+        intent.putExtra("alloggioAgg", acc);
+        setResult(RESULT_OK, intent);
         finish();
+    }
+
+
+    public void onHeartIconClick(View view) {
+        RetrofitService retrofitService = new RetrofitService();
+        FavouritesApi favouritesApi = retrofitService.getRetrofit().create(FavouritesApi.class);
+        Favourite favourite = new Favourite(GlobalData.getInstance().getUsername(), acc.getId());
+        if (acc.isFavourite()) {
+            Call<ResponseBody> call = favouritesApi.delete(favourite.generateJson());
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    cuore.setImageResource(R.drawable.cuore);
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {   }
+            });
+        } else {
+            Call<ResponseBody> call = favouritesApi.save(favourite.generateJson());
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    cuore.setImageResource(R.drawable.cuore_si);
+                }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {   }
+            });
+        }
+        acc.setFavourite(!acc.isFavourite());
     }
 
 }

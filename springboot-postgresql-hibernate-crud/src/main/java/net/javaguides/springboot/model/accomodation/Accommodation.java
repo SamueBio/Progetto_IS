@@ -162,6 +162,7 @@ public class Accommodation {
 
     public Accommodation(){super();}
 
+
     public int getId() {
         return id;
     }

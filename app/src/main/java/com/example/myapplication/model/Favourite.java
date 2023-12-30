@@ -4,12 +4,12 @@ import com.google.gson.JsonObject;
 
 public class Favourite {
     private String user;
-    private Integer accomodation;
+    private Integer accommodation;
 
-    public Favourite(String user,Integer accomodation){
+    public Favourite(String user,Integer accommodation){
         super();
         this.user = user;
-        this.accomodation = accomodation;
+        this.accommodation = accommodation;
     }
 
     public Favourite() {
@@ -20,22 +20,22 @@ public class Favourite {
         return user;
     }
 
-    public Integer getAccomodation() {
-        return accomodation;
+    public Integer getAccommodation() {
+        return accommodation;
     }
 
     public void setUser(String user) {
         this.user = user;
     }
 
-    public void setAccomodation(Integer accomodation) {
-        this.accomodation = accomodation;
+    public void setAccommodation(Integer accommodation) {
+        this.accommodation = accommodation;
     }
 
     public JsonObject generateJson(){
         JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("accommodation", accommodation);
         jsonObject.addProperty("username",user);
-        jsonObject.addProperty("accommodation",accomodation);
 
         return jsonObject;
     }

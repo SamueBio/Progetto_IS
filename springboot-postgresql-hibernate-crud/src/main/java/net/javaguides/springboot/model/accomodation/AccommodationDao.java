@@ -15,7 +15,8 @@ public class AccommodationDao {
         return accomodationRepository.findAll();
     }
 
-    public List<AccommodationFavourite> getAllAccommodationFavourite(){return accomodationRepository.getAllAccommodationFavourite();}
+    public List<AccommodationBoolean> getAccommodationFavourite(AccommodationFavourite accommodationFavourite){return accomodationRepository.search(accommodationFavourite);}
+    public List<AccommodationBoolean> getAllAccommodationBoolean(AccommodationFavourite accommodationFavourite){return accomodationRepository.getAllAccommodationBoolean(accommodationFavourite);}
 
     public List<Accommodation> getAccomodationByName(String name){
         return accomodationRepository.findByName(name);
@@ -26,7 +27,7 @@ public class AccommodationDao {
         return accomodationRepository.findByServices(accommodation);
     }
 
-    public List<AccommodationFavourite> search(AccommodationFavourite accommodationFavourite){
+    public List<AccommodationBoolean> search(AccommodationFavourite accommodationFavourite){
         return accomodationRepository.search(accommodationFavourite);
     }
 
