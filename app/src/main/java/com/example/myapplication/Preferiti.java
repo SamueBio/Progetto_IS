@@ -50,43 +50,7 @@ public class Preferiti extends AppCompatActivity {
         performSearch();
 
     }
-    public void onHeartIconClick(View view) {
-        RetrofitService retrofitService = new RetrofitService();
-        FavouritesApi favouritesApi = retrofitService.getRetrofit().create(FavouritesApi.class);
-        ImageView heartIcon = (ImageView) view;
-        Accommodation accommodation = (Accommodation) heartIcon.getTag();
-        Favourite favourite = new Favourite(GlobalData.getInstance().getUsername(), accommodation.getId());
-        if (accommodation.isFavourite()) {
 
-            Call<ResponseBody> call = favouritesApi.delete(favourite.generateJson());
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    heartIcon.setImageResource(R.drawable.cuore);
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                }
-            });
-        } else {
-
-            Call<ResponseBody> call = favouritesApi.save(favourite.generateJson());
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    heartIcon.setImageResource(R.drawable.cuore_si);
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                }
-            });
-        }
-        accommodation.setFavourite(!accommodation.isFavourite());
-    }
     public void openDashboard(){
         Intent intent=new Intent(this, Dashboard.class);
         startActivity(intent);
