@@ -7,6 +7,18 @@
     android:background="@color/bg"
     android:padding="16dp">
 
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="25dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="3dp"
+        android:background="#CFD2F0"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/back"
+        android:clickable="true"
+        android:onClick="onBackImageClick"/>
+
     <TextView
         android:id="@+id/inviaRich"
         android:layout_width="match_parent"
@@ -107,12 +119,13 @@
 
         <Button
             android:id="@+id/buttonInviaRichiesta"
-            android:layout_width="234dp"
+            android:layout_width="127dp"
             android:layout_height="62dp"
-            android:layout_marginTop="40dp"
             android:layout_gravity="center"
-            android:text="INVIA RICHIESTA"
-            android:textSize="20sp" />
+            android:layout_marginTop="40dp"
+            android:text="INVIA"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>

@@ -208,18 +208,30 @@
 
     </RelativeLayout>
 
-    <TextView
+
+    <ImageButton
+        android:id="@+id/review"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:background="#CFD2F0"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/review"
+        android:clickable="true"
+        android:layout_gravity="center"
+        android:onClick="openReview"/>
+
+
+
+    <Button
         android:id="@+id/inviaRichiesta"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="5dp"
         android:text="INVIA RICHIESTA"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#AC0D0D"/>
+        android:layout_gravity="center"/>
 
 
 

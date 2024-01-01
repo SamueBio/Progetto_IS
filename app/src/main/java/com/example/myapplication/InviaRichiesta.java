@@ -64,80 +64,97 @@ public class InviaRichiesta extends AppCompatActivity {
         String oggetto = editTextOggetto.getText().toString();
         String testoMessaggio = editTextTestoMessaggio.getText().toString();
 
+        if(nomeCognome.isEmpty()||(email.isEmpty())||oggetto.isEmpty()||testoMessaggio.isEmpty()){
+            Toast.makeText(this, "Inserisci tutti i dati", Toast.LENGTH_SHORT).show();
+        }else{
+            if(!isValidEmail(email))
+                Toast.makeText(this, "Inserisci mail corretta", Toast.LENGTH_SHORT).show();
+            else {
+                final String username = "traveltogether.uni@gmail.com";
+                final String password = "2E496FE5317A48E25B731E133332F24666F0";
 
-        final String username = "traveltogether.uni@gmail.com";
-        final String password = "2E496FE5317A48E25B731E133332F24666F0";
+                Properties props = new Properties();
+                props.put("mail.smtp.auth", "true");
+                //props.put("mail.smtp.starttls.enable", "true");
+                props.put("mail.smtp.host", "smtp.elasticemail.com");
+                props.put("mail.smtp.port", "2525");
 
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        //props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.elasticemail.com");
-        props.put("mail.smtp.port", "2525");
-
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
+                Session session = Session.getInstance(props,
+                        new javax.mail.Authenticator() {
+                            protected PasswordAuthentication getPasswordAuthentication() {
+                                return new PasswordAuthentication(username, password);
+                            }
+                        });
 
 
-        //MAIL INVIATA ALL'ALLOGGIO
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("traveltogether.uni@gmail.com"));
-            InternetAddress[] toAddresses = {
-                    new InternetAddress(acc.getEmail())
-                    //new InternetAddress("samuele.biondo.lavoro@gmail.com")
+                //MAIL INVIATA ALL'ALLOGGIO
+                try {
+                    Message message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress("traveltogether.uni@gmail.com"));
+                    InternetAddress[] toAddresses = {
+                            new InternetAddress(acc.getEmail())
+                            //new InternetAddress("samuele.biondo.lavoro@gmail.com")
 
-            };
-            message.setRecipients(Message.RecipientType.TO,toAddresses);
-            message.setSubject(oggetto);
-            String htmlBody = "<b>NOMINATIVO MITTENTE:</b>"+nomeCognome+"<br><br><b>EMAIL MITTENTE:</b> "+email+
-                    "<br><br><b>MESSAGGIO:</b> "+testoMessaggio+"<br><br><br><i>Mail inviata da APP TravelTogether</i>";
+                    };
+                    message.setRecipients(Message.RecipientType.TO, toAddresses);
+                    message.setSubject(oggetto);
+                    String htmlBody = "<b>NOMINATIVO MITTENTE:</b>" + nomeCognome + "<br><br><b>EMAIL MITTENTE:</b> " + email +
+                            "<br><br><b>MESSAGGIO:</b> " + testoMessaggio + "<br><br><br><i>Mail inviata da APP TravelTogether</i>";
 
-            // Crea la parte HTML del messaggio
-            MimeBodyPart htmlPart = new MimeBodyPart();
-            htmlPart.setContent(htmlBody, "text/html; charset=utf-8");
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(htmlPart);
-            message.setContent(multipart);
+                    // Crea la parte HTML del messaggio
+                    MimeBodyPart htmlPart = new MimeBodyPart();
+                    htmlPart.setContent(htmlBody, "text/html; charset=utf-8");
+                    Multipart multipart = new MimeMultipart();
+                    multipart.addBodyPart(htmlPart);
+                    message.setContent(multipart);
 
-            Transport.send(message);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
+                    Transport.send(message);
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                }
+
+                //MAIL INVIATA ALL'UTENTE
+                try {
+                    Message message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress("traveltogether.uni@gmail.com"));
+                    InternetAddress[] toAddresses = {
+                            new InternetAddress(email),
+                    };
+                    message.setRecipients(Message.RecipientType.TO, toAddresses);
+                    message.setSubject(oggetto);
+
+                    String htmlBody = "<b>UTENTE:</b> " + nomeCognome + "<br><br><b>EMAIL:</b> " + email + "<br><br><b>MESSAGGIO:</b> " + testoMessaggio +
+                            "<br><br><b>ALLOGGIO:</b> " + acc.getName() + "<br>" + acc.getAddress() + ", " + acc.getHouseNumber() + "<br><br><br><i>Ricevuta della mail inviata da APP TravelTogether</i>";
+
+                    // Crea la parte HTML del messaggio
+                    MimeBodyPart htmlPart = new MimeBodyPart();
+                    htmlPart.setContent(htmlBody, "text/html; charset=utf-8");
+                    Multipart multipart = new MimeMultipart();
+                    multipart.addBodyPart(htmlPart);
+                    message.setContent(multipart);
+
+
+                    Transport.send(message);
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Toast.makeText(this, "Mail INVIATA", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
         }
 
-        //MAIL INVIATA ALL'UTENTE
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("traveltogether.uni@gmail.com"));
-            InternetAddress[] toAddresses = {
-                    new InternetAddress(email),
-            };
-            message.setRecipients(Message.RecipientType.TO,toAddresses);
-            message.setSubject(oggetto);
-
-            String htmlBody = "<b>UTENTE:</b> "+nomeCognome+ "<br><br><b>EMAIL:</b> "+email+"<br><br><b>MESSAGGIO:</b> "+testoMessaggio+
-                    "<br><br><b>ALLOGGIO:</b> "+acc.getName()+"<br>"+acc.getAddress()+", "+acc.getHouseNumber()+"<br><br><br><i>Ricevuta della mail inviata da APP TravelTogether</i>";
-
-            // Crea la parte HTML del messaggio
-            MimeBodyPart htmlPart = new MimeBodyPart();
-            htmlPart.setContent(htmlBody, "text/html; charset=utf-8");
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(htmlPart);
-            message.setContent(multipart);
-
-
-            Transport.send(message);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-
-        Toast.makeText(this, "Mail INVIATA", Toast.LENGTH_SHORT).show();
-        finish();
-       // Intent intent=new Intent(this, Dashboard.class);
-        //startActivity(intent);
 
     }
+
+    public void onBackImageClick(View view) {
+        finish();
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
+    }
+
 }

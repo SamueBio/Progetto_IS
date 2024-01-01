@@ -32,7 +32,7 @@ public class SpecAll extends AppCompatActivity {
     private TextView telefono;
     private TextView sito;
     private TextView email;
-    private TextView inviaRichiesta;
+    private Button inviaRichiesta;
     private ImageView cuore;
     private TextView servizi;
     private TextView lingue;
@@ -95,6 +95,10 @@ public class SpecAll extends AppCompatActivity {
         Intent intent=new Intent(this, InviaRichiesta.class);
         intent.putExtra("alloggio", acc);
         startActivity(intent);
+    }
+
+    public void openReview(){
+
     }
 
     public void onBackImageClick(View view) {
