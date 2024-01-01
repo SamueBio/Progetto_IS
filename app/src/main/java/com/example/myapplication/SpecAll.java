@@ -42,6 +42,7 @@ public class SpecAll extends AppCompatActivity {
     private TextView sito;
     private TextView email;
     private Button inviaRichiesta;
+    private Button nuovaRec;
     private ImageView cuore;
     private TextView servizi;
     private TextView lingue;
@@ -155,6 +156,14 @@ public class SpecAll extends AppCompatActivity {
         back=findViewById(R.id.back);
         backk=findViewById(R.id.back2);
         resultsListView = findViewById(R.id.reviewListView);
+        nuovaRec=findViewById(R.id.nuovaRec);
+
+        nuovaRec.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) { nuovarec(v);
+            }
+        });
+
         Review a=new Review("samuele biondo","questa è una bellissima" +
                 "recensione che è adnata a capo ma non so come verrà fuori" +
                 "sul testo del cell",new Date(2023,11,12),3);
@@ -184,5 +193,11 @@ public class SpecAll extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void nuovarec(View view){
+        Intent intent=new Intent(this, InserisciRecensione.class);
+        intent.putExtra("alloggio", acc);
+        startActivity(intent);
     }
 }

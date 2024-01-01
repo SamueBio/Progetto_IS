@@ -83,6 +83,10 @@
             android:name=".Faq">
 
         </activity>
+        <activity
+            android:name=".InserisciRecensione">
+
+        </activity>
     </application>
 
 
