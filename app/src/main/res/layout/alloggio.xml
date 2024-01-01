@@ -1,85 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    android:background="@color/bg"
+    android:orientation="vertical"
+    android:padding="7dp">
 
-    <ImageButton
-        android:id="@+id/back"
-        android:layout_width="25dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:background="#CFD2F0"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/back"
-        android:clickable="true"
-        android:onClick="onBackImageClick"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="25dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#CFD2F0"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/back"
+            android:clickable="true"
+            android:onClick="onBackImageClick"/>
 
-    <TextView
-        android:id="@+id/back2"
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/accomodation" />
+
+        <ImageView
+            android:id="@+id/pref"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="0dp"
+            app:srcCompat="@drawable/cuore"
+            android:onClick="onHeartIconClick"
+            android:tag="heart_icon_tag"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/back2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="5dp"
+            android:text="NOME: "
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="90dp"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="130dp"
-        android:text="NOME: "
-        android:textSize="20sp"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/nameTextView"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/indirizzo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="5dp"
+            android:text="INDIRIZZO: "
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="35dp"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
-        android:layout_marginLeft="100dp"
-        android:textSize="20sp"/>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/telefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="35dp"
+            android:text="TELEFONO: "
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/telefono2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="35dp"
+            android:textSize="20sp"
+            android:autoLink="phone"/>
+    </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/indirizzo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="210dp"
-        android:text="INDIRIZZO: "
-        android:textSize="20sp"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/locationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="210dp"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/telefono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="290dp"
-        android:text="TELEFONO: "
-        android:textSize="20sp"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/telefono2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="290dp"
-        android:textSize="20sp"
-        android:autoLink="phone"/>
-
-
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="370dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="35dp"
         android:text="EMAIL: "
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -88,50 +133,80 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="35dp"
         android:textSize="20sp"
         android:autoLink="email"/>
 
 
-
-    <TextView
-        android:id="@+id/sito"
+</RelativeLayout>
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="440dp"
-        android:text="SITO: "
-        android:textSize="20sp"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/sito2"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/sito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="35dp"
+            android:text="SITO: "
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/sito2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="35dp"
+            android:textSize="20sp"
+            android:autoLink="web"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="90dp"
-        android:layout_marginTop="440dp"
-        android:textSize="20sp"
-        android:autoLink="web"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/home"
-        android:layout_centerHorizontal="true"
+        <TextView
+            android:id="@+id/servizi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="35dp"
+            android:text="SERVIZI: "
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/servizi2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="35dp"
+            android:textSize="20sp"/>
+    </RelativeLayout>
 
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/accomodation" />
 
-    <ImageView
-        android:id="@+id/pref"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="55dp"
-        android:layout_marginRight="20dp"
-        app:srcCompat="@drawable/cuore"
-        android:onClick="onHeartIconClick"
-        android:tag="heart_icon_tag"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/lingue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="35dp"
+            android:text="LINGUE: "
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/lingue2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="35dp"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/inviaRichiesta"
@@ -139,7 +214,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="50dp"
         android:text="INVIA RICHIESTA"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -148,4 +223,4 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>

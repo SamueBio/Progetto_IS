@@ -651,4 +651,45 @@ public class Accommodation implements Serializable {
         accommodationList = gson.fromJson(responseBody,listType);
         return accommodationList;
     }
+
+    public String getServiziTrue(){
+        String res="";
+        if(isDisablePeopleAccess()) res=res+"Accesso disabili · ";
+        if(isAirConditioning()) res=res+"Aria condizionata · ";
+        if(isPets()) res=res+"Animali ammessi · ";
+        if(isParking()) res=res+"Parcheggio · ";
+        if(isRestaurant()) res=res+"Ristorante · ";
+        if(isCoveredPool()) res=res+"Piscina coperta · ";
+        if(isPool()) res=res+"Piscina · ";
+        if(isLake()) res=res+"Lago · ";
+        if(isSea()) res=res+"Mare · ";
+        if(isFsStation()) res=res+"Stazione FS · ";
+        if(isAirport()) res=res+"Aeroporto · ";
+        if(isHighway()) res=res+"Autostrada · ";
+        if(isFitness()) res=res+"Palestra · ";
+        if(isSauna()) res=res+"Sauna · ";
+        if(isSkiLifts()) res=res+"Skilift · ";
+        if(isThermal()) res=res+"Terme · ";
+        if(isConferenceRoom()) res=res+"Centro conferenze · ";
+        if(isChildrensGames()) res=res+"Area bambini · ";
+        //if(isOutskirts()) res=res+"Periferia · ";
+        //if(isOldTown()) res=res+"Centro storico · ";
+        //if(isHilly()) res=res+"Collinare · ";
+        if(isSolarium()) res=res+"Solarium · ";
+        if(isCountryFair()) res=res+"Sagra · ";
+        if(!res.isEmpty())
+            res = res.substring(0, res.length() - 3);
+        return res;
+    }
+
+    public String getLingueTrue(){
+        String res="Italiano · ";
+        if(isEnglish()) res=res+"Inglese · ";
+        if(isSpanish()) res=res+"Spagnolo · ";
+        if(isGerman()) res=res+"Tedesco · ";
+        if(isFrench()) res=res+"Francese · ";
+        res = res.substring(0, res.length() - 3);
+
+        return res;
+    }
 }

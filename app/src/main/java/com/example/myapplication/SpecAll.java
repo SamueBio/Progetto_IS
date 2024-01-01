@@ -34,6 +34,8 @@ public class SpecAll extends AppCompatActivity {
     private TextView email;
     private TextView inviaRichiesta;
     private ImageView cuore;
+    private TextView servizi;
+    private TextView lingue;
 
     private Accommodation acc;
 
@@ -51,6 +53,8 @@ public class SpecAll extends AppCompatActivity {
         telefono=findViewById(R.id.telefono2);
         email=findViewById(R.id.email2);
         sito=findViewById(R.id.sito2);
+        servizi=findViewById(R.id.servizi2);
+        lingue=findViewById(R.id.lingue2);
         inviaRichiesta = findViewById(R.id.inviaRichiesta);
 
         inviaRichiesta.setOnClickListener(new View.OnClickListener(){
@@ -67,7 +71,18 @@ public class SpecAll extends AppCompatActivity {
         indirizzo.setText(acc.getAddress()+", "+acc.getHouseNumber()+" "+acc.getCap()+" "+acc.getTown());
         telefono.setText(acc.getTelephone());
         email.setText(acc.getEmail());
-        sito.setText(acc.getWebsite());
+        if(acc.getWebsite().isEmpty())
+            sito.setText("  /  ");
+        else
+            sito.setText(acc.getWebsite());
+
+        if(acc.getServiziTrue().isEmpty())
+            servizi.setText("  /  ");
+        else
+            servizi.setText(acc.getServiziTrue());
+
+        lingue.setText(acc.getLingueTrue());
+
     }
 
     public void inviaRic(View view){
@@ -112,5 +127,7 @@ public class SpecAll extends AppCompatActivity {
         }
         acc.setFavourite(!acc.isFavourite());
     }
+
+
 
 }
