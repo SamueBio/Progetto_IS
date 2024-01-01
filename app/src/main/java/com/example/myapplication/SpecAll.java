@@ -70,7 +70,13 @@ public class SpecAll extends AppCompatActivity {
         nome.setText(acc.getName());
         indirizzo.setText(acc.getAddress()+", "+acc.getHouseNumber()+" "+acc.getCap()+" "+acc.getTown());
         telefono.setText(acc.getTelephone());
-        email.setText(acc.getEmail());
+        if(acc.getEmail().isEmpty()) {
+            email.setText("  /  ");
+            inviaRichiesta.setVisibility(View.GONE);
+        }
+        else
+            email.setText(acc.getEmail());
+
         if(acc.getWebsite().isEmpty())
             sito.setText("  /  ");
         else

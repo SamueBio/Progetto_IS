@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import javax.mail.internet.*;
 public class InviaRichiesta extends AppCompatActivity {
 
     private EditText editTextNomeCognome, editTextEmail, editTextOggetto, editTextTestoMessaggio;
+    private TextView aAlloggio;
     private Button buttonInviaRichiesta;
     private Accommodation acc;
     @Override
@@ -42,6 +44,8 @@ public class InviaRichiesta extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextOggetto = findViewById(R.id.editTextOggetto);
         editTextTestoMessaggio = findViewById(R.id.editTextTestoMessaggio);
+        aAlloggio=findViewById(R.id.aAll);
+        aAlloggio.setText(" A: "+acc.getEmail());
         buttonInviaRichiesta = findViewById(R.id.buttonInviaRichiesta);
 
         // Imposta un listener per il pulsante di invio
@@ -83,10 +87,8 @@ public class InviaRichiesta extends AppCompatActivity {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("traveltogether.uni@gmail.com"));
             InternetAddress[] toAddresses = {
-                    new InternetAddress("biondosamuele2btec@gmail.com")
-
-                    //PER INVIARE MAIL AGLI ALLOGGI, SCOMMENTARE LA RIGA SOTTO
-                   // new InternetAddress(acc.getEmail())
+                    new InternetAddress(acc.getEmail())
+                    //new InternetAddress("samuele.biondo.lavoro@gmail.com")
 
             };
             message.setRecipients(Message.RecipientType.TO,toAddresses);
@@ -133,6 +135,7 @@ public class InviaRichiesta extends AppCompatActivity {
         }
 
         Toast.makeText(this, "Mail INVIATA", Toast.LENGTH_SHORT).show();
+        finish();
        // Intent intent=new Intent(this, Dashboard.class);
         //startActivity(intent);
 

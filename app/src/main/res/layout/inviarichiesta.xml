@@ -20,12 +20,23 @@
         android:textColor="#AC0D0D"/>
 
     <TextView
+        android:id="@+id/aAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text=""
+        android:layout_marginTop="50dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <TextView
         android:id="@+id/nomeCognome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="NOME e COGNOME"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="90dp"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
@@ -33,7 +44,7 @@
             android:id="@+id/editTextNomeCognome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="110dp"
             android:hint=""/>
 
     <TextView
@@ -41,8 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="EMAIL"
-        android:layout_marginTop="150dp"
+        android:text="EMAIL PERSONALE"
+        android:layout_marginTop="190dp"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
@@ -50,7 +61,7 @@
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="210dp"
             android:hint=""
             android:inputType="textEmailAddress"/>
 
@@ -60,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="OGGETTO"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="290dp"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
@@ -68,35 +79,43 @@
             android:id="@+id/editTextOggetto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="280dp"
-            android:hint=""/>
-
-    <TextView
-        android:id="@+id/messaggio"
+            android:layout_marginTop="310dp"
+            android:hint=""
+            android:maxLines="2"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:text="TESTO MESSAGGIO"
-        android:layout_marginTop="350dp"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:layout_marginTop="390dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/messaggio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="TESTO MESSAGGIO"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/editTextTestoMessaggio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="380dp"
             android:hint=""
             android:inputType="textMultiLine"
-            android:lines="4"/>
+            android:maxLines="11"/>
 
-    <Button
-        android:id="@+id/buttonInviaRichiesta"
-        android:layout_width="234dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="550dp"
-        android:layout_centerHorizontal="true"
-        android:text="INVIA RICHIESTA"
-        android:textSize="20sp" />
+        <Button
+            android:id="@+id/buttonInviaRichiesta"
+            android:layout_width="234dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:text="INVIA RICHIESTA"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>
