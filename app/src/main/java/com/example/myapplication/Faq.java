@@ -26,6 +26,8 @@ public class Faq extends AppCompatActivity {
     private TextView faq6;
     private TextView faq7;
 
+    private TextView faq8;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +91,15 @@ public class Faq extends AppCompatActivity {
 
             }
         });
+        faq8 = findViewById(R.id.faq8);
+        faq8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open7();
 
+
+            }
+        });
 
         /*
             QUI SETTARE LE VARIE FAQ COME A RIGA 29 E 30
@@ -140,7 +150,15 @@ public class Faq extends AppCompatActivity {
     private void open7(){
         String domanda = "Contatta proprietario alloggio";
         String spiegazione = "All'interno della pagina dell'alloggio di interesse sarà possibile contattare il proprietario " +
-                "selezionando l'email";
+                             "selezionando il pulsante 'invia richiesta' per comunicare tramite email, oppure selezionare il" +
+                "numero di telefeno per effettuare una chiamata";
+        showFAQ(domanda, spiegazione);
+    }
+
+    private void open8(){
+        String domanda = "Visualizzare recensioni";
+        String spiegazione = "All'interno della pagina dell'alloggio di interesse sarà possibile visualizzare " +
+                "altre recensioni, selezionando l'icona del fumetto con stella";
         showFAQ(domanda, spiegazione);
     }
     /*
