@@ -41,13 +41,13 @@ public class Cerca extends AppCompatActivity {
     private EditText geographicArea;
     private EditText provincia;
     private TextView backk;
+    private ImageButton back;
     private TextView nomeAll;
     private TextView inviaRichiesta;
     private Button searchButton;
     private ImageButton home;
     private ImageView cuore;
     private ImageView loading;
-    private ImageButton back;
     private ImageButton filtri;
     private ListView resultsListView;
     private AccomodationAdapter adapterAcc; //adattatore personalizzato per gli alloggi
