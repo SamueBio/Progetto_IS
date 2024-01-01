@@ -93,11 +93,7 @@ public class Cerca extends AppCompatActivity {
         });
     }
 
-    /*
-    * In this popup there aren't:
-    *   otherServices (String field)
-    *
-    * */
+
     //METODO PER GESTIRE I SERVIZI DELLA RICERCA ALLOGGI
     private void showPopup() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
