@@ -170,7 +170,6 @@ public class SpecAll extends AppCompatActivity {
          */
 
 
-
         adapterRev= new ReviewAdapter(SpecAll.this, resultRev);
         resultsListView.setAdapter(adapterRev);
         back.setOnClickListener(new View.OnClickListener(){
@@ -186,5 +185,4 @@ public class SpecAll extends AppCompatActivity {
             }
         });
     }
-
 }
