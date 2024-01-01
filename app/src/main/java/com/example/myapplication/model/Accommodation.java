@@ -585,7 +585,7 @@ public class Accommodation implements Serializable {
 	public JsonObject generateJsonUsername(String username){
 		
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id",0);
+        jsonObject.addProperty("id",id);
         jsonObject.addProperty("name",name);
         jsonObject.addProperty("address","");
         jsonObject.addProperty("cap","");
