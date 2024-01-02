@@ -119,7 +119,10 @@ public class Faq extends AppCompatActivity {
 
     private void open2(){
         String domanda = "Effettuare una ricerca";
-        String spiegazione = "Dalla dashboard, cliccare in basso sull'icona centrale della lente d'ingrandimento per aprire la sezione dedicata alla ricerca degli alloggi";
+        String spiegazione = "Dalla dashboard, cliccare in basso sull'icona centrale della lente d'ingrandimento per " +
+                "aprire la sezione dedicata alla ricerca degli alloggi. Dopo essere entrati nella pagina della ricerca" +
+                "sarà possibile effettuare una ricerca tramite nome e/o città e/o provincia inserendo i dati necessari " +
+                "negli appositi spazi.";
         showFAQ(domanda, spiegazione);
     }
 
@@ -167,11 +170,14 @@ public class Faq extends AppCompatActivity {
     }
 
     private void open9(){
-        String domanda = "Invia richiesta all'alloggio";
-        String spiegazione = "All'interno della pagina dell'alloggio, cliccando su 'INVIA RICHIESTA' per contattare tramite " +
-                "e-mail l'alloggio. In alternativa sarà possibile chiamare la struttura cliccando sul numero di telefono.";
+        String domanda = "Effettuare una recensione";
+        String spiegazione = "All'interno della pagina di un alloggio è possibile effettuare una recensione " +
+                "tramite l'icona con la stellina. Attraverso la lista delle recensioni sarà possibile effettuare " +
+                "una nuova recensione.";
         showFAQ(domanda, spiegazione);
     }
+
+
     /*
         qui creare altre FAQ con open2, open3, e avanti...
 
