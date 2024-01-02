@@ -25,8 +25,8 @@ public class Faq extends AppCompatActivity {
     private TextView faq5;
     private TextView faq6;
     private TextView faq7;
-
     private TextView faq8;
+    private TextView faq9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,17 +87,21 @@ public class Faq extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 open7();
-
-
             }
         });
         faq8 = findViewById(R.id.faq8);
         faq8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                open7();
+                open8();
+            }
+        });
 
-
+        faq9 = findViewById(R.id.faq9);
+        faq9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open9();
             }
         });
 
@@ -159,6 +163,13 @@ public class Faq extends AppCompatActivity {
         String domanda = "Visualizzare recensioni";
         String spiegazione = "All'interno della pagina dell'alloggio di interesse sarà possibile visualizzare " +
                 "altre recensioni, selezionando l'icona del fumetto con stella";
+        showFAQ(domanda, spiegazione);
+    }
+
+    private void open9(){
+        String domanda = "Invia richiesta all'alloggio";
+        String spiegazione = "All'interno della pagina dell'alloggio, cliccando su 'INVIA RICHIESTA' per contattare tramite " +
+                "e-mail l'alloggio. In alternativa sarà possibile chiamare la struttura cliccando sul numero di telefono.";
         showFAQ(domanda, spiegazione);
     }
     /*
