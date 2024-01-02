@@ -120,7 +120,7 @@ public class Faq extends AppCompatActivity {
     private void open2(){
         String domanda = "Effettuare una ricerca";
         String spiegazione = "Dalla dashboard, cliccare in basso sull'icona centrale della lente d'ingrandimento per " +
-                "aprire la sezione dedicata alla ricerca degli alloggi. Dopo essere entrati nella pagina della ricerca" +
+                "aprire la sezione dedicata alla ricerca degli alloggi. Dopo essere entrati nella pagina della ricerca " +
                 "sarà possibile effettuare una ricerca tramite nome e/o città e/o provincia inserendo i dati necessari " +
                 "negli appositi spazi.";
         showFAQ(domanda, spiegazione);
@@ -141,7 +141,7 @@ public class Faq extends AppCompatActivity {
 
     private void open5(){
         String domanda = "Visualizzazione alloggi preferiti";
-        String spiegazione = "Nella schermata home, attraverso l'icona a forma di cuore in basso a sinistra si può accedere alla pagina dedicata agli alloggi preferiti " +
+        String spiegazione = "Nella schermata home, attraverso l'icona a forma di cuore in basso a sinistra si accede alla pagina dedicata agli alloggi preferiti " +
                 "aggiungti durante la ricerca";
         showFAQ(domanda, spiegazione);
     }
@@ -157,23 +157,22 @@ public class Faq extends AppCompatActivity {
     private void open7(){
         String domanda = "Contatta proprietario alloggio";
         String spiegazione = "All'interno della pagina dell'alloggio di interesse sarà possibile contattare il proprietario " +
-                             "selezionando il pulsante 'invia richiesta' per comunicare tramite email, oppure selezionare il" +
-                "numero di telefeno per effettuare una chiamata";
+                             "selezionando il pulsante 'INVIA RICHIESTA' per comunicare tramite email oppure selezionare il " +
+                "numero di telefOno per effettuare una chiamata";
         showFAQ(domanda, spiegazione);
     }
 
     private void open8(){
         String domanda = "Visualizzare recensioni";
         String spiegazione = "All'interno della pagina dell'alloggio di interesse sarà possibile visualizzare " +
-                "altre recensioni, selezionando l'icona del fumetto con stella";
+                "le recensioni, selezionando l'icona del fumetto con stella";
         showFAQ(domanda, spiegazione);
     }
 
     private void open9(){
         String domanda = "Effettuare una recensione";
-        String spiegazione = "All'interno della pagina di un alloggio è possibile effettuare una recensione " +
-                "tramite l'icona con la stellina. Attraverso la lista delle recensioni sarà possibile effettuare " +
-                "una nuova recensione.";
+        String spiegazione = "Dopo aver aperto la pagina delle recensioni di una determinata struttura, sarà possibile " +
+                "crearne una cliccando sul pulsante 'NUOVA RECENSIONE' e successivamente selezionare quante stelle e inserire il testo della recensione" ;
         showFAQ(domanda, spiegazione);
     }
 
