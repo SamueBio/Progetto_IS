@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="campi_array">
+        <item>TIPOLOGIA</item>
+        <item>AGRITURISMO</item>
+        <item>BED AND BREAKFAST</item>
+        <item>FORESTERIA</item>
+        <item>CAMPEGGIO</item>
+        <item>AFFITTACAMERE</item>
+        <item>"ALTRA RICETTIVITA'" </item>
+        <item>APPARTAMENTO</item>
+        <item>ALBERGO</item>
+        <item>RESIDENCE</item>
+        <item>RIFUGIO</item>
+        <item>COUNTRY HOUSE</item>
+    </string-array>
+</resources>

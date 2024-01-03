@@ -52,7 +52,7 @@ public class InserisciRecensione extends AppCompatActivity {
     private Button recensisci;
     private Accommodation acc;
     private int stars=0;
-    private String user=""+GlobalData.getInstance().getNome()+" "+GlobalData.getInstance().getCognome();
+    private String user=GlobalData.getInstance().getUsername();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

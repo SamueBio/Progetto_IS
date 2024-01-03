@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -52,6 +54,8 @@ public class Cerca extends AppCompatActivity {
     private ArrayList<Accommodation> resultAcc;
     private AlertDialog alertDialog;
     private int pos;
+    private Spinner spinner;
+    private String tipologia="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +93,35 @@ public class Cerca extends AppCompatActivity {
                 showPopup();
             }
         });
+
+        spinner = findViewById(R.id.tipologia);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.campi_array,
+                android.R.layout.simple_spinner_item
+        );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Azioni da eseguire quando un elemento è selezionato
+                String selectedField = parentView.getItemAtPosition(position).toString();
+                tipologia=selectedField;
+                //Toast.makeText(Cerca.this, "Campo selezionato: " + selectedField, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Azioni da eseguire quando nessun elemento è selezionato
+            }
+
+        });
+
+
     }
 
 
@@ -465,6 +498,7 @@ public class Cerca extends AppCompatActivity {
         accommodation.setName(nomeSearch.getText().toString().toUpperCase().trim());
         accommodation.setTown(geographicArea.getText().toString().toUpperCase().trim());
         accommodation.setProvince(provincia.getText().toString().toUpperCase().trim());
+        accommodation.setType(tipologia);
 
         Call<ResponseBody> call = accommodationApi.search(accommodation.generateJsonUsername(GlobalData.getInstance().getUsername()));
         setContentView(R.layout.cerca2);
