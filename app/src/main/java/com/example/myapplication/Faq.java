@@ -120,22 +120,21 @@ public class Faq extends AppCompatActivity {
     private void open2(){
         String domanda = "Effettuare una ricerca";
         String spiegazione = "Dalla dashboard, cliccare in basso sull'icona centrale della lente d'ingrandimento per " +
-                "aprire la sezione dedicata alla ricerca degli alloggi. Dopo essere entrati nella pagina della ricerca " +
-                "sarà possibile effettuare una ricerca tramite nome e/o città e/o provincia inserendo i dati necessari " +
-                "negli appositi spazi.";
+                "aprire la sezione dedicata alla ricerca degli alloggi.\nDopo essere entrati nella pagina della ricerca " +
+                "sarà possibile effettuarne una selezionando la TIPOLOGIA oppure inserendo da tastiera uno o più dei seguenti campi:\n - nome\n - città\n - provincia";
         showFAQ(domanda, spiegazione);
     }
 
     private void open3(){
         String domanda = "Ricerca tramite servizi";
-        String spiegazione = "Nella sezione dedicata alla ricerca, cliccare sull'opzione 'FILTRI', dopodiché selezionare i servizi dedicati per la ricerca";
+        String spiegazione = "Nella sezione dedicata alla ricerca, cliccare sull'opzione 'FILTRI' e successivamente selezionare i servizi desiderati";
         showFAQ(domanda, spiegazione);
     }
 
     private void open4(){
         String domanda = "Aggiunta di un alloggio ai preferiti";
         String spiegazione = "Dopo aver effettuato una ricerca, accanto al nome dell'alloggio è possibile cliccare sull'icona del cuore per aggiungere quell'alloggio" +
-                "ai preferiti. Questa azione può essere effettuata anche all'interno della pagina dell'alloggio stesso, con l'icona del cuore in alto a destra.";
+                "ai preferiti.\nQuesta azione può essere effettuata anche all'interno della pagina dell'alloggio stesso, sempre cliccando sull'icona del cuore in alto a destra.";
         showFAQ(domanda, spiegazione);
     }
 
@@ -156,9 +155,8 @@ public class Faq extends AppCompatActivity {
 
     private void open7(){
         String domanda = "Contatta proprietario alloggio";
-        String spiegazione = "All'interno della pagina dell'alloggio di interesse sarà possibile contattare il proprietario " +
-                             "selezionando il pulsante 'INVIA RICHIESTA' per comunicare tramite email oppure selezionare il " +
-                "numero di telefOno per effettuare una chiamata";
+        String spiegazione = "All'interno della pagina dell'alloggio di interesse sarà possibile contattare il proprietario in due modi:" +
+                             "\n 1. Attraverso il pulsante 'INVIA RICHIESTA' per comunicare tramite email\n 2. Cliccando sul numero di telefono per effettuare una chiamata";
         showFAQ(domanda, spiegazione);
     }
 
