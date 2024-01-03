@@ -166,21 +166,6 @@ public class SpecAll extends AppCompatActivity {
             }
         });
 
-        /*Review a=new Review("samuele biondo",3888,"questa è una bellissima" +
-                "recensione che è adnata a capo ma non so come verrà fuori" +
-                "sul testo del cell",new Date(2023,11,12),3);
-
-        resultRev.add(a);*/
-
-        /*
-        *
-        * INSERIRE QUA CHIAMATA API PER SETTARE LA LISTA CORRETTA DI RECENSIONI
-        * variabile lista risultati --> resultRev
-        *
-        *
-         */
-
-
         RetrofitService retrofitService = new RetrofitService();
         ReviewApi reviewApi = retrofitService.getRetrofit().create(ReviewApi.class);
 

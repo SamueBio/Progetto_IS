@@ -151,15 +151,6 @@ public class InserisciRecensione extends AppCompatActivity {
     private void nuovaRec() {
         String rec = recensione.getText().toString();
 
-        /*
-        *  IMPLEMENTARE QUI IL SALVATAGGIO DELLA RECENSIONE SUL DB
-        * variabili necessarie:
-        * --> rec: string  stringa della recensione
-        * --> user: string   nome e cognome utente loggato
-        * --> star: int   numero stelle selezionate dall'utente
-        *
-        *
-         */
         Review review = new Review(GlobalData.getInstance().getUsername(), acc.getId(),rec,stars, null);
         RetrofitService retrofitService = new RetrofitService();
         ReviewApi reviewApi = retrofitService.getRetrofit().create(ReviewApi.class);
@@ -181,8 +172,9 @@ public class InserisciRecensione extends AppCompatActivity {
                 Toast.makeText(InserisciRecensione.this,"RECENSIONE NON EFFETTUATA",(int)3).show();
             }
         });
-        //Toast.makeText(this,"RECENSIONE EFFETTUATA",(int)3).show();
-        finish();
+        Intent intent = new Intent(this, SpecAll.class);
+        intent.putExtra("alloggio", acc);
+        startActivity(intent);
     }
 
     public void onBackImageClick(View view) {

@@ -54,7 +54,9 @@ public class ReviewAdapter extends BaseAdapter {
         nome.setText(review.getUsername());
         recensione.setText(review.getText());
         //Date è deprecato
-        data.setText(""+review.getDate().getDate()+"/"+review.getDate().getMonth()+"/"+review.getDate().getYear());
+        String a=review.getDate().toString();
+        a = a.substring(0, a.length() - 12);
+        data.setText(a);
 
         ImageView star1 = convertView.findViewById(R.id.star1);
         ImageView star2 = convertView.findViewById(R.id.star2);
