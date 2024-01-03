@@ -175,18 +175,6 @@ public class Faq extends AppCompatActivity {
     }
 
 
-    /*
-        qui creare altre FAQ con open2, open3, e avanti...
-
-        delle possibili FAQ sono:
-            ricerca per servizi come funziona
-            visualizzazione preferiti
-            ecc
-            ecc
-            ecc
-
-     */
-
 
 
 
