@@ -26,7 +26,9 @@ import com.example.myapplication.model.Favourite;
 import com.example.myapplication.model.Review;
 import com.example.myapplication.retrofit.FavouritesApi;
 import com.example.myapplication.retrofit.RetrofitService;
+import com.example.myapplication.retrofit.ReviewApi;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -164,11 +166,11 @@ public class SpecAll extends AppCompatActivity {
             }
         });
 
-        Review a=new Review("samuele biondo","questa è una bellissima" +
+        /*Review a=new Review("samuele biondo",3888,"questa è una bellissima" +
                 "recensione che è adnata a capo ma non so come verrà fuori" +
                 "sul testo del cell",new Date(2023,11,12),3);
 
-        resultRev.add(a);
+        resultRev.add(a);*/
 
         /*
         *
@@ -179,8 +181,33 @@ public class SpecAll extends AppCompatActivity {
          */
 
 
-        adapterRev= new ReviewAdapter(SpecAll.this, resultRev);
-        resultsListView.setAdapter(adapterRev);
+        RetrofitService retrofitService = new RetrofitService();
+        ReviewApi reviewApi = retrofitService.getRetrofit().create(ReviewApi.class);
+
+        Call<ResponseBody> call = reviewApi.getReviewsByAccommodation(acc.generateJson());
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String responseBody = response.body().string();
+                        resultRev = (ArrayList<Review>) Review.parseString(responseBody);
+                        adapterRev = new ReviewAdapter(SpecAll.this, resultRev);
+                        resultsListView.setAdapter(adapterRev);
+                    }
+                    catch (IOException e){
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

@@ -15,7 +15,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.model.Accommodation;
+import com.example.myapplication.model.Review;
+import com.example.myapplication.retrofit.RetrofitService;
+import com.example.myapplication.retrofit.ReviewApi;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -29,6 +34,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InserisciRecensione extends AppCompatActivity {
 
@@ -150,8 +160,28 @@ public class InserisciRecensione extends AppCompatActivity {
         *
         *
          */
+        Review review = new Review(GlobalData.getInstance().getUsername(), acc.getId(),rec,stars, null);
+        RetrofitService retrofitService = new RetrofitService();
+        ReviewApi reviewApi = retrofitService.getRetrofit().create(ReviewApi.class);
 
-        Toast.makeText(this,"RECENSIONE EFFETTUATA",(int)3).show();
+        Call<ResponseBody> call = reviewApi.save(review.generateJson());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(InserisciRecensione.this,"RECENSIONE EFFETTUATA",(int)3).show();
+                }
+                else{
+                    Toast.makeText(InserisciRecensione.this,"RECENSIONE NON EFFETTUATA",(int)3).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(InserisciRecensione.this,"RECENSIONE NON EFFETTUATA",(int)3).show();
+            }
+        });
+        //Toast.makeText(this,"RECENSIONE EFFETTUATA",(int)3).show();
         finish();
     }
 

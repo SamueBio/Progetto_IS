@@ -1,12 +1,16 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+
 import com.example.myapplication.model.Review;
 import java.util.ArrayList;
 
@@ -35,6 +39,7 @@ public class ReviewAdapter extends BaseAdapter {
         return position;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -47,8 +52,9 @@ public class ReviewAdapter extends BaseAdapter {
         TextView recensione = convertView.findViewById(R.id.recensione);
         TextView data = convertView.findViewById(R.id.data);
         nome.setText(review.getUsername());
-        recensione.setText(review.getReview());
-        data.setText(""+review.getData().getDate()+"/"+review.getData().getMonth()+"/"+review.getData().getYear());
+        recensione.setText(review.getText());
+        //Date è deprecato
+        data.setText(""+review.getDate().getDate()+"/"+review.getDate().getMonth()+"/"+review.getDate().getYear());
 
         ImageView star1 = convertView.findViewById(R.id.star1);
         ImageView star2 = convertView.findViewById(R.id.star2);

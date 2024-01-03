@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 @Entity
 @Table(name="reviews")
@@ -19,18 +21,24 @@ public class Review {
     @Column(name = "stars")
     private int stars;
     @Column(name="date")
-    private Date date;
+    private Timestamp date;
 
     public Review(){super();}
 
-    public Review(String username, int accommodation, String text, int stars, Date date) {
+    /*public Review(String username, int accommodation, String text, int stars){
+        this.username = username;
+        this.accommodation = accommodation;
+        this.text = text;
+        this.stars = stars;
+    }*/
+
+    public Review(String username, int accommodation, String text, int stars, Timestamp date) {
         this.username = username;
         this.accommodation = accommodation;
         this.text = text;
         this.stars = stars;
         this.date = date;
     }
-
     public String getUsername() {
         return username;
     }
@@ -63,11 +71,11 @@ public class Review {
         this.stars = stars;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date){
         this.date = date;
     }
 }
