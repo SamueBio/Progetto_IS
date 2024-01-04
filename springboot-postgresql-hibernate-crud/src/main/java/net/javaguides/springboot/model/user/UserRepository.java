@@ -27,8 +27,11 @@ public interface UserRepository extends CrudRepository<User, String>{
     boolean checkPassword(@Param("username") String username, @Param("pswToCheck") String pswToCheck);
     @Modifying
     @Transactional
-    @Query(value = "UPDATE users SET first_name = :#{#user.firstName}, last_name = :#{#user.lastName}, email = :#{#user.email}, password= :#{#user.password} WHERE username = :#{#user.username} ",nativeQuery = true)
+    @Query(value = "UPDATE users SET first_name = :#{#user.firstName}, last_name = :#{#user.lastName}, email = :#{#user.email} WHERE username = :#{#user.username} ",nativeQuery = true)
     void updateValues(@Param("user") User user);
 
-
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE users SET password= :#{#user.password} WHERE username = :#{#user.username} ",nativeQuery = true)
+    void updatePassword(@Param("user") User user);
 }

@@ -29,6 +29,8 @@ public class UserDao {
 	}
 
 	public void updateValues(User user){userRepository.updateValues(user);}
+
+	public void updatePassword(User user){userRepository.updatePassword(user);}
 	
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<>();

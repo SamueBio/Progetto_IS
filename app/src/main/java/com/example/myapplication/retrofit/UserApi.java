@@ -32,4 +32,10 @@ public interface UserApi {
 
     @POST("/Users/login")
     Call<ResponseBody> login(@Body JsonObject login);
+
+    @POST("/Users/update-values")
+    Call<ResponseBody> updateValues(@Body JsonObject user);
+
+    @POST("/Users/update-password")
+    Call<ResponseBody> updatePassword(@Body JsonObject user);
 }

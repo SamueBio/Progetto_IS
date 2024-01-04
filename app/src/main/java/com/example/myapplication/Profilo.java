@@ -17,6 +17,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.crypto.CryptoUtils;
+import com.example.myapplication.model.User;
+import com.example.myapplication.retrofit.RetrofitService;
+import com.example.myapplication.retrofit.UserApi;
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Profilo extends AppCompatActivity {
 
@@ -120,14 +131,13 @@ public class Profilo extends AppCompatActivity {
         salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                 *
-                 *
-                 * AGGIORNA QUI IL NUOVO NOME PER L'UTENTE LOGGATO
-                 * variabile dove è salvato il nome --> "nome"
-                 *
-                 *
-                 */
+                String nameToUpdate = String.valueOf(nome.getText());
+                User userToUpdate = new User(GlobalData.getInstance().getUsername(),
+                                            nameToUpdate,
+                                            GlobalData.getInstance().getCognome(),
+                                            GlobalData.getInstance().getMail(),"");
+                updateValues(userToUpdate);
+                
                 alertDialog.dismiss();
             }
         });
@@ -145,14 +155,13 @@ public class Profilo extends AppCompatActivity {
         salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                 *
-                 *
-                 * AGGIORNA QUI IL NUOVO COGNOME PER L'UTENTE LOGGATO
-                 * variabile dove è salvato il cognome --> "cognome"
-                 *
-                 *
-                 */
+
+                String lastNameToUpdate = String.valueOf(cognome.getText());
+                User userToUpdate = new User(GlobalData.getInstance().getUsername(),
+                        GlobalData.getInstance().getNome(),
+                        lastNameToUpdate,
+                        GlobalData.getInstance().getMail(),"");
+                updateValues(userToUpdate);
                 alertDialog.dismiss();
             }
         });
@@ -169,14 +178,13 @@ public class Profilo extends AppCompatActivity {
         salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                 *
-                 *
-                 * AGGIORNA QUI LA NUOVA MAIL PER L'UTENTE LOGGATO
-                 * variabile dove è salvato la nuova mail --> "mail"
-                 *
-                 *
-                 */
+
+                String mailToUpdate = String.valueOf(mail.getText());
+                User userToUpdate = new User(GlobalData.getInstance().getUsername(),
+                        GlobalData.getInstance().getNome(),
+                        GlobalData.getInstance().getCognome(),
+                        mailToUpdate,"");
+                updateValues(userToUpdate);
                 alertDialog.dismiss();
             }
         });
@@ -196,30 +204,62 @@ public class Profilo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //if(verifyPass(passatt.getText().toString())==false)
-                if(true)
-                    Toast.makeText(Profilo.this, "Password attuale sbagliata", Toast.LENGTH_SHORT).show();
-                else{
-                    if((isPasswordSecure(nuovapass.getText().toString())&&isPasswordSecure(checknuovapass.getText().toString()))){
-                        if(nuovapass.getText().toString().equals(checknuovapass.getText().toString())) {
-                            String password = CryptoUtils.hashPassword(nuovapass.getText().toString());
+                RetrofitService retrofitService = new RetrofitService();
+                UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
+                String hashedPassword = CryptoUtils.hashPassword(String.valueOf(passatt.getText()));
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("username", GlobalData.getInstance().getUsername());
+                jsonObject.addProperty("password", hashedPassword);
 
-                            /*
-                             *
-                             *
-                             * AGGIORNA QUI LA NUOVA PASSWORD PER L'UTENTE LOGGATO
-                             * variabile da salvare già con l'HASH --> "password"
-                             *
-                             *
-                             */
-                            alertDialog.dismiss();
+                Call<ResponseBody> call = userApi.login(jsonObject);
 
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if((isPasswordSecure(nuovapass.getText().toString())&&isPasswordSecure(checknuovapass.getText().toString()))){
+                            if(nuovapass.getText().toString().equals(checknuovapass.getText().toString())) {
+                                String password = CryptoUtils.hashPassword(nuovapass.getText().toString());
+
+                                User userToUpdate = new User(GlobalData.getInstance().getUsername(),
+                                        GlobalData.getInstance().getNome(),
+                                        GlobalData.getInstance().getCognome(),
+                                        GlobalData.getInstance().getMail(),
+                                        password);
+                                RetrofitService retrofitService2 = new RetrofitService();
+                                UserApi userApi2 = retrofitService2.getRetrofit().create(UserApi.class);
+
+                                Call<ResponseBody> call2 = userApi2.updatePassword(userToUpdate.generateJson());
+                                call2.enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        if(response.isSuccessful()){
+                                            Toast.makeText(Profilo.this,"Update riuscito",Toast.LENGTH_SHORT).show();
+                                        }
+                                        else{
+                                            Toast.makeText(Profilo.this,"Update fallito",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        Toast.makeText(Profilo.this,"Update fallito",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                alertDialog.dismiss();
+
+                            }else{
+                                Toast.makeText(Profilo.this, "PASSWORD NON UGUALI", Toast.LENGTH_SHORT).show();
+                            }
                         }else{
-                            Toast.makeText(Profilo.this, "PASSWORD NON UGUALI", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Profilo.this, "REQUISITI NON RISPETTATI", Toast.LENGTH_SHORT).show();
                         }
-                    }else{
-                        Toast.makeText(Profilo.this, "REQUISITI NON RISPETTATI", Toast.LENGTH_SHORT).show();
                     }
-                }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(Profilo.this, "Password attuale sbagliata", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         alertDialog = dialogBuilder.create();
@@ -229,6 +269,32 @@ public class Profilo extends AppCompatActivity {
 
     private static boolean isPasswordSecure(String password) {
         return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&+-])[A-Za-z\\d@$!%*?&+-]{8,}$");
+    }
+
+    private void updateValues(User userToUpdate){
+        RetrofitService retrofitService = new RetrofitService();
+        UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
+
+        Call<ResponseBody> call = userApi.updateValues(userToUpdate.generateJson());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    GlobalData.getInstance().setNome(userToUpdate.getFirstName());
+                    GlobalData.getInstance().setCognome(userToUpdate.getLastName());
+                    GlobalData.getInstance().setMail(userToUpdate.getEmail());
+                    Toast.makeText(Profilo.this,"Update riuscito",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(Profilo.this,"Update fallito",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(Profilo.this,"Update fallito",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
