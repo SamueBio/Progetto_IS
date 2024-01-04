@@ -98,7 +98,7 @@ public class Registrazione extends AppCompatActivity {
     }
 
     private static boolean isPasswordSecure(String password) {
-        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&+-])[A-Za-z\\d@$!%*?&+-]{8,}$");
     }
 
     boolean checkDataEntered() {

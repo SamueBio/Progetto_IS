@@ -48,11 +48,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"
         android:text="NOME"
-
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -64,7 +63,7 @@
         android:hint=""
         android:inputType="none"
         android:editable="false"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="180dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"/>
 
@@ -73,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="260dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"
         android:text="COGNOME"
@@ -85,7 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="290dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"
         android:hint=""
@@ -97,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="370dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"
         android:text="EMAIL"
@@ -110,10 +109,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:hint=""
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="400dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"
         android:inputType="none"
+        android:textSize="17sp"
         android:editable="false"/>
 
     <TextView
@@ -121,7 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="440dp"
+        android:layout_marginTop="480dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="90dp"
         android:text="PASSWORD"
@@ -136,7 +136,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="280dp"
         android:background="#CFD2F0"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/compose" />
@@ -148,7 +148,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="390dp"
         android:background="#CFD2F0"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/compose" />
@@ -160,7 +160,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="500dp"
         android:background="#CFD2F0"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/compose" />
@@ -173,12 +173,12 @@
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="170dp"
         android:background="#CFD2F0"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/compose" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <!--<com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -195,7 +195,20 @@
             android:inputType="none"
             android:editable="false"
             android:hint="" />
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>-->
 
+
+    <TextView
+        android:id="@+id/password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="515dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="90dp"
+        android:inputType="textPassword"
+        android:textSize="20dp"
+        android:editable="false"
+        />
 
 </RelativeLayout>

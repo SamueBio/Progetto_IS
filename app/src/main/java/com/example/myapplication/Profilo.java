@@ -10,9 +10,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.crypto.CryptoUtils;
 
 public class Profilo extends AppCompatActivity {
 
@@ -51,7 +55,7 @@ public class Profilo extends AppCompatActivity {
         cognome.setText(cognomee);
         EditText mail = findViewById(R.id.email2);
         mail.setText(maill);
-        EditText pw = findViewById(R.id.editTextPassword);
+        TextView pw = findViewById(R.id.password2);
         pw.setText(password);
 
         home = (ImageButton) findViewById(R.id.house);
@@ -119,10 +123,14 @@ public class Profilo extends AppCompatActivity {
         salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Ottieni lo stato delle caselle di controllo e gestisci di conseguenza
-                // Esegui azioni in base alle selezioni dell'utente
-                // ...
-                // Chiudi il popup
+                /*
+                 *
+                 *
+                 * AGGIORNA QUI IL NUOVO NOME PER L'UTENTE LOGGATO
+                 * variabile dove è salvato il nome --> "nome"
+                 *
+                 *
+                 */
                 alertDialog.dismiss();
             }
         });
@@ -135,15 +143,19 @@ public class Profilo extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.cognomemod, null);
         dialogBuilder.setView(dialogView);
-        final EditText nome = dialogView.findViewById(R.id.cognome2);
+        final EditText cognome = dialogView.findViewById(R.id.cognome2);
         Button salva = dialogView.findViewById(R.id.salva);
         salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Ottieni lo stato delle caselle di controllo e gestisci di conseguenza
-                // Esegui azioni in base alle selezioni dell'utente
-                // ...
-                // Chiudi il popup
+                /*
+                 *
+                 *
+                 * AGGIORNA QUI IL NUOVO COGNOME PER L'UTENTE LOGGATO
+                 * variabile dove è salvato il cognome --> "cognome"
+                 *
+                 *
+                 */
                 alertDialog.dismiss();
             }
         });
@@ -155,15 +167,19 @@ public class Profilo extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.mailmod, null);
         dialogBuilder.setView(dialogView);
-        final EditText nome = dialogView.findViewById(R.id.mail2);
+        final EditText mail = dialogView.findViewById(R.id.mail2);
         Button salva = dialogView.findViewById(R.id.salva);
         salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Ottieni lo stato delle caselle di controllo e gestisci di conseguenza
-                // Esegui azioni in base alle selezioni dell'utente
-                // ...
-                // Chiudi il popup
+                /*
+                 *
+                 *
+                 * AGGIORNA QUI LA NUOVA MAIL PER L'UTENTE LOGGATO
+                 * variabile dove è salvato la nuova mail --> "mail"
+                 *
+                 *
+                 */
                 alertDialog.dismiss();
             }
         });
@@ -175,19 +191,47 @@ public class Profilo extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.pw, null);
         dialogBuilder.setView(dialogView);
-        final EditText nome = dialogView.findViewById(R.id.pw2);
+        final EditText passatt = dialogView.findViewById(R.id.passatt);
+        final EditText nuovapass = dialogView.findViewById(R.id.nuovapass);
+        final EditText checknuovapass = dialogView.findViewById(R.id.checknuovapass);
         Button salva = dialogView.findViewById(R.id.salva);
         salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Ottieni lo stato delle caselle di controllo e gestisci di conseguenza
-                // Esegui azioni in base alle selezioni dell'utente
-                // ...
-                // Chiudi il popup
-                alertDialog.dismiss();
+                if(!passatt.getText().toString().equals(GlobalData.getInstance().getPassword()))
+                    Toast.makeText(Profilo.this, "Password attuale sbagliata", Toast.LENGTH_SHORT).show();
+                else{
+                    if((isPasswordSecure(nuovapass.getText().toString())&&isPasswordSecure(checknuovapass.getText().toString()))){
+                        if(nuovapass.getText().toString().equals(checknuovapass.getText().toString())) {
+                            String password = CryptoUtils.hashPassword(nuovapass.getText().toString());
+
+                            /*
+                             *
+                             *
+                             * AGGIORNA QUI LA NUOVA PASSWORD PER L'UTENTE LOGGATO
+                             * variabile da salvare già con l'HASH --> "password"
+                             *
+                             *
+                             */
+                            alertDialog.dismiss();
+
+                        }else{
+                            Toast.makeText(Profilo.this, "PASSWORD NON UGUALI", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toast.makeText(Profilo.this, "REQUISITI NON RISPETTATI", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
         alertDialog = dialogBuilder.create();
         alertDialog.show();
     }
+
+
+    private static boolean isPasswordSecure(String password) {
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&+-])[A-Za-z\\d@$!%*?&+-]{8,}$");
+    }
+
+
 }

@@ -11,21 +11,78 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Inserisci nuova password:"
+        android:text="Password attuale:"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/pw2"
+        android:id="@+id/passatt"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-
         android:hint=""
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         />
+
+    <TextView
+        android:id="@+id/pw3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Nuova password:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="100dp"/>
+
+    <EditText
+        android:id="@+id/nuovapass"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:hint=""
+        android:layout_marginTop="130dp"
+        />
+
+
+    <TextView
+        android:id="@+id/pw4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Conferma nuova password:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="200dp" />
+
+    <EditText
+        android:id="@+id/checknuovapass"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:hint=""
+        android:layout_marginTop="230dp"
+        />
+
+
+    <TextView
+        android:id="@+id/requisiti"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="La password deve essere:\n - Lunghezza minima di 8 caratteri\n - Almeno 1 lettera minuscola\n - Almeno 1 lettera maiuscola\n - Almeno 1 carattere numerico\n - Almeno 1 carattere speciale ( @ $ ! % * ? + - )"
+        android:textSize="15sp"
+        android:textColor="#4F4F50"
+        android:layout_marginTop="300dp" />
+
 
 
     <Button
@@ -33,7 +90,7 @@
         android:layout_width="176dp"
         android:layout_height="63dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="450dp"
         android:text="SALVA"
         android:textSize="20sp"
         android:textStyle="bold" />
