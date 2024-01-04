@@ -50,7 +50,7 @@ public class SpecAll extends AppCompatActivity {
     private TextView lingue;
     private TextView backk;
     private ImageButton back;
-    private Accommodation acc;
+    private Accommodation acc, alloggioRic;
     private ListView resultsListView;
     private ReviewAdapter adapterRev;
     private ArrayList<Review> resultRev;
@@ -82,6 +82,7 @@ public class SpecAll extends AppCompatActivity {
 
         Intent intent = getIntent();
         acc = (Accommodation) intent.getSerializableExtra("alloggio");
+        alloggioRic = (Accommodation) intent.getSerializableExtra("alloggioRicerca");
         pref = intent.getBooleanExtra("pref", false);
         if(acc.isFavourite())
             cuore.setImageResource(R.drawable.cuore_si);
@@ -123,11 +124,11 @@ public class SpecAll extends AppCompatActivity {
         }
         else{
             intent = new Intent(SpecAll.this, Cerca.class);
-            intent.putExtra("alloggioAgg", acc);
+            //intent.putExtra("alloggioAgg", acc);
+            intent.putExtra("alloggioRicerca", alloggioRic);
             intent.putExtra("cerca", true);
-            intent.putExtra("pref",false);
-            setResult(RESULT_OK, intent);
-            finish();
+            startActivity(intent);
+
         }
 
 
@@ -290,6 +291,7 @@ public class SpecAll extends AppCompatActivity {
     private void gotoSpec(Accommodation alloggio){
         Intent intent=new Intent(SpecAll.this, SpecAll.class);
         intent.putExtra("alloggio", alloggio);
+        intent.putExtra("alloggioRicerca", alloggioRic);
         intent.putExtra("pref", pref);
         startActivity(intent);
     }

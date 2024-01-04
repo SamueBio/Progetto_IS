@@ -63,65 +63,72 @@ public class Cerca extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.cerca);
 
-        // Inizializza i componenti dell'interfaccia utente
-        nomeSearch = findViewById(R.id.nome);
-        searchButton = findViewById(R.id.searchButton);
-        filtri= findViewById(R.id.filtri);
-        geographicArea = findViewById(R.id.geographicArea);
-        provincia = findViewById(R.id.provincia);
-        home = (ImageButton) findViewById(R.id.house);
+        Intent intent = getIntent();
+        Accommodation accc = (Accommodation) intent.getSerializableExtra("alloggioRicerca");
+        boolean check = intent.getBooleanExtra("cerca", false);
+        if(check){
+            performSearch(accc);
+        }else{
+            // Inizializza i componenti dell'interfaccia utente
+            nomeSearch = findViewById(R.id.nome);
+            searchButton = findViewById(R.id.searchButton);
+            filtri= findViewById(R.id.filtri);
+            geographicArea = findViewById(R.id.geographicArea);
+            provincia = findViewById(R.id.provincia);
+            home = (ImageButton) findViewById(R.id.house);
 
-        // Inizializza l'adattatore con la lista completa degli alloggi
-        adapterAcc = new AccomodationAdapter(this, resultAcc);
+            // Inizializza l'adattatore con la lista completa degli alloggi
+            adapterAcc = new AccomodationAdapter(this, resultAcc);
 
-        // Gestisci il clic del pulsante di ricerca
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                performSearch();
-            }
-        });
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDashboard();
-            }
-        });
-        filtri.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                showPopup();
-            }
-        });
+            // Gestisci il clic del pulsante di ricerca
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    performSearch();
+                }
+            });
+            home.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openDashboard();
+                }
+            });
+            filtri.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    showPopup();
+                }
+            });
 
-        spinner = findViewById(R.id.tipologia);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.campi_array,
-                android.R.layout.simple_spinner_item
-        );
+            spinner = findViewById(R.id.tipologia);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                    this,
+                    R.array.campi_array,
+                    android.R.layout.simple_spinner_item
+            );
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Azioni da eseguire quando un elemento è selezionato
-                String selectedField = parentView.getItemAtPosition(position).toString();
-                tipologia=selectedField;
-                //Toast.makeText(Cerca.this, "Campo selezionato: " + selectedField, Toast.LENGTH_SHORT).show();
-            }
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    // Azioni da eseguire quando un elemento è selezionato
+                    String selectedField = parentView.getItemAtPosition(position).toString();
+                    tipologia=selectedField;
+                    //Toast.makeText(Cerca.this, "Campo selezionato: " + selectedField, Toast.LENGTH_SHORT).show();
+                }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Azioni da eseguire quando nessun elemento è selezionato
-            }
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // Azioni da eseguire quando nessun elemento è selezionato
+                }
 
-        });
+            });
 
 
+        }
     }
 
 
@@ -546,6 +553,7 @@ public class Cerca extends AppCompatActivity {
                                     Intent intent=new Intent(Cerca.this, SpecAll.class);
                                     // Passaggio dell'alloggio attraverso l'Intent
                                     intent.putExtra("alloggio", alloggioSelezionato);
+                                    intent.putExtra("alloggioRicerca", accommodation);
                                     intent.putExtra("pref", false);
                                     // Avvio dell'attività successiva
                                     startActivityForResult(intent, 123);
@@ -583,97 +591,95 @@ public class Cerca extends AppCompatActivity {
 
     }
 
+
     @SuppressLint("MissingInflatedId")
+    private void performSearch(Accommodation accommodation) {
+        RetrofitService retrofitService = new RetrofitService();
+        AccommodationApi accommodationApi = retrofitService.getRetrofit().create(AccommodationApi.class);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == 123) {
+        //ARRAYLIST DEI RISULTATI DELLA RICERCA
+        resultAcc = new ArrayList<>();
 
-            RetrofitService retrofitService = new RetrofitService();
-            AccommodationApi accommodationApi = retrofitService.getRetrofit().create(AccommodationApi.class);
+        Call<ResponseBody> call = accommodationApi.search(accommodation.generateJsonUsername(GlobalData.getInstance().getUsername()));
+        setContentView(R.layout.cerca2);
+        //setto gli elementi della pagina
+        back=findViewById(R.id.back);
+        backk=findViewById(R.id.back2);
+        loading = findViewById(R.id.loading);
+        Glide.with(this)
+                .asGif()
+                .load(R.drawable.loading)
+                .into(loading);
 
-            //ARRAYLIST DEI RISULTATI DELLA RICERCA
-            resultAcc = new ArrayList<>();
+        resultsListView = findViewById(R.id.accommodationListView);
 
-            //TODO: query
-            Accommodation accommodation = GlobalData.getInstance().getAccommodation();
-            accommodation.setName(nomeSearch.getText().toString().toUpperCase().trim());
-            accommodation.setTown(geographicArea.getText().toString().toUpperCase().trim());
-            accommodation.setProvince(provincia.getText().toString().toUpperCase().trim());
-            if (!(tipologia.isEmpty() || tipologia.equals("TIPOLOGIA")))
-                accommodation.setType(tipologia);
+        cuore = findViewById(R.id.pref);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    //Entra qui dentro, capire come estrapolare dati
+                    try {
 
-            Call<ResponseBody> call = accommodationApi.search(accommodation.generateJsonUsername(GlobalData.getInstance().getUsername()));
-            setContentView(R.layout.cerca2);
-            //setto gli elementi della pagina
-            back = findViewById(R.id.back);
-            backk = findViewById(R.id.back2);
-            loading = findViewById(R.id.loading);
-            Glide.with(this)
-                    .asGif()
-                    .load(R.drawable.loading)
-                    .into(loading);
+                        String responseBody = response.body().string();
+                        if(responseBody.equals("[]")){
+                            Toast.makeText(Cerca.this,"NESSUN RISULTATO",(int)4).show();
+                            backSearch();
 
-            resultsListView = findViewById(R.id.accommodationListView);
+                        }else{
+                            resultAcc = (ArrayList<Accommodation>) Accommodation.parseString(responseBody);
+                            // Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
+                            //setto dall'adapter, visualizzando nome e indirizzo dei risultati
+                            adapterAcc = new AccomodationAdapter(Cerca.this, resultAcc);
+                            loading.setVisibility(View.GONE);
+                            resultsListView.setAdapter(adapterAcc);
 
-            cuore = findViewById(R.id.pref);
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if (response.isSuccessful()) {
-                        //Entra qui dentro, capire come estrapolare dati
-                        try {
+                            //VISUALIZZAZIONE PAGINA SPECIFICA ALLOGGIO
+                            resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    // Alloggio selezionato dalla lista
+                                    Accommodation alloggioSelezionato = resultAcc.get(position);
+                                    pos=position;
+                                    // Creazione di un Intent
+                                    Intent intent=new Intent(Cerca.this, SpecAll.class);
+                                    // Passaggio dell'alloggio attraverso l'Intent
+                                    intent.putExtra("alloggio", alloggioSelezionato);
+                                    intent.putExtra("alloggioRicerca", accommodation);
+                                    intent.putExtra("pref", false);
+                                    // Avvio dell'attività successiva
+                                    startActivityForResult(intent, 123);
 
-                            String responseBody = response.body().string();
-                            if (responseBody.equals("[]")) {
-                                Toast.makeText(Cerca.this, "NESSUN RISULTATO", (int) 4).show();
-                                backSearch();
+                                }
+                            });
 
-                            } else {
-                                resultAcc = (ArrayList<Accommodation>) Accommodation.parseString(responseBody);
-                                // Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
-                                //setto dall'adapter, visualizzando nome e indirizzo dei risultati
-                                adapterAcc = new AccomodationAdapter(Cerca.this, resultAcc);
-                                loading.setVisibility(View.GONE);
-                                resultsListView.setAdapter(adapterAcc);
-
-                                //VISUALIZZAZIONE PAGINA SPECIFICA ALLOGGIO
-                                resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                    @Override
-                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        // Alloggio selezionato dalla lista
-                                        Accommodation alloggioSelezionato = resultAcc.get(position);
-                                        pos = position;
-                                        // Creazione di un Intent
-                                        Intent intent = new Intent(Cerca.this, SpecAll.class);
-                                        // Passaggio dell'alloggio attraverso l'Intent
-                                        intent.putExtra("alloggio", alloggioSelezionato);
-                                        intent.putExtra("pref", false);
-                                        // Avvio dell'attività successiva
-                                        startActivityForResult(intent, 123);
-
-                                    }
-                                });
-
-                            }
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
                         }
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
+            }
 
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Toast.makeText(Cerca.this, "Ricerca NON effettuata", Toast.LENGTH_SHORT).show();
-                }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(Cerca.this, "Ricerca NON effettuata", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-
-            });
-        }
-
-        }
+        back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                backSearch();
+            }
+        });
+        backk.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                backSearch();
+            }
+        });
+    }
 
     //METODO VISUALIZZAZIONE DASHBOARD
     private void openDashboard(){
