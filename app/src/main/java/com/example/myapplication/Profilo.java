@@ -32,7 +32,7 @@ public class Profilo extends AppCompatActivity {
     private ImageButton nomeMod;
     private ImageButton cognomeMod;
     private ImageButton mailMod;
-    private ImageButton pwMod;
+    private Button pwMod;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,6 @@ public class Profilo extends AppCompatActivity {
 
         // Recupero della variabile dalla chiave specificata
         username =  GlobalData.getInstance().getUsername();
-        password = GlobalData.getInstance().getPassword();
         nomee = GlobalData.getInstance().getNome();
         cognomee = GlobalData.getInstance().getCognome();
         maill = GlobalData.getInstance().getMail();
@@ -55,14 +54,12 @@ public class Profilo extends AppCompatActivity {
         cognome.setText(cognomee);
         EditText mail = findViewById(R.id.email2);
         mail.setText(maill);
-        TextView pw = findViewById(R.id.password2);
-        pw.setText(password);
 
         home = (ImageButton) findViewById(R.id.house);
         nomeMod = (ImageButton) findViewById(R.id.nomeMod);
         cognomeMod = (ImageButton) findViewById(R.id.cognomeMod);
         mailMod = (ImageButton) findViewById(R.id.mailMod);
-        pwMod = (ImageButton) findViewById(R.id.pwMod);
+        pwMod = findViewById(R.id.pwMod);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,7 +195,8 @@ public class Profilo extends AppCompatActivity {
         salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!passatt.getText().toString().equals(GlobalData.getInstance().getPassword()))
+                //if(verifyPass(passatt.getText().toString())==false)
+                if(true)
                     Toast.makeText(Profilo.this, "Password attuale sbagliata", Toast.LENGTH_SHORT).show();
                 else{
                     if((isPasswordSecure(nuovapass.getText().toString())&&isPasswordSecure(checknuovapass.getText().toString()))){

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,14 +18,10 @@ import com.example.myapplication.retrofit.UserApi;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 
 import okhttp3.MediaType;
-import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -39,8 +34,6 @@ public class Login extends AppCompatActivity {
     private String mail;
     EditText username;
     EditText password;
-    Button loginButton;
-
     TextView register;
 
 
@@ -61,10 +54,6 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener( View -> {
 
             if(!isEmpty(username)&&!isEmpty(password)){
-                /*HashMap<String,String> param = new HashMap<String,String>();
-                param.put("username", String.valueOf(username.getText()));
-                param.put("password",String.valueOf(password.getText()));*/
-
                 String hashedPassword = CryptoUtils.hashPassword(String.valueOf(password.getText()));
                 JsonObject jsonBody = new JsonObject();
                 jsonBody.addProperty("username", String.valueOf(username.getText()));
@@ -77,9 +66,7 @@ public class Login extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             try {
                                 String responseBody = response.body().string();
-
                                 Toast.makeText(Login.this, "Login effettuato", Toast.LENGTH_SHORT).show();
-                                System.out.println("!!!  RISPONDE !!!: "+ responseBody);
                                 Gson gson = new Gson();
                                 User myModel = gson.fromJson(responseBody, User.class);
                                 nome = myModel.getFirstName();
@@ -89,16 +76,12 @@ public class Login extends AppCompatActivity {
                                 GlobalData.getInstance().setNome(nome);
                                 GlobalData.getInstance().setMail(mail);
                                 GlobalData.getInstance().setUsername(String.valueOf(username.getText()));
-                                GlobalData.getInstance().setPassword(String.valueOf(password.getText()));
                                 openSearch();
                             } catch (IOException e) {
-                                //System.out.println("!!!  ECCEZIONE !!!");
                                 e.printStackTrace();
                             }
                         } else {
-                            //System.out.println("!!!  NON TROVATO !!!");
                             Toast.makeText(Login.this, "Login fallito", Toast.LENGTH_SHORT).show();
-
                         }
                     }
 
@@ -109,9 +92,7 @@ public class Login extends AppCompatActivity {
                 });
             }else{
                 Toast.makeText(Login.this, "Inserisci credenziali", Toast.LENGTH_SHORT).show();
-
             }
-
         });
 
         register.setOnClickListener(new View.OnClickListener() {

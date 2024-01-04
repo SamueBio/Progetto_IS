@@ -73,14 +73,6 @@ public class GlobalData extends AppCompatActivity {
         u.setEmail(mail);
     }
 
-    public String getPassword() {
-        return u.getPassword();
-    }
-
-    public void setPassword(String password) {
-        u.setPassword(password);
-    }
-
     public boolean isPiscina() {
         return accommodation.isPool();
     }
@@ -253,14 +245,6 @@ public class GlobalData extends AppCompatActivity {
 
     public void setFrancese(boolean francese) {
         this.accommodation.setFrench(francese);
-    }
-
-    public boolean isZonaFiera(){
-        return accommodation.isCountryFair();
-    }
-
-    public void setZonaFiera(boolean zonaFiera){
-        this.accommodation.setCountryFair(zonaFiera);
     }
 
     public boolean isHighway(){

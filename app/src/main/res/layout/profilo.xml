@@ -116,17 +116,6 @@
         android:textSize="17sp"
         android:editable="false"/>
 
-    <TextView
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="480dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="90dp"
-        android:text="PASSWORD"
-        android:textSize="25sp"
-        android:textStyle="bold" />
 
 
     <ImageButton
@@ -153,17 +142,17 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/compose" />
 
-    <ImageButton
+
+    <Button
         android:id="@+id/pwMod"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="62dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="500dp"
-        android:background="#CFD2F0"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/compose" />
+        android:layout_marginRight="20dp"
+        android:text="CAMBIA PASSWORD"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
 
     <ImageButton
@@ -197,18 +186,5 @@
             android:hint="" />
     </com.google.android.material.textfield.TextInputLayout>-->
 
-
-    <TextView
-        android:id="@+id/password2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="515dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="90dp"
-        android:inputType="textPassword"
-        android:textSize="20dp"
-        android:editable="false"
-        />
 
 </RelativeLayout>
