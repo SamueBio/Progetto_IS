@@ -43,4 +43,7 @@ public class UserController {
 	// save user
 	@PostMapping("/Users/save")
 	public void save(@RequestBody User user) {userDao.save(user); }
+
+	@PostMapping("/Users/update")
+	public void updateValues(@RequestBody User user){userDao.updateValues(user);}
 }

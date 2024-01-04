@@ -1,5 +1,7 @@
 package com.example.myapplication.model;
 
+import com.google.gson.JsonObject;
+
 public class User {
 
     private String username;
@@ -52,6 +54,15 @@ public class User {
         this.password = password;
     }
 
+    public JsonObject generateJson(){
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("username",username);
+        jsonObject.addProperty("firstName",firstName);
+        jsonObject.addProperty("lastName",lastName);
+        jsonObject.addProperty("email",email);
+        jsonObject.addProperty("password",password);
 
+        return jsonObject;
+    }
 
 }
