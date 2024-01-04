@@ -22,5 +22,8 @@ public class FavouriteController {
 
     @PostMapping("/Favourites/save")
     public void save(@RequestBody Favourite favourite) {favouriteDao.save(favourite); }
+
+    @PostMapping("/Favourites/delete")
+    public void delete(@RequestBody Favourite favourite) {favouriteDao.delete(favourite);}
 }
 
