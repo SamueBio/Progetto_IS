@@ -220,43 +220,44 @@ public class Profilo extends AppCompatActivity {
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if((isPasswordSecure(nuovapass.getText().toString())&&isPasswordSecure(checknuovapass.getText().toString()))){
-                            if(nuovapass.getText().toString().equals(checknuovapass.getText().toString())) {
-                                String password = CryptoUtils.hashPassword(nuovapass.getText().toString());
+                        if(response.isSuccessful()) {
+                            if ((isPasswordSecure(nuovapass.getText().toString()) && isPasswordSecure(checknuovapass.getText().toString()))) {
+                                if (nuovapass.getText().toString().equals(checknuovapass.getText().toString())) {
+                                    String password = CryptoUtils.hashPassword(nuovapass.getText().toString());
 
-                                User userToUpdate = new User(GlobalData.getInstance().getUsername(),
-                                        GlobalData.getInstance().getNome(),
-                                        GlobalData.getInstance().getCognome(),
-                                        GlobalData.getInstance().getMail(),
-                                        password);
-                                RetrofitService retrofitService2 = new RetrofitService();
-                                UserApi userApi2 = retrofitService2.getRetrofit().create(UserApi.class);
+                                    User userToUpdate = new User(GlobalData.getInstance().getUsername(),
+                                            GlobalData.getInstance().getNome(),
+                                            GlobalData.getInstance().getCognome(),
+                                            GlobalData.getInstance().getMail(),
+                                            password);
+                                    RetrofitService retrofitService2 = new RetrofitService();
+                                    UserApi userApi2 = retrofitService2.getRetrofit().create(UserApi.class);
 
-                                Call<ResponseBody> call2 = userApi2.updatePassword(userToUpdate.generateJson());
-                                call2.enqueue(new Callback<ResponseBody>() {
-                                    @Override
-                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                        if(response.isSuccessful()){
+                                    Call<ResponseBody> call2 = userApi2.updatePassword(userToUpdate.generateJson());
+                                    call2.enqueue(new Callback<ResponseBody>() {
+                                        @Override
+                                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                            if (response.isSuccessful()) {
 
-                                            Toast.makeText(Profilo.this,"Update riuscito",Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Profilo.this, "Update riuscito", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(Profilo.this, "Update fallito", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                        else{
-                                            Toast.makeText(Profilo.this,"Update fallito",Toast.LENGTH_SHORT).show();
+
+                                        @Override
+                                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                            Toast.makeText(Profilo.this, "Update fallito", Toast.LENGTH_SHORT).show();
                                         }
-                                    }
+                                    });
+                                    alertDialog.dismiss();
 
-                                    @Override
-                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                        Toast.makeText(Profilo.this,"Update fallito",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                alertDialog.dismiss();
-
-                            }else{
-                                Toast.makeText(Profilo.this, "PASSWORD NON UGUALI", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Profilo.this, "PASSWORD NON UGUALI", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(Profilo.this, "REQUISITI NON RISPETTATI", Toast.LENGTH_SHORT).show();
                             }
-                        }else{
-                            Toast.makeText(Profilo.this, "REQUISITI NON RISPETTATI", Toast.LENGTH_SHORT).show();
                         }
                     }
 
