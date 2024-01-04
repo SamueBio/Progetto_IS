@@ -55,7 +55,7 @@ public class Cerca extends AppCompatActivity {
     private AlertDialog alertDialog;
     private int pos;
     private Spinner spinner;
-    private String tipologia="";
+    private String tipologia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -498,7 +498,8 @@ public class Cerca extends AppCompatActivity {
         accommodation.setName(nomeSearch.getText().toString().toUpperCase().trim());
         accommodation.setTown(geographicArea.getText().toString().toUpperCase().trim());
         accommodation.setProvince(provincia.getText().toString().toUpperCase().trim());
-        accommodation.setType(tipologia);
+        if(!(tipologia.isEmpty()||tipologia.equals("TIPOLOGIA")))
+            accommodation.setType(tipologia);
 
         Call<ResponseBody> call = accommodationApi.search(accommodation.generateJsonUsername(GlobalData.getInstance().getUsername()));
         setContentView(R.layout.cerca2);
