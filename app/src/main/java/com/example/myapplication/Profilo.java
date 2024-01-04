@@ -37,6 +37,9 @@ public class Profilo extends AppCompatActivity {
     private String cognomee;
     private String maill;
 
+    private EditText nome_;
+    private EditText cognome_;
+    private EditText mail_;
     private AlertDialog alertDialog;
 
     private ImageButton home;
@@ -58,13 +61,13 @@ public class Profilo extends AppCompatActivity {
         nomee = GlobalData.getInstance().getNome();
         cognomee = GlobalData.getInstance().getCognome();
         maill = GlobalData.getInstance().getMail();
-        //System.out.println("USERNAME: "+username+"\nPW: "+password+nome+cognome+mail);
-        EditText nome = findViewById(R.id.nome2);
-        nome.setText(nomee);
-        EditText cognome = findViewById(R.id.cognome2);
-        cognome.setText(cognomee);
-        EditText mail = findViewById(R.id.email2);
-        mail.setText(maill);
+
+        nome_ = findViewById(R.id.nome2);
+        nome_.setText(nomee);
+        cognome_ = findViewById(R.id.cognome2);
+        cognome_.setText(cognomee);
+        mail_ = findViewById(R.id.email2);
+        mail_.setText(maill);
 
         home = (ImageButton) findViewById(R.id.house);
         nomeMod = (ImageButton) findViewById(R.id.nomeMod);
@@ -137,7 +140,7 @@ public class Profilo extends AppCompatActivity {
                                             GlobalData.getInstance().getCognome(),
                                             GlobalData.getInstance().getMail(),"");
                 updateValues(userToUpdate);
-                
+                nome_.setText(nome.getText());
                 alertDialog.dismiss();
             }
         });
@@ -162,6 +165,7 @@ public class Profilo extends AppCompatActivity {
                         lastNameToUpdate,
                         GlobalData.getInstance().getMail(),"");
                 updateValues(userToUpdate);
+                cognome_.setText(cognome.getText());
                 alertDialog.dismiss();
             }
         });
@@ -185,6 +189,7 @@ public class Profilo extends AppCompatActivity {
                         GlobalData.getInstance().getCognome(),
                         mailToUpdate,"");
                 updateValues(userToUpdate);
+                mail_.setText(mail.getText());
                 alertDialog.dismiss();
             }
         });
@@ -233,6 +238,7 @@ public class Profilo extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                         if(response.isSuccessful()){
+
                                             Toast.makeText(Profilo.this,"Update riuscito",Toast.LENGTH_SHORT).show();
                                         }
                                         else{
@@ -261,6 +267,7 @@ public class Profilo extends AppCompatActivity {
                     }
                 });
             }
+
         });
         alertDialog = dialogBuilder.create();
         alertDialog.show();
