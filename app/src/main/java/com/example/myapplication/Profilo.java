@@ -259,6 +259,9 @@ public class Profilo extends AppCompatActivity {
                                 Toast.makeText(Profilo.this, "REQUISITI NON RISPETTATI", Toast.LENGTH_SHORT).show();
                             }
                         }
+                        else {
+                            Toast.makeText(Profilo.this, "Password attuale sbagliata", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
