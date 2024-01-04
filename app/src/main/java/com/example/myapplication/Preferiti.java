@@ -83,8 +83,9 @@ public class Preferiti extends AppCompatActivity {
                             Intent intent=new Intent(Preferiti.this, SpecAll.class);
                             // Passaggio dell'alloggio attraverso l'Intent
                             intent.putExtra("alloggio", alloggioSelezionato);
+                            intent.putExtra("pref", true);
                             // Avvio dell'attività successiva
-                            startActivityForResult(intent, 123);                        }
+                            startActivityForResult(intent, 321);                        }
                     });
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -101,7 +102,7 @@ public class Preferiti extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == 123) {
+        if (resultCode == RESULT_OK && requestCode == 321) {
             Accommodation alloggio = (Accommodation) data.getSerializableExtra("alloggioAgg");
             allAccommodations.get(pos).setFavourite(alloggio.isFavourite());
             resultsListView.setAdapter(adapter);

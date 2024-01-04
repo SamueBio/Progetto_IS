@@ -54,7 +54,6 @@ public class Profilo extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.profilo);
-        //Intent intent = getIntent();
 
         // Recupero della variabile dalla chiave specificata
         username =  GlobalData.getInstance().getUsername();

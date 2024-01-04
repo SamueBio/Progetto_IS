@@ -54,6 +54,7 @@ public class SpecAll extends AppCompatActivity {
     private ListView resultsListView;
     private ReviewAdapter adapterRev;
     private ArrayList<Review> resultRev;
+    private boolean pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,7 @@ public class SpecAll extends AppCompatActivity {
 
         Intent intent = getIntent();
         acc = (Accommodation) intent.getSerializableExtra("alloggio");
+        pref = intent.getBooleanExtra("pref", false);
         if(acc.isFavourite())
             cuore.setImageResource(R.drawable.cuore_si);
         nome.setText(acc.getName());
@@ -114,10 +116,21 @@ public class SpecAll extends AppCompatActivity {
     }
 
     public void onBackImageClick(View view) {
-        Intent intent = new Intent();
-        intent.putExtra("alloggioAgg", acc);
-        setResult(RESULT_OK, intent);
-        finish();
+        Intent intent;
+        if(pref){
+            intent = new Intent(SpecAll.this, Preferiti.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(SpecAll.this, Cerca.class);
+            intent.putExtra("alloggioAgg", acc);
+            intent.putExtra("cerca", true);
+            intent.putExtra("pref",false);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+
+
     }
 
 
@@ -196,13 +209,13 @@ public class SpecAll extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                finish();
+                gotoSpec(acc);
             }
         });
         backk.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                finish();
+                gotoSpec(acc);
             }
         });
     }
@@ -210,6 +223,74 @@ public class SpecAll extends AppCompatActivity {
     public void nuovarec(View view){
         Intent intent=new Intent(this, InserisciRecensione.class);
         intent.putExtra("alloggio", acc);
+        startActivityForResult(intent, 123);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 123) {
+            Accommodation alloggio = (Accommodation) data.getSerializableExtra("alloggio");
+            setContentView(R.layout.recensioni);
+            resultRev = new ArrayList<>();
+            back=findViewById(R.id.back);
+            backk=findViewById(R.id.back2);
+            resultsListView = findViewById(R.id.reviewListView);
+            nuovaRec=findViewById(R.id.nuovaRec);
+
+            nuovaRec.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) { nuovarec(v);
+                }
+            });
+
+            RetrofitService retrofitService = new RetrofitService();
+            ReviewApi reviewApi = retrofitService.getRetrofit().create(ReviewApi.class);
+
+            Call<ResponseBody> call = reviewApi.getReviewsByAccommodation(acc.generateJson());
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        try {
+                            String responseBody = response.body().string();
+                            resultRev = (ArrayList<Review>) Review.parseString(responseBody);
+                            adapterRev = new ReviewAdapter(SpecAll.this, resultRev);
+                            resultsListView.setAdapter(adapterRev);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
+            back.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    gotoSpec(alloggio);
+                }
+            });
+            backk.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    gotoSpec(alloggio);
+                }
+            });
+
+
+        }
+    }
+
+
+    private void gotoSpec(Accommodation alloggio){
+        Intent intent=new Intent(SpecAll.this, SpecAll.class);
+        intent.putExtra("alloggio", alloggio);
+        intent.putExtra("pref", pref);
         startActivity(intent);
     }
 }

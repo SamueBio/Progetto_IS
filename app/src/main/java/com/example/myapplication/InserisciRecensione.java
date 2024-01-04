@@ -174,7 +174,8 @@ public class InserisciRecensione extends AppCompatActivity {
         });
         Intent intent = new Intent(this, SpecAll.class);
         intent.putExtra("alloggio", acc);
-        startActivity(intent);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     public void onBackImageClick(View view) {

@@ -546,6 +546,7 @@ public class Cerca extends AppCompatActivity {
                                     Intent intent=new Intent(Cerca.this, SpecAll.class);
                                     // Passaggio dell'alloggio attraverso l'Intent
                                     intent.putExtra("alloggio", alloggioSelezionato);
+                                    intent.putExtra("pref", false);
                                     // Avvio dell'attività successiva
                                     startActivityForResult(intent, 123);
 
@@ -581,15 +582,98 @@ public class Cerca extends AppCompatActivity {
 
 
     }
+
+    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == 123) {
-            Accommodation alloggio = (Accommodation) data.getSerializableExtra("alloggioAgg");
-            resultAcc.get(pos).setFavourite(alloggio.isFavourite());
-            resultsListView.setAdapter(adapterAcc);
+
+            RetrofitService retrofitService = new RetrofitService();
+            AccommodationApi accommodationApi = retrofitService.getRetrofit().create(AccommodationApi.class);
+
+            //ARRAYLIST DEI RISULTATI DELLA RICERCA
+            resultAcc = new ArrayList<>();
+
+            //TODO: query
+            Accommodation accommodation = GlobalData.getInstance().getAccommodation();
+            accommodation.setName(nomeSearch.getText().toString().toUpperCase().trim());
+            accommodation.setTown(geographicArea.getText().toString().toUpperCase().trim());
+            accommodation.setProvince(provincia.getText().toString().toUpperCase().trim());
+            if (!(tipologia.isEmpty() || tipologia.equals("TIPOLOGIA")))
+                accommodation.setType(tipologia);
+
+            Call<ResponseBody> call = accommodationApi.search(accommodation.generateJsonUsername(GlobalData.getInstance().getUsername()));
+            setContentView(R.layout.cerca2);
+            //setto gli elementi della pagina
+            back = findViewById(R.id.back);
+            backk = findViewById(R.id.back2);
+            loading = findViewById(R.id.loading);
+            Glide.with(this)
+                    .asGif()
+                    .load(R.drawable.loading)
+                    .into(loading);
+
+            resultsListView = findViewById(R.id.accommodationListView);
+
+            cuore = findViewById(R.id.pref);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        //Entra qui dentro, capire come estrapolare dati
+                        try {
+
+                            String responseBody = response.body().string();
+                            if (responseBody.equals("[]")) {
+                                Toast.makeText(Cerca.this, "NESSUN RISULTATO", (int) 4).show();
+                                backSearch();
+
+                            } else {
+                                resultAcc = (ArrayList<Accommodation>) Accommodation.parseString(responseBody);
+                                // Toast.makeText(Cerca.this,responseBody,Toast.LENGTH_SHORT);
+                                //setto dall'adapter, visualizzando nome e indirizzo dei risultati
+                                adapterAcc = new AccomodationAdapter(Cerca.this, resultAcc);
+                                loading.setVisibility(View.GONE);
+                                resultsListView.setAdapter(adapterAcc);
+
+                                //VISUALIZZAZIONE PAGINA SPECIFICA ALLOGGIO
+                                resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        // Alloggio selezionato dalla lista
+                                        Accommodation alloggioSelezionato = resultAcc.get(position);
+                                        pos = position;
+                                        // Creazione di un Intent
+                                        Intent intent = new Intent(Cerca.this, SpecAll.class);
+                                        // Passaggio dell'alloggio attraverso l'Intent
+                                        intent.putExtra("alloggio", alloggioSelezionato);
+                                        intent.putExtra("pref", false);
+                                        // Avvio dell'attività successiva
+                                        startActivityForResult(intent, 123);
+
+                                    }
+                                });
+
+                            }
+
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(Cerca.this, "Ricerca NON effettuata", Toast.LENGTH_SHORT).show();
+                }
+
+
+            });
         }
-    }
+
+        }
 
     //METODO VISUALIZZAZIONE DASHBOARD
     private void openDashboard(){
