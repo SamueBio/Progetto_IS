@@ -24,49 +24,62 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MyApplication"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        >
+
+
 
         <activity
             android:name=".Home"
             android:exported="true"
             android:label="Travel Together"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.MyApplication"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".Login">
 
         </activity>
         <activity
-            android:name=".Cerca">
+            android:name=".Login"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".Dashboard">
+            android:name=".Cerca"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".Profilo">
+            android:name=".Dashboard"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".Preferiti">
+            android:name=".Profilo"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".Notifiche">
+            android:name=".Preferiti"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".Registrazione">
+            android:name=".Notifiche"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".SpecAll">
+            android:name=".Registrazione"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".SpecAll"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
@@ -74,15 +87,18 @@
 
         </activity>
         <activity
-            android:name=".InviaRichiesta">
+            android:name=".InviaRichiesta"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".Faq">
+            android:name=".Faq"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".InserisciRecensione">
+            android:name=".InserisciRecensione"
+            android:screenOrientation="portrait">
 
         </activity>
     </application>
