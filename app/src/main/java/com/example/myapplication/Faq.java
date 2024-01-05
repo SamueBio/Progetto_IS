@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,9 +107,7 @@ public class Faq extends AppCompatActivity {
             }
         });
 
-        /*
-            QUI SETTARE LE VARIE FAQ COME A RIGA 29 E 30
-         */
+
     }
 
     //FAQ1
@@ -203,5 +203,12 @@ public class Faq extends AppCompatActivity {
 
     public void onBackImageClick(View view) {
         finish();
+    }
+
+    public void openPrivacyPolicy(View v) {
+        String url = "https://www.iubenda.com/privacy-policy/47447245.pdf";
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(intent);
     }
 }

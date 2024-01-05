@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -152,6 +153,12 @@ public class Registrazione extends AppCompatActivity {
     }
     public void openLogin(){
         Intent intent=new Intent(this, Login.class);
+        startActivity(intent);
+    }
+    public void openPrivacyPolicy(View v) {
+        String url = "https://www.iubenda.com/privacy-policy/47447245.pdf";
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
         startActivity(intent);
     }
 
