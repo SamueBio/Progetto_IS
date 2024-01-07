@@ -112,4 +112,18 @@
         android:text="REGISTRATI"
         android:textSize="22sp" />
 
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="25dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#CFD2F0"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/back"
+        android:clickable="true"
+        android:onClick="onBackImageClick"/>
+
 </RelativeLayout>

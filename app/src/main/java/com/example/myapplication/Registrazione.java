@@ -165,4 +165,9 @@ public class Registrazione extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onBackImageClick(View view) {
+        finish();
+    }
+
+
 }

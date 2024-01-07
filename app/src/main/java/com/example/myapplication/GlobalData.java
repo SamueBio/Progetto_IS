@@ -43,6 +43,8 @@ public class GlobalData extends AppCompatActivity {
         return instance;
     }
 
+
+
     public String getUsername() {
         return u.getUsername();
     }

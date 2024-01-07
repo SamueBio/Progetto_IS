@@ -63,7 +63,7 @@ public class Cerca extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        GlobalData.getInstance().getAccommodation().setType("");
         setContentView(R.layout.cerca);
 
         Intent intent = getIntent();
