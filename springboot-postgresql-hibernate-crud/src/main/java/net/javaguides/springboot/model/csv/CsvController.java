@@ -11,7 +11,7 @@ public class CsvController {
     @Autowired
     private CsvDataService csvDataService;
 
-    @GetMapping("/load-csv")
+    //@GetMapping("/load-csv")
     public ResponseEntity<String> loadCsvData() {
         csvDataService.saveDataFromCsv("C:\\Users\\sfori\\Downloads\\Elenco-delle-Strutture-Ricettive-Turistiche-della-Regione-Veneto.csv");
         return ResponseEntity.ok("Dati CSV salvati nel database.");
