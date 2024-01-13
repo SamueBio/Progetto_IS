@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -54,7 +55,7 @@ public class CsvDataService {
 
         String COMMA_DELIMITER = ";";
         List<List<String>> records = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath, StandardCharsets.UTF_8))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(COMMA_DELIMITER);
@@ -66,160 +67,218 @@ public class CsvDataService {
             throw new RuntimeException(e);
         }
         char v = 34;
-        for(int i = 3657; i < records.size();++i){
+        int fairZoneCounter = 0;
+        int stationCounter = 1;
+        int spanishCounter = 2;
+        int lakeCounter = 3;
+        int airportCounter = 4;
+        int capCounter = 5;
+        int internCounter = 6;
+        int superstreetCounter = 7;
+        int fitnessCounter = 8;
+        int idCounter = 9;
+        int conferenceRoomCounter = 10;
+        int kidsGamesCounter = 11;
+        int secondaryTypeCounter = 12;
+        int parkingCounter = 13;
+        int categoryCounter = 14;
+        int saunaCounter = 15;
+        int areaCounter = 16;
+        int skiliftsCounter = 17;
+        int provinceCounter = 18;
+        int nameCounter = 19;
+        int websiteCounter = 20;
+        int englishCounter = 21;
+        int starsCounter = 22;
+        int thermalCounter = 23;
+        int otherServicesCounter = 45;
+        int disablePeopleCounter = 25;
+        int outskirtsCounter = 26;
+        int oldTownCounter = 27;
+        int locationCounter = 28;
+        int airConditioningCounter = 29;
+        int seaCounter = 30;
+        int petsCounter = 31;
+        int poolCounter = 32;
+        int faxCounter = 33;
+        int newClasslr11Counter = 34;
+        int germanCounter = 35;
+        int telephoneCounter = 36;
+        int hillCounter = 37;
+        int townCounter = 38;
+        int tempClosureCounter = 39;
+        int civicNumberCounter = 40;
+        int frenchCounter = 41;
+        int restaurantCounter = 42;
+        int typeCounter = 43;
+        int addressCounter = 44;
+        int coveredPoolCounter = 45;
+        int dateLastUpdateCounter = 46;
+        int solariumCounter = 47;
+        int mailCounter = 48;
+
+
+        for(int i = 1; i < records.size();++i){
             Accommodation accomodation = new Accommodation();
             //Campi String
-            int z = 0;
+            int z;
+            //System.out.println("i = "+i);
+            //System.out.println(records.get(i).size());
+            //System.out.println(records.get(i));
+            z = provinceCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
                 accomodation.setProvince(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+            z=townCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
                 accomodation.setTown(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+            z=locationCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
                 accomodation.setLocation(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+            z=typeCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
                 accomodation.setType(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;++z;
+            z=categoryCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setCategory((records.get(i).get(5)).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setCategory((records.get(i).get(z)).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            z=starsCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setStars((records.get(i).get(6).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setStars((records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=nameCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setName(records.get(i).get(7).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setName(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            z=addressCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setAddress(records.get(i).get(8).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setAddress(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            z=civicNumberCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setHouseNumber(records.get(i).get(9).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setHouseNumber(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            z=internCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setInterno((records.get(i).get(10).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setInterno((records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=capCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setCap(records.get(i).get(11).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setCap(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            z=telephoneCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setTelephone(records.get(i).get(12).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setTelephone(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            z=faxCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setFax(records.get(i).get(13).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setFax(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            z=mailCounter;
+            if(records.get(i).size() > z && records.get(i).get(z).split(String.valueOf(v)).length > 0)
+                accomodation.setEmail(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            else
+                accomodation.setEmail("");
+            z=websiteCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setEmail(records.get(i).get(14).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setWebsite(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            z=areaCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setWebsite(records.get(i).get(15).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setArea(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
+            z=disablePeopleCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setArea(records.get(i).get(16).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]);
-            ++z;
+                accomodation.setDisablePeopleAccess(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=poolCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setDisablePeopleAccess(toBool(records.get(i).get(17).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setPool(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=coveredPoolCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setPool(toBool(records.get(i).get(18).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setCoveredPool(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=restaurantCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setCoveredPool(toBool(records.get(i).get(19).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setRestaurant(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=parkingCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setRestaurant(toBool(records.get(i).get(20).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setParking(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=conferenceRoomCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setParking(toBool(records.get(i).get(21).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setConferenceRoom(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=airConditioningCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setConferenceRoom(toBool(records.get(i).get(22).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setAirConditioning(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=kidsGamesCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setAirConditioning(toBool(records.get(i).get(23).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setChildrensGames(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=saunaCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setChildrensGames(toBool(records.get(i).get(24).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setSauna(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=solariumCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setSauna(toBool(records.get(i).get(25).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setSolarium(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=fitnessCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setSolarium(toBool(records.get(i).get(26).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setFitness(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=petsCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setFitness(toBool(records.get(i).get(27).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setPets(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=oldTownCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setPets(toBool(records.get(i).get(28).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setOldTown(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=fairZoneCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setOldTown(toBool(records.get(i).get(29).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setCountryFair(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=lakeCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setCountryFair(toBool(records.get(i).get(30).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setLake(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=airportCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setLake(toBool(records.get(i).get(31).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setAirport(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=superstreetCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setAirport(toBool(records.get(i).get(32).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setHighway(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=skiliftsCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setHighway(toBool(records.get(i).get(33).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setSkiLifts(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=stationCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setSkiLifts(toBool(records.get(i).get(34).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setFsStation(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=seaCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setFsStation(toBool(records.get(i).get(35).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setSea(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=thermalCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setSea(toBool(records.get(i).get(36).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setThermal(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=outskirtsCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setThermal(toBool(records.get(i).get(37).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setOutskirts(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=hillCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setOutskirts(toBool(records.get(i).get(38).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setHilly(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=englishCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setHilly(toBool(records.get(i).get(39).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setEnglish(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=frenchCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setEnglish(toBool(records.get(i).get(40).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setFrench(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=germanCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setFrench(toBool(records.get(i).get(41).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setGerman(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=spanishCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setGerman(toBool(records.get(i).get(42).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+                accomodation.setSpanish(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=tempClosureCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setSpanish(toBool(records.get(i).get(43).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
-            if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
-                accomodation.setTemporaryClosure(toBool(records.get(i).get(44).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
-
-            while(!isInteger(records.get(i).get(z))) {
-                if(records.get(i).get(z).split(String.valueOf(v)).length>0)
-                    accomodation.setOtherServices(accomodation.getOtherServices()+(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length - 1]));
-                ++z;
-            }
+                accomodation.setTemporaryClosure(toBool(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
+            z=otherServicesCounter;
+            if(records.get(i).get(z).split(String.valueOf(v)).length>0)
+                accomodation.setOtherServices((records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length - 1]));
+            //while(!isInteger(records.get(i).get(z))) {
+            //    if(records.get(i).get(z).split(String.valueOf(v)).length>0)
+            //        accomodation.setOtherServices(accomodation.getOtherServices()+(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length - 1]));
+            //    ++z;
+            //}
+            z=idCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
                 accomodation.setId(Integer.parseInt(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
+            z=dateLastUpdateCounter;
             if(records.get(i).get(z).split(String.valueOf(v)).length > 0)
                 accomodation.setLastTimeUpdated(toDate(records.get(i).get(z).split(String.valueOf(v))[records.get(i).get(z).split(String.valueOf(v)).length-1]));
-            ++z;
-
-            if(records.get(i).size() <= z)
+            z = newClasslr11Counter;
+            if(records.get(i).get(z).split(String.valueOf(v)).length <= 1)
                 accomodation.setNewLR11Classification("");
             else
                 accomodation.setNewLR11Classification((records.get(i).get(z).split(String.valueOf(v))[1]));
-
+            //System.out.println(accomodation);
             accomodationDao.save(accomodation);
         }
     }
