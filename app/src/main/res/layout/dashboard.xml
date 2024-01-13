@@ -6,7 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/bg">
 
-
+    <ImageButton
+        android:id="@+id/exit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:background="#CFD2F0"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/logout" />
 
     <ImageButton
         android:id="@+id/faq"

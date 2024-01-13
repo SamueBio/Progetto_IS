@@ -40,6 +40,11 @@ public class Login extends AppCompatActivity {
 
 
     @Override
+    public void onBackPressed() {
+        // Disabilita il pulsante "tornare indietro"
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);

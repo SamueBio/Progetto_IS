@@ -17,10 +17,13 @@ public class Dashboard extends AppCompatActivity {
     private ImageButton search;
     private ImageButton profilo;
     private ImageButton preferiti;
-
     private ImageButton faq;
+    private ImageButton exit;
 
-    private ImageButton notif;
+    @Override
+    public void onBackPressed() {
+        // Disabilita il pulsante "tornare indietro"
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -29,6 +32,15 @@ public class Dashboard extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.dashboard);
+
+        exit = (ImageButton) findViewById(R.id.exit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exitApp();
+            }
+        });
+
 
         faq = (ImageButton) findViewById(R.id.faq);
         faq.setOnClickListener(new View.OnClickListener() {
@@ -61,14 +73,11 @@ public class Dashboard extends AppCompatActivity {
                 openPref();
             }
         });
+    }
 
-       /* notif = (ImageButton) findViewById(R.id.notifica);
-        notif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNot();
-            }
-        });*/
+    public void exitApp(){
+        Intent intent=new Intent(this, Login.class);
+        startActivity(intent);
     }
 
     public void openFaq(){
