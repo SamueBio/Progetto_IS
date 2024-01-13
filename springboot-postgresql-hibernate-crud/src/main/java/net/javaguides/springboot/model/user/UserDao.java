@@ -39,8 +39,8 @@ public class UserDao {
 		return users;
 	}
 	
-	public void delete(String username) {
-		userRepository.deleteById(username);
+	public void delete(User user) {
+		userRepository.deleteById(user.getUsername());
 	}
 
 	public String findPasswordById(String username){

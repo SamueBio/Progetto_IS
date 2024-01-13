@@ -31,7 +31,7 @@ class SpringServerApplicationTests {
 	void getAllEmployeesAndDeleteThem() {
 		List<User> users = userDao.getAllUsers();
 		for(User user:users) {
-			userDao.delete(user.getUsername());
+			userDao.delete(user);
 		}
 	}
 

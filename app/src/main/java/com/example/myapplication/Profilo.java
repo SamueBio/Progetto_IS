@@ -48,6 +48,7 @@ public class Profilo extends AppCompatActivity {
     private ImageButton cognomeMod;
     private ImageButton mailMod;
     private Button pwMod;
+    private Button deleteAccount;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class Profilo extends AppCompatActivity {
         cognomeMod = (ImageButton) findViewById(R.id.cognomeMod);
         mailMod = (ImageButton) findViewById(R.id.mailMod);
         pwMod = findViewById(R.id.pwMod);
+        deleteAccount=findViewById(R.id.deleteAccount);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +113,13 @@ public class Profilo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openn4();
+            }
+        });
+
+        deleteAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openn5();
             }
         });
 
@@ -276,6 +285,57 @@ public class Profilo extends AppCompatActivity {
         alertDialog.show();
     }
 
+    private void openn5() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.delete_confirmation, null);
+        dialogBuilder.setView(dialogView);
+
+        Button delete = dialogView.findViewById(R.id.delete);
+        Button undo = dialogView.findViewById(R.id.undo);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //if(verifyPass(passatt.getText().toString())==false)
+                RetrofitService retrofitService = new RetrofitService();
+                UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
+
+                User userToDelete = new User(GlobalData.getInstance().getUsername(),
+                        GlobalData.getInstance().getNome(),
+                        GlobalData.getInstance().getCognome(),
+                        GlobalData.getInstance().getMail(),"");
+                Call<ResponseBody> call = userApi.delete(userToDelete.generateJson());
+
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if(response.isSuccessful()) {
+                            Toast.makeText(Profilo.this, "Rimozione avvenuta con successo", Toast.LENGTH_SHORT).show();
+                            goToHome();
+                        }
+                        else {
+                            Toast.makeText(Profilo.this, "Rimozione fallita", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(Profilo.this, "Rimozione fallita", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        });
+        undo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //goToProfile();
+            }
+        });
+        alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
 
     private static boolean isPasswordSecure(String password) {
         return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&+-])[A-Za-z\\d@$!%*?&+-]{8,}$");
@@ -305,6 +365,15 @@ public class Profilo extends AppCompatActivity {
                 Toast.makeText(Profilo.this,"Update fallito",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void goToHome(){
+        Intent intent=new Intent(this, Home.class);
+        startActivity(intent);
+    }
+
+    private void goToProfile(){
+
     }
 
 

@@ -154,6 +154,18 @@
         android:textSize="22sp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/deleteAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="62dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="580dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#B50303"
+        android:text="ELIMINA ACCOUNT"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
 
     <ImageButton
         android:id="@+id/nomeMod"

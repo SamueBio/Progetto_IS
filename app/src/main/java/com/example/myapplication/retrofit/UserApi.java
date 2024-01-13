@@ -38,4 +38,7 @@ public interface UserApi {
 
     @POST("/Users/update-password")
     Call<ResponseBody> updatePassword(@Body JsonObject user);
+
+    @POST("/Users/delete")
+    Call<ResponseBody> delete(@Body JsonObject user);
 }

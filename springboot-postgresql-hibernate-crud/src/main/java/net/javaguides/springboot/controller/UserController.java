@@ -49,4 +49,7 @@ public class UserController {
 
 	@PostMapping("/Users/update-password")
 	public void updatePassword(@RequestBody User user){userDao.updatePassword(user);}
+
+	@PostMapping("/Users/delete")
+	public void delete(@RequestBody User user){userDao.delete(user);}
 }

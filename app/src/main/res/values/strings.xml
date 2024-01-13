@@ -44,4 +44,6 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="form_username">Username</string>
+    <string name="si">SI</string>
+    <string name="no">NO</string>
 </resources>
