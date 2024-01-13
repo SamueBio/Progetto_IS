@@ -329,7 +329,7 @@ public class Profilo extends AppCompatActivity {
         undo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //goToProfile();
+                alertDialog.dismiss();
             }
         });
         alertDialog = dialogBuilder.create();

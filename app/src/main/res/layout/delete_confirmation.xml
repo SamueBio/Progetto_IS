@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="20dp"
         android:text="confermi di voler eliminare l'account?"
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="150dp"
         android:text="Confermi di voler eliminare il tuo account e tutte le relative informazioni memorizzate?\nPremendo 'SI' tutti i tuoi dati verranno eliminati dal sistema e non sarà più possibile tornare indietro."
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -37,22 +37,26 @@
 
     <Button
         android:id="@+id/delete"
-        android:layout_width="176dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="450dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="300dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/si"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/undo"
-        android:layout_width="176dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="450dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/no"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
 
